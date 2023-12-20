@@ -1,0 +1,137 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.rl.fragment.DashboardFragment">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                style="@style/OutlinedBoxStyle"
+                app:helperTextEnabled="true"
+                app:startIconDrawable="@drawable/user"
+                app:startIconTint="@color/rl_orange"
+                android:layout_marginTop="5dp"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edtFirstName"
+                    android:textColor="@color/black"
+                    android:inputType="text"
+                    android:fontFamily="@font/poppins_regular"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Email"
+                style="@style/OutlinedBoxStyle"
+                app:helperTextEnabled="true"
+                app:startIconDrawable="@drawable/ic_email"
+                app:startIconTint="@color/rl_orange"
+                android:layout_marginTop="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edtEmail"
+                    android:textColor="@color/black"
+                    android:inputType="textEmailAddress"
+                    android:fontFamily="@font/poppins_regular"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Mobile No"
+                style="@style/OutlinedBoxStyle"
+                app:helperTextEnabled="true"
+                app:startIconDrawable="@drawable/ic_phone"
+                app:startIconTint="@color/rl_orange"
+                android:layout_marginTop="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edtPhone"
+                    android:textColor="@color/black"
+                    android:inputType="phone"
+                    android:fontFamily="@font/poppins_regular"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Address"
+                style="@style/OutlinedBoxStyle"
+                app:helperTextEnabled="true"
+                app:startIconDrawable="@drawable/baseline_apartment_24"
+                app:startIconTint="@color/rl_orange"
+                android:layout_marginTop="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edtAddress"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+
+                    android:inputType="textMultiLine"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Work Description"
+                style="@style/OutlinedBoxStyle"
+                app:helperTextEnabled="true"
+                app:startIconDrawable="@drawable/baseline_apartment_24"
+                app:startIconTint="@color/rl_orange"
+                android:layout_marginTop="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edtWorkDesc"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:lines="2"
+                    android:inputType="textMultiLine"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="20dp"
+                android:id="@+id/btSubmit"
+                android:layout_width="230dp"
+                android:layout_height="45dp"
+                android:background="@drawable/shape_button"
+                android:gravity="center"
+                android:text="Submit"
+                android:textAllCaps="true"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_bold" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

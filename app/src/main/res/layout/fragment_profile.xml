@@ -1,0 +1,275 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.rl.fragment.ProfileFragment">
+
+    <LinearLayout
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@drawable/shape_relative_profile">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/user"
+                android:id="@+id/user"
+                app:tint="@color/rl_orange"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_toRightOf="@id/user"
+                android:layout_marginLeft="8dp"
+                android:id="@+id/t1"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Testing User"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_below="@id/t1"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_toRightOf="@id/user"
+                android:id="@+id/tvName"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@drawable/shape_relative_profile">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_email"
+                android:id="@+id/Email"
+                app:tint="@color/rl_orange"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp"
+                android:layout_toRightOf="@id/Email"
+                android:layout_marginLeft="8dp"
+                android:id="@+id/text2"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Testing User"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_below="@id/text2"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_toRightOf="@id/Email"
+                android:id="@+id/tvEmail"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@drawable/shape_relative_profile">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_phone"
+                android:id="@+id/phone"
+                app:tint="@color/rl_orange"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp"
+                android:layout_toRightOf="@id/phone"
+                android:layout_marginLeft="8dp"
+                android:id="@+id/t3"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_below="@id/t3"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_toRightOf="@id/phone"
+                android:id="@+id/tvPhone"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@drawable/shape_relative_profile">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/baseline_apartment_24"
+                android:id="@+id/address"
+                app:tint="@color/rl_orange"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp"
+                android:layout_toRightOf="@id/address"
+                android:layout_marginLeft="8dp"
+                android:id="@+id/t5"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Testing User"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_below="@id/t5"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_toRightOf="@id/address"
+                android:id="@+id/tvAddress"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:background="@drawable/shape_relative_profile">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/baseline_lock_24"
+                android:id="@+id/pass"
+                app:tint="@color/rl_orange"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_toRightOf="@id/pass"
+                android:layout_marginLeft="8dp"
+                android:id="@+id/t6"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Testing User"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_below="@id/t6"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_toRightOf="@id/pass"
+                android:id="@+id/tvPassword"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change Password"
+                android:textSize="14sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/rl_orange"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="8dp"
+                android:id="@+id/tvChangePassword"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_baseline_logout"
+            android:id="@+id/logout"
+            app:tint="@color/black"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:layout_marginLeft="10dp"
+            android:textSize="16sp"
+            android:layout_toRightOf="@id/logout"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:textColor="@color/black"
+            android:id="@+id/tvLogout"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FCFFFFFF"
+        android:visibility="gone"
+        android:id="@+id/rlLoader"
+        android:elevation="50dp">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/gif_loader"
+            android:adjustViewBounds="true"
+            android:id="@+id/rlGif"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/tvText"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading Please Wait!"
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:id="@+id/tvText"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+</RelativeLayout>
