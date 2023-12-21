@@ -19,5 +19,5 @@
     <color name="home">#FF5722</color>
     <color name="home_bg">#33FF5722</color>
 
-    
+    <color name="empty_tate">#ececec</color>
 </resources>

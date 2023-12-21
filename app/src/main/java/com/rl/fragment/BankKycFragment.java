@@ -5,13 +5,13 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,66 +34,64 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DashboardFragment extends Fragment {
-    EditText edtFirstName,edtEmail,edtPhone,edtAddress,edtWorkDesc;
-    AppCompatButton btSubmit;
+
+public class BankKycFragment extends Fragment {
+
+    EditText edtBankName,edtHolderName,edtAccountNumber,edtIfsc;
+    Button btSubmit;
     RelativeLayout rlLoader;
     String dialogMsg="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        edtEmail=v.findViewById(R.id.edtEmail);
-        edtPhone=v.findViewById(R.id.edtPhone);
-        edtAddress=v.findViewById(R.id.edtAddress);
-        edtFirstName=v.findViewById(R.id.edtFirstName);
-        edtWorkDesc=v.findViewById(R.id.edtWorkDesc);
+        View v = inflater.inflate(R.layout.fragment_bank_kyc, container, false);
+        edtBankName=v.findViewById(R.id.edtBankName);
+        edtHolderName=v.findViewById(R.id.edtHolderName);
+        edtAccountNumber=v.findViewById(R.id.edtAccountNumber);
+        edtIfsc=v.findViewById(R.id.edtIfsc);
+
         btSubmit=v.findViewById(R.id.btSubmit);
         rlLoader=v.findViewById(R.id.rlLoader);
+
+        getBankKyc(SharedPreference.get("uuid"));
 
         btSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = edtFirstName.getText().toString().trim();
-                String email = edtEmail.getText().toString().trim();
-                String phone = edtPhone.getText().toString().trim();
-                String address = edtAddress.getText().toString().trim();
-                String desc = edtWorkDesc.getText().toString().trim();
-                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                String bName = edtBankName.getText().toString().trim();
+                String bHolderName = edtHolderName.getText().toString().trim();
+                String bAccNum = edtAccountNumber.getText().toString().trim();
+                String ifsc = edtIfsc.getText().toString().trim();
 
-                if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || desc.isEmpty()) {
+
+                if (bName.isEmpty() || bHolderName.isEmpty() || bAccNum.isEmpty() || ifsc.isEmpty()) {
                     Toast.makeText(getActivity(), "All fields must be filled", Toast.LENGTH_SHORT).show();
-                }
-                else if (phone.length() != 10) {
-                    Toast.makeText(getActivity(), "Phone number must be 10 digits", Toast.LENGTH_SHORT).show();
-                } else if (!email.matches(emailPattern)) {
-                    Toast.makeText(getActivity(), "Invalid email address", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    AddRequest(SharedPreference.get("uuid"),name,email,phone,address,desc);
+                } else {
+                    AddBankDetails(SharedPreference.get("uuid"),bName,bHolderName,bAccNum,ifsc);
                 }
             }
         });
         return v;
     }
 
-    private void AddRequest(String uuid, String name, String email, String phone, String address, String desc) {
+    private void getBankKyc(String uuid) {
         rlLoader.setVisibility(View.VISIBLE);
-        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.add_request, new Response.Listener<String>() {
+        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.kyc_details, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("register","register =>>"+response);
-                rlLoader.setVisibility(View.GONE);
+                Log.i("pri","get bank =>>"+response);
                 try {
                     JSONObject jsonObject=new JSONObject(response);
-                    Log.i("register","response=>"+jsonObject);
                     if (jsonObject.getString("status").equals("true")){
-                        openCustomSuccessDialog(jsonObject.getString("message"));
-                        clear();
+                        rlLoader.setVisibility(View.GONE);
+                        edtAccountNumber.setText(jsonObject.getString("account_number"));
+                        edtBankName.setText(jsonObject.getString("bank_name"));
+                        edtHolderName.setText(jsonObject.getString("holder_name"));
+                        edtIfsc.setText(jsonObject.getString("ifsc_code"));
+
                     }else {
-                        dialogMsg=jsonObject.getString("message");
-                        openCustomFailedDialog(dialogMsg);
+                        rlLoader.setVisibility(View.GONE);
                         if (jsonObject.getString("message").equalsIgnoreCase("uuid missmatch logout")) {
                             if (SharedPreference.contains("uuid")) {
                                 SharedPreference.removeKey("uuid");
@@ -122,11 +120,51 @@ public class DashboardFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<>();
                 params.put("uuid",uuid);
-                params.put("name",name);
-                params.put("email",email);
-                params.put("phone",phone);
-                params.put("address",address);
-                params.put("work_description",desc);
+                Log.i("pri",""+params);
+                return  params;
+            }
+        };
+        AppController.getInstance().add(request);
+    }
+
+    private void AddBankDetails(String uuid, String bName, String bHolderName, String bAccNum, String ifsc) {
+        rlLoader.setVisibility(View.VISIBLE);
+        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.add_bank_details, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("register","register =>>"+response);
+                rlLoader.setVisibility(View.GONE);
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    Log.i("register","response=>"+jsonObject);
+                    if (jsonObject.getString("status").equals("true")){
+                        openCustomSuccessDialog(jsonObject.getString("message"));
+                        getBankKyc(uuid);
+                    }else {
+                        dialogMsg=jsonObject.getString("message");
+                        openCustomFailedDialog(dialogMsg);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    rlLoader.setVisibility(View.GONE);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                rlLoader.setVisibility(View.GONE);
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params=new HashMap<>();
+                params.put("uuid",uuid);
+                params.put("bank_name",bName);
+                params.put("holder_name",bHolderName);
+                params.put("account_number",bAccNum);
+                params.put("ifsc_code",ifsc);
 
                 Log.i("pri","params=>"+params);
 
@@ -134,15 +172,6 @@ public class DashboardFragment extends Fragment {
             }
         };
         AppController.getInstance().add(request);
-    }
-
-    private void clear() {
-        edtFirstName.setText("");
-        edtEmail.setText("");
-        edtEmail.setText("");
-        edtAddress.setText("");
-        edtWorkDesc.setText("");
-        edtPhone.setText("");
     }
 
     private void openCustomFailedDialog(String dialogMsg) {

@@ -3,21 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.rl.fragment.DashboardFragment">
+    tools:context="com.rl.fragment.BankKycFragment">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="20dp">
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"
+                android:hint="Bank Name"
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/user"
@@ -28,7 +27,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/edtFirstName"
+                    android:id="@+id/edtBankName"
                     android:textColor="@color/black"
                     android:inputType="text"
                     android:fontFamily="@font/poppins_regular"/>
@@ -37,85 +36,60 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Email"
+                android:hint="Account holder Name"
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
-                app:startIconDrawable="@drawable/ic_email"
+                app:startIconDrawable="@drawable/user"
                 app:startIconTint="@color/rl_orange"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="5dp"
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/edtEmail"
+                    android:id="@+id/edtHolderName"
                     android:textColor="@color/black"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:fontFamily="@font/poppins_regular"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Mobile No"
+                android:hint="Account Number"
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
-                app:startIconDrawable="@drawable/ic_phone"
+                app:startIconDrawable="@drawable/user"
                 app:startIconTint="@color/rl_orange"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="5dp"
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/edtPhone"
+                    android:id="@+id/edtAccountNumber"
                     android:textColor="@color/black"
-                    android:inputType="phone"
+                    android:inputType="text"
                     android:fontFamily="@font/poppins_regular"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Address"
+                android:hint="IFSC Code"
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
-                app:startIconDrawable="@drawable/baseline_apartment_24"
+                app:startIconDrawable="@drawable/user"
                 app:startIconTint="@color/rl_orange"
                 android:layout_marginTop="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/edtAddress"
+                    android:id="@+id/edtIfsc"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_regular"
-
-                    android:inputType="textMultiLine"
-                    android:overScrollMode="always"
-                    android:scrollbarStyle="insideInset"
-                    android:scrollbars="vertical"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Work Description"
-                style="@style/OutlinedBoxStyle"
-                app:helperTextEnabled="true"
-                app:startIconDrawable="@drawable/baseline_apartment_24"
-                app:startIconTint="@color/rl_orange"
-                android:layout_marginTop="5dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/edtWorkDesc"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_regular"
-                    android:lines="2"
-                    android:inputType="textMultiLine"
-                    android:overScrollMode="always"
-                    android:scrollbarStyle="insideInset"
-                    android:scrollbars="vertical"/>
+                    android:inputType="text"
+                    android:fontFamily="@font/poppins_regular"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -163,5 +137,6 @@
             android:id="@+id/tvText"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
+
 
 </RelativeLayout>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:elevation="5dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/img_shape_1"
+                android:id="@+id/rl">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:id="@+id/tvDate"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/lnr"
+                android:padding="8dp"
+                android:layout_below="@id/rl">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Consumer name"
+                    android:drawableTint="#696969"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/user"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/text_color_gray"
+                    android:id="@+id/tvName"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Consumer mobile"
+                    android:layout_marginTop="5dp"
+                    android:drawableTint="#696969"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:id="@+id/tvPhone"
+                    android:textColor="@color/text_color_gray"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="User Name: Priyanka Ghadge"
+                    android:id="@+id/tvEmail"
+                    android:textSize="12sp"
+                    android:drawableTint="#696969"
+                    android:drawablePadding="10dp"
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@drawable/ic_email"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/text_color_gray"/>
+
+                <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@drawable/baseline_apartment_24"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="#696969"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="User Name: Priyanka Ghadge"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@drawable/repair_service_icon"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="#696969"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="User Name: Priyanka Ghadge"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="View Bill"
+                        android:id="@+id/tvBill"
+                        android:textSize="14sp"
+                        android:layout_gravity="right"
+                        android:drawableTint="#696969"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/rl_blue"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

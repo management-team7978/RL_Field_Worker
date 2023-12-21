@@ -104,7 +104,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email"
+                android:text="Mobile number"
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="12sp"
                 android:layout_toRightOf="@id/phone"

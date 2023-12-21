@@ -21,7 +21,8 @@
             android:orientation="vertical"
             android:id="@+id/bottom_sheet_exit_linear"
             android:background="@drawable/card_round"
-            android:layout_below="@id/img">
+            android:layout_below="@id/img"
+            android:padding="10dp">
 
             <ImageView
                 android:layout_width="60dp"

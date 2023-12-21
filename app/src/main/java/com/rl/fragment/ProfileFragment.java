@@ -51,9 +51,10 @@ public class ProfileFragment extends Fragment {
         rlLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (SharedPreference.contains("customer_uuid")){
-                    SharedPreference.removeKey("customer_uuid");
-                    SharedPreference.removeKey("mobile_no");
+                if (SharedPreference.contains("uuid")) {
+                    SharedPreference.removeKey("uuid");
+                    SharedPreference.removeKey("name");
+                    SharedPreference.removeKey("referral_code");
                 }
 
                 Intent i=new Intent(getActivity(), LoginActivity.class);
@@ -62,7 +63,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        uuid=SharedPreference.get("customer_uuid");
+        uuid=SharedPreference.get("uuid");
         getProfile(uuid);
         return v;
     }
@@ -86,9 +87,10 @@ public class ProfileFragment extends Fragment {
                     }else {
                         rlLoader.setVisibility(View.GONE);
                         if (jsonObject.getString("message").equalsIgnoreCase("uuid missmatch logout")) {
-                            if (SharedPreference.contains("customer_uuid")) {
-                                SharedPreference.removeKey("customer_uuid");
-                                SharedPreference.removeKey("mobile_no");
+                            if (SharedPreference.contains("uuid")) {
+                                SharedPreference.removeKey("uuid");
+                                SharedPreference.removeKey("name");
+                                SharedPreference.removeKey("referral_code");
                             }
                             Intent i = new Intent(getActivity(), LoginActivity.class);
                             startActivity(i);

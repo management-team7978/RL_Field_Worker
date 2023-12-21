@@ -2,21 +2,34 @@ package com.rl.fieldworker;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.rl.fragment.BankKycFragment;
 import com.rl.fragment.DashboardFragment;
+import com.rl.fragment.GetRquestListFragment;
 import com.rl.fragment.ProfileFragment;
 import com.rl.util.AppController;
 import com.rl.util.SharedPreference;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNav;
@@ -35,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
         tvTitle.setText("Dashboard");
         replaceFragment(new DashboardFragment());
 
+        imgShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shareIt();
+            }
+        });
 
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -48,6 +67,15 @@ public class MainActivity extends AppCompatActivity {
                         tvTitle.setText("Profile");
                         replaceFragment(new ProfileFragment());
                         break;
+
+                    case R.id.menu_bank:
+                        tvTitle.setText("Add Bank Details");
+                        replaceFragment(new BankKycFragment());
+                        break;
+                    case R.id.menu_request_list:
+                        tvTitle.setText("Request List");
+                        replaceFragment(new GetRquestListFragment());
+                        break;
                 }
                 return true;
             }
@@ -59,5 +87,33 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameContainer,fragment);
         fragmentTransaction.commit();
+    }
+
+    private void shareIt() {
+        File filesDir = getApplicationContext().getFilesDir();
+        File imageFile = new File(filesDir, "re_work.png");
+
+        OutputStream os;
+        try {
+            Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.app_logo);
+            os = new FileOutputStream(imageFile);
+            bm.compress(Bitmap.CompressFormat.PNG, 100, os); // 100% quality
+            os.flush();
+            os.close();
+        } catch (Exception e) {
+            Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+        }
+
+        Intent intent =new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "RL Work");
+        intent.putExtra(Intent.EXTRA_TEXT," Welcome to RL Work... \n\nClick on below link to Download our application: \n\nhttps://play.google.com/store/apps/details?id=com.rl.work"+"\n\n\nUse my Referral Code : "+SharedPreference.get("referral_code"));
+        intent.setType("text/plain");
+        Uri uri = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID, imageFile);
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
+
+        // Set type to only show apps that can open your PNG file
+        intent.setType("image/png");
+        startActivity(intent);
     }
 }
