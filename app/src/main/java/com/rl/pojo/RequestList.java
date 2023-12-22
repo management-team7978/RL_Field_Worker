@@ -9,8 +9,10 @@ public class RequestList {
     private String address;
     private String work_description;
     private String date;
+    private String status;
+    private String bill;
 
-    public RequestList(String id, String user_id, String name, String email, String phone, String address, String work_description, String date) {
+    public RequestList(String id, String user_id, String name, String email, String phone, String address, String work_description, String date, String status, String bill) {
         this.id = id;
         this.user_id = user_id;
         this.name = name;
@@ -19,6 +21,8 @@ public class RequestList {
         this.address = address;
         this.work_description = work_description;
         this.date = date;
+        this.status = status;
+        this.bill = bill;
     }
 
     public String getId() {
@@ -83,6 +87,22 @@ public class RequestList {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getBill() {
+        return bill;
+    }
+
+    public void setBill(String bill) {
+        this.bill = bill;
     }
 
     @Override

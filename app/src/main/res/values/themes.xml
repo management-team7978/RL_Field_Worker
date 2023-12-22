@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.RLFieldWorker" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/rl_orange</item>
-        <item name="colorPrimaryVariant">@color/rl_orange</item>
+        <item name="colorPrimary">@color/rl_blue</item>
+        <item name="colorPrimaryVariant">@color/rl_blue</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -15,7 +15,7 @@
     </style>
 
     <style name="OutlinedBoxStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@color/rl_orange</item>
+        <item name="boxStrokeColor">@color/rl_blue</item>
         <item name="boxStrokeWidth">1dp</item>
         <item name="background">@color/white</item>
         <item name="android:textColorHint">@color/text_color_gray</item>

@@ -1,6 +1,8 @@
 package com.rl.adapter;
 
+import android.app.DownloadManager;
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,7 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
     private ArrayList<RequestList> requestLists;
     private ArrayList<RequestList> orig;
     private int lastPosition = -1;
+    DownloadManager manager;
 
     public RequestListAdapter(Context context, ArrayList<RequestList> requestLists) {
         this.context = context;
@@ -47,6 +50,29 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
         holder.tvAddress.setText(requestList.getAddress());
         holder.tvDate.setText(requestList.getDate());
         holder.tvDesc.setText(requestList.getWork_description());
+
+        if (requestList.getStatus().equalsIgnoreCase("pending")){
+            holder.tvStatus.setBackgroundResource(R.color.yellow);
+            holder.tvStatus.setText(requestList.getStatus());
+        } else if (requestList.getStatus().equalsIgnoreCase("reject")){
+            holder.tvStatus.setBackgroundResource(R.color.red);
+            holder.tvStatus.setText(requestList.getStatus());
+        }else if (requestList.getStatus().equalsIgnoreCase("success")){
+            holder.tvStatus.setBackgroundResource(R.color.green);
+            holder.tvStatus.setText(requestList.getStatus());
+            holder.tvBill.setVisibility(View.VISIBLE);
+        }
+
+        holder.tvBill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+                Uri uri = Uri.parse(requestList.getBill());
+                DownloadManager.Request request = new DownloadManager.Request(uri);
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
+                long reference = manager.enqueue(request);
+            }
+        });
     }
 
     @Override
@@ -55,7 +81,7 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvDesc, tvName, tvEmail, tvAddress, tvDate,tvPhone,tvBill;
+        TextView tvDesc, tvName, tvEmail, tvAddress, tvDate,tvPhone,tvBill,tvStatus;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +92,7 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
             tvDate = itemView.findViewById(R.id.tvDate);
             tvPhone = itemView.findViewById(R.id.tvPhone);
             tvBill = itemView.findViewById(R.id.tvBill);
+            tvStatus = itemView.findViewById(R.id.tvStatus);
         }
     }
 

@@ -14,7 +14,7 @@
         android:paddingRight="15dp"
         android:elevation="50dp"
         android:id="@+id/rlHeader"
-        android:background="#28D68220">
+        android:background="#2900BCD4">
 
         <ImageView
             android:layout_width="35dp"
@@ -30,7 +30,7 @@
             android:layout_centerInParent="true"
             android:fontFamily="@font/poppins_medium"
             android:text="Dashboard"
-            android:textColor="@color/rl_orange"
+            android:textColor="@color/rl_blue"
             android:textSize="20sp" />
 
         <ImageView
@@ -38,7 +38,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_baseline_share"
-            app:tint="@color/black"
+            app:tint="@color/rl_blue"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"/>
 

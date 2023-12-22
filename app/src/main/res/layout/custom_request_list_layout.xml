@@ -107,18 +107,48 @@
                     android:textSize="12sp" />
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="View Bill"
-                        android:id="@+id/tvBill"
-                        android:textSize="14sp"
-                        android:layout_gravity="right"
-                        android:drawableTint="#696969"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/rl_blue"/>
-
             </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/lnr">
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:drawableTint="#696969"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="View Bill"
+                    android:visibility="visible"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:layout_alignParentLeft="true"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="1dp"
+                    android:paddingBottom="1dp"
+                    android:background="@color/green"
+                    android:layout_toLeftOf="@id/tvBill"
+                    />
+
+                <TextView
+                    android:id="@+id/tvBill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:drawableTint="#696969"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="View Bill"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/rl_orange"
+                    android:textSize="14sp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"/>
+            </RelativeLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

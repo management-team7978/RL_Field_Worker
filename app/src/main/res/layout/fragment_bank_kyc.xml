@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.rl.fragment.BankKycFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/img_register_background"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E6FFFFFF"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -12,7 +21,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/img_bank"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bank details"
+                android:layout_gravity="center"
+                android:textColor="@color/rl_blue"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"/>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -20,10 +48,9 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/user"
-                app:startIconTint="@color/rl_orange"
-                android:layout_marginTop="5dp"
+                app:startIconTint="@color/rl_blue"
+                android:layout_marginTop="15dp"
                 >
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -40,7 +67,7 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/user"
-                app:startIconTint="@color/rl_orange"
+                app:startIconTint="@color/rl_blue"
                 android:layout_marginTop="5dp"
                 >
 
@@ -60,7 +87,7 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/user"
-                app:startIconTint="@color/rl_orange"
+                app:startIconTint="@color/rl_blue"
                 android:layout_marginTop="5dp"
                 >
 
@@ -69,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/edtAccountNumber"
                     android:textColor="@color/black"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:fontFamily="@font/poppins_regular"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +107,7 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/user"
-                app:startIconTint="@color/rl_orange"
+                app:startIconTint="@color/rl_blue"
                 android:layout_marginTop="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText

@@ -4,6 +4,17 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.rl.fragment.DashboardFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/img_register_background"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E6FFFFFF"/>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -12,7 +23,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/send_request"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Send Request"
+                android:layout_gravity="center"
+                android:textColor="@color/rl_blue"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -21,8 +52,8 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/user"
-                app:startIconTint="@color/rl_orange"
-                android:layout_marginTop="5dp"
+                app:startIconTint="@color/rl_blue"
+                android:layout_marginTop="15dp"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -41,7 +72,7 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/ic_email"
-                app:startIconTint="@color/rl_orange"
+                app:startIconTint="@color/rl_blue"
                 android:layout_marginTop="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -60,7 +91,7 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/ic_phone"
-                app:startIconTint="@color/rl_orange"
+                app:startIconTint="@color/rl_blue"
                 android:layout_marginTop="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -79,7 +110,7 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/baseline_apartment_24"
-                app:startIconTint="@color/rl_orange"
+                app:startIconTint="@color/rl_blue"
                 android:layout_marginTop="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -102,7 +133,7 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/baseline_apartment_24"
-                app:startIconTint="@color/rl_orange"
+                app:startIconTint="@color/rl_blue"
                 android:layout_marginTop="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText

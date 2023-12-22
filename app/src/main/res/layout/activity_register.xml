@@ -14,7 +14,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B3FFF8F6"/>
+        android:background="#CDFFF8F6"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:text="Field Worker"
                     android:fontFamily="@font/poppins_medium"
-                    android:textColor="@color/rl_orange"
+                    android:textColor="@color/rl_blue"
                     android:textSize="22sp"
                     android:textStyle="bold"/>
 
@@ -69,7 +69,7 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/user"
-                app:startIconTint="@color/rl_orange"
+                app:startIconTint="@color/rl_blue"
                 android:layout_marginTop="5dp"
                 >
 
@@ -90,7 +90,7 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/ic_email"
-                app:startIconTint="@color/rl_orange"
+                app:startIconTint="@color/rl_blue"
                 android:layout_marginTop="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -109,7 +109,7 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/ic_phone"
-                app:startIconTint="@color/rl_orange"
+                app:startIconTint="@color/rl_blue"
                 android:layout_marginTop="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -129,7 +129,7 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/baseline_apartment_24"
-                app:startIconTint="@color/rl_orange"
+                app:startIconTint="@color/rl_blue"
                 android:layout_marginTop="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -148,7 +148,7 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/baseline_apartment_24"
-                app:startIconTint="@color/rl_orange"
+                app:startIconTint="@color/rl_blue"
                 android:layout_marginTop="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -166,7 +166,7 @@
                 style="@style/OutlinedBoxStyle"
                 app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/baseline_lock_24"
-                app:startIconTint="@color/rl_orange"
+                app:startIconTint="@color/rl_blue"
                 android:layout_marginTop="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
