@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="Consumer">फील्ड वर्कर</string>
+    <string name="Consumer">आरएल बीडीएम</string>
     <string name="Login">लॉगिन</string>
     <string name="Sign_in_to_continue">जारी रखने के लिए साइन इन करें</string>
     <string name="User_Id">उपयोगकर्ता पहचान</string>
@@ -20,7 +20,7 @@
     <string name="Enter_Mobile_No">मोबाइल नंबर दर्ज करें</string>
     <string name="Enter_Address">पता दर्ज करें</string>
     <string name="Enter_Adhar">आधार दर्ज करें</string>
-    <string name="Select_Occupation">पेशेवर चयन करें</string>
+    <string name="Select_Occupation">वेतन प्रकार चुनें</string>
     <string name="Occupational_Experience">पेशेवर अनुभव</string>
     <string name="Select_Contract_Type">अनुबंध प्रकार का चयन करें</string>
     <string name="Adhar_Front_Side">आधार का सामना हिस्सा</string>

@@ -41,6 +41,8 @@ public class BankKycFragment extends Fragment {
     Button btSubmit;
     RelativeLayout rlLoader;
     String dialogMsg="";
+    TextView tvKYCStatus;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +54,7 @@ public class BankKycFragment extends Fragment {
         edtIfsc=v.findViewById(R.id.edtIfsc);
         edtpan=v.findViewById(R.id.edtpan);
         edtaadhar=v.findViewById(R.id.edtaadhar);
+        tvKYCStatus=v.findViewById(R.id.tvKYCStatus);
 
         btSubmit=v.findViewById(R.id.btSubmit);
         rlLoader=v.findViewById(R.id.rlLoader);
@@ -96,6 +99,22 @@ public class BankKycFragment extends Fragment {
                         edtIfsc.setText(jsonObject.getString("ifsc_code"));
                         edtaadhar.setText(jsonObject.getString("adhar_no"));
                         edtpan.setText(jsonObject.getString("pan_no"));
+                        if (jsonObject.getString("kyc_status").equalsIgnoreCase("verification")){
+                            tvKYCStatus.setBackgroundResource(R.color.yellow);
+                            tvKYCStatus.setText(jsonObject.getString("kyc_status"));
+                        }else if (jsonObject.getString("kyc_status").equalsIgnoreCase("incomplete")){
+                            tvKYCStatus.setBackgroundResource(R.color.red);
+                            tvKYCStatus.setText(jsonObject.getString("kyc_status"));
+                            edtAccountNumber.setText("");
+                            edtBankName.setText("");
+                            edtHolderName.setText("");
+                            edtaadhar.setText("");
+                            edtpan.setText("");
+                            edtIfsc.setText("");
+                        } else if (jsonObject.getString("kyc_status").equalsIgnoreCase("complete")) {
+                            tvKYCStatus.setBackgroundResource(R.color.green);
+                            tvKYCStatus.setText(jsonObject.getString("kyc_status"));
+                        }
 
                     }else {
                         rlLoader.setVisibility(View.GONE);

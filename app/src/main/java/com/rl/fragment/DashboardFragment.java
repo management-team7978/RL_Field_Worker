@@ -44,13 +44,13 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        edtEmail=v.findViewById(R.id.edtEmail);
-        edtPhone=v.findViewById(R.id.edtPhone);
-        edtAddress=v.findViewById(R.id.edtAddress);
-        edtFirstName=v.findViewById(R.id.edtFirstName);
-        edtWorkDesc=v.findViewById(R.id.edtWorkDesc);
-        btSubmit=v.findViewById(R.id.btSubmit);
-        rlLoader=v.findViewById(R.id.rlLoader);
+//        edtEmail=v.findViewById(R.id.edtEmail);
+//        edtPhone=v.findViewById(R.id.edtPhone);
+//        edtAddress=v.findViewById(R.id.edtAddress);
+//        edtFirstName=v.findViewById(R.id.edtFirstName);
+//        edtWorkDesc=v.findViewById(R.id.edtWorkDesc);
+//        btSubmit=v.findViewById(R.id.btSubmit);
+//        rlLoader=v.findViewById(R.id.rlLoader);
 
 //        btSubmit.setOnClickListener(new View.OnClickListener() {
 //            @Override

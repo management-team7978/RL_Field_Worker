@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProfileFragment extends Fragment {
-    TextView tvName,tvEmail,tvPhone,tvAddress,tvPassword,tvChangePassword;
+    TextView tvName,tvEmail,tvPhone,tvAddress,tvPassword,tvChangePassword,tvUserId;
     RelativeLayout rlLogout;
     String uuid;
     RelativeLayout rlLoader;
@@ -47,6 +47,7 @@ public class ProfileFragment extends Fragment {
         tvChangePassword=v.findViewById(R.id.tvChangePassword);
         rlLogout=v.findViewById(R.id.rlLogout);
         rlLoader=v.findViewById(R.id.rlLoader);
+        tvUserId=v.findViewById(R.id.tvUserId);
 
         rlLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +85,7 @@ public class ProfileFragment extends Fragment {
                         tvPhone.setText(jsonObject.getString("phone"));
                         tvAddress.setText(jsonObject.getString("address")+", "+jsonObject.getString("pincode"));
                         tvPassword.setText(jsonObject.getString("password"));
+                        tvUserId.setText(jsonObject.getString("user_id"));
                     }else {
                         rlLoader.setVisibility(View.GONE);
                         if (jsonObject.getString("message").equalsIgnoreCase("uuid missmatch logout")) {

@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">Business Development</string>
     <!-- TODO: Remove or change this placeholder text -->
 
-    <string name="Consumer">Field Worker</string>
+    <string name="Consumer">RL BDM</string>
     <string name="Login">Login</string>
     <string name="Sign_in_to_continue">Sign in to continue</string>
     <string name="User_Id">User Id</string>
@@ -22,7 +22,7 @@
     <string name="Enter_Mobile_No">Enter Mobile Number</string>
     <string name="Enter_Address">Enter Address</string>
     <string name="Enter_Adhar">Enter Adhar</string>
-    <string name="Select_Occupation">Select Occupation</string>
+    <string name="Select_Occupation">Select Salary Type</string>
     <string name="Occupational_Experience">Occupational Experience</string>
     <string name="Select_Contract_Type">Select Contract Type</string>
     <string name="Adhar_Front_Side">Adhar Front Side</string>

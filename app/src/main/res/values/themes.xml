@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.RLFieldWorker" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.RLFieldWorker" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/rl_blue</item>
         <item name="colorPrimaryVariant">@color/rl_blue</item>

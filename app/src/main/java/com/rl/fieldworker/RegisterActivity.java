@@ -15,9 +15,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,7 @@ import com.rl.util.SharedPreference;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -44,6 +48,9 @@ public class RegisterActivity extends AppCompatActivity {
     RelativeLayout rlLoader;
     String dialogMsg="";
     ImageView imgLanguage;
+    Spinner spSalaryType;
+    ArrayList<String> salaryType=new ArrayList<String>();
+    String st_salary="0";
     int from;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +66,28 @@ public class RegisterActivity extends AppCompatActivity {
         btCostRegister=findViewById(R.id.btCostRegister);
         rlLogin=findViewById(R.id.rlLogin);
         rlLoader=findViewById(R.id.rlLoader);
+        spSalaryType=findViewById(R.id.spSalaryType);
         imgLanguage = findViewById(R.id.imgLanguage);
         loadLocale();
+
+
+        salaryType.add("commission");
+        salaryType.add("salary");
+
+        spSalaryType.setAdapter(new ArrayAdapter<String>(RegisterActivity.this, R.layout.custom_spinner_list, salaryType));
+
+        spSalaryType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                st_salary= (String) parent.getSelectedItem();
+                Log.i("pri","my model=>"+st_salary);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         imgLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,14 +122,14 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    RegisterCustomer(SharedPreference.get("uuid"),name,email,phone,address,pin,password);
+                    RegisterCustomer(SharedPreference.get("uuid"),name,email,phone,address,pin,password,st_salary);
                 }
 
             }
         });
     }
 
-    private void RegisterCustomer(String uuid, String name, String email, String phone, String address, String pin, String password) {
+    private void RegisterCustomer(String uuid, String name, String email, String phone, String address, String pin, String password, String st_salary) {
         rlLoader.setVisibility(View.VISIBLE);
         StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.register, new Response.Listener<String>() {
             @Override
@@ -146,6 +173,7 @@ public class RegisterActivity extends AppCompatActivity {
                 params.put("address",address);
                 params.put("pincode",pin);
                 params.put("password",password);
+                params.put("salary_type",st_salary);
 
                 Log.i("pri","params=>"+params);
 
