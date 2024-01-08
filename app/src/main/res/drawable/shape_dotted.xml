@@ -1,0 +1,23 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background Rectangle with Dashed Border -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:dashGap="1dp"
+                android:dashWidth="5dp"
+                android:color="@color/text_color_gray"
+                android:width="1dp"/>
+            <size android:width="40dp"
+                android:height="20dp"/>
+        </shape>
+    </item>
+
+    <!-- Image -->
+    <item
+        android:drawable="@drawable/baseline_add_24"
+        android:gravity="center">
+
+    </item>
+</layer-list>

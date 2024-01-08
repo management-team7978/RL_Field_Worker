@@ -12,335 +12,559 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E6FFFFFF"/>
+        android:background="#CEFFFFFF"/>
 
-    <RelativeLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/img"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/img_profile"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            />
+            android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
-            app:cardUseCompatPadding="true"
-            app:cardElevation="0dp"
-            android:layout_below="@id/img"
-            android:layout_marginTop="-30dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp">
-            <LinearLayout
-                android:padding="10dp"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <RelativeLayout
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/cdPersonal">
+                <LinearLayout
+                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/user"
-                        android:id="@+id/user1"
-                        app:tint="@color/rl_blue"
-                        android:layout_centerVertical="true"/>
+                    android:orientation="vertical"
+                   >
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="User Id"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:layout_toRightOf="@id/user1"
-                        android:layout_marginLeft="8dp"
-                        android:id="@+id/t11"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Testing User"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:layout_below="@id/t11"
-                        android:layout_marginLeft="8dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:layout_toRightOf="@id/user1"
-                        android:id="@+id/tvUserId"/>
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="#AED9ED"
-                    android:layout_marginTop="5dp"/>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_marginTop="5dp">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/user"
-                        android:id="@+id/user"
-                        app:tint="@color/rl_blue"
-                        android:layout_centerVertical="true"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Name"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:layout_toRightOf="@id/user"
-                        android:layout_marginLeft="8dp"
-                        android:id="@+id/t1"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Testing User"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:layout_below="@id/t1"
-                        android:layout_marginLeft="8dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:layout_toRightOf="@id/user"
-                        android:id="@+id/tvName"/>
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                   android:background="#AED9ED"
-                    android:layout_marginTop="5dp"/>
-
-                <RelativeLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_email"
-                        android:id="@+id/Email"
-                        app:tint="@color/rl_blue"
-                        android:layout_centerVertical="true"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Email"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="12sp"
-                        android:layout_toRightOf="@id/Email"
-                        android:layout_marginLeft="8dp"
-                        android:id="@+id/text2"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Testing User"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:layout_below="@id/text2"
-                        android:layout_marginLeft="8dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:layout_toRightOf="@id/Email"
-                        android:id="@+id/tvEmail"/>
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                   android:background="#AED9ED"
-                    android:layout_marginTop="5dp"/>
-
-                <RelativeLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_phone"
-                        android:id="@+id/phone"
-                        app:tint="@color/rl_blue"
-                        android:layout_centerVertical="true"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Mobile number"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="12sp"
-                        android:layout_toRightOf="@id/phone"
-                        android:layout_marginLeft="8dp"
-                        android:id="@+id/t3"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:layout_below="@id/t3"
-                        android:layout_marginLeft="8dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:layout_toRightOf="@id/phone"
-                        android:id="@+id/tvPhone"/>
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                   android:background="#AED9ED"
-                    android:layout_marginTop="5dp"/>
-
-                <RelativeLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/baseline_apartment_24"
-                        android:id="@+id/address"
-                        app:tint="@color/rl_blue"
-                        android:layout_centerVertical="true"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Address"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="12sp"
-                        android:layout_toRightOf="@id/address"
-                        android:layout_marginLeft="8dp"
-                        android:id="@+id/t5"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Testing User"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:layout_below="@id/t5"
-                        android:layout_marginLeft="8dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:layout_toRightOf="@id/address"
-                        android:id="@+id/tvAddress"/>
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                   android:background="#AED9ED"
-                    android:layout_marginTop="5dp"/>
-
-                <RelativeLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:visibility="gone"
-                    android:background="@drawable/shape_relative_profile">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/baseline_lock_24"
-                        android:id="@+id/pass"
-                        app:tint="@color/rl_blue"
-                        android:layout_centerVertical="true"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Password"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:layout_toRightOf="@id/pass"
-                        android:layout_marginLeft="8dp"
-                        android:id="@+id/t6"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Testing User"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:layout_below="@id/t6"
-                        android:layout_marginLeft="8dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:layout_toRightOf="@id/pass"
-                        android:id="@+id/tvPassword"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Change Password"
-                        android:textSize="14sp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:textColor="@color/rl_blue"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="8dp"
-                        android:id="@+id/tvChangePassword"/>
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:id="@+id/rlLogout"
-                    android:padding="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_centerHorizontal="true">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_baseline_logout"
-                        android:id="@+id/logout"
-                        app:tint="@color/rl_blue"
-                        android:layout_centerVertical="true"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Logout"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="14sp"
-                        android:layout_toRightOf="@id/logout"
+                        android:text="Personal Details"
+                        android:textSize="16sp"
                         android:fontFamily="@font/poppins_semi_bold"
                         android:textColor="@color/black"
-                        android:id="@+id/tvLogout"/>
-                </RelativeLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                        android:layout_toRightOf="@id/user1" />
 
-    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/user"
+                            android:id="@+id/user1"
+                            app:tint="@color/rl_blue"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="User Id"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_toRightOf="@id/user1"
+                            android:layout_marginLeft="8dp"
+                            android:id="@+id/t11"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Testing User"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_below="@id/t11"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_toRightOf="@id/user1"
+                            android:id="@+id/tvUserId"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/user"
+                            android:id="@+id/user"
+                            app:tint="@color/rl_blue"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Name"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_toRightOf="@id/user"
+                            android:layout_marginLeft="8dp"
+                            android:id="@+id/t1"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Testing User"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_below="@id/t1"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_toRightOf="@id/user"
+                            android:id="@+id/tvName"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_email"
+                            android:id="@+id/Email"
+                            app:tint="@color/rl_blue"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Email"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="12sp"
+                            android:layout_toRightOf="@id/Email"
+                            android:layout_marginLeft="8dp"
+                            android:id="@+id/text2"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Testing User"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_below="@id/text2"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_toRightOf="@id/Email"
+                            android:id="@+id/tvEmail"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_phone"
+                            android:id="@+id/phone"
+                            app:tint="@color/rl_blue"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mobile number"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="12sp"
+                            android:layout_toRightOf="@id/phone"
+                            android:layout_marginLeft="8dp"
+                            android:id="@+id/t3"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_below="@id/t3"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_toRightOf="@id/phone"
+                            android:id="@+id/tvPhone"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/baseline_apartment_24"
+                            android:id="@+id/address"
+                            app:tint="@color/rl_blue"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Address"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="12sp"
+                            android:layout_toRightOf="@id/address"
+                            android:layout_marginLeft="8dp"
+                            android:id="@+id/t5"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Testing User"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_below="@id/t5"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_toRightOf="@id/address"
+                            android:id="@+id/tvAddress"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:background="@drawable/shape_relative_profile">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/baseline_lock_24"
+                            android:id="@+id/pass"
+                            app:tint="@color/rl_blue"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Password"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_toRightOf="@id/pass"
+                            android:layout_marginLeft="8dp"
+                            android:id="@+id/t6"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Testing User"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_below="@id/t6"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_toRightOf="@id/pass"
+                            android:id="@+id/tvPassword"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Change Password"
+                            android:textSize="14sp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:textColor="@color/rl_blue"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="8dp"
+                            android:id="@+id/tvChangePassword"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlLogout"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_centerHorizontal="true">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_baseline_logout"
+                            android:id="@+id/logout"
+                            app:tint="@color/rl_blue"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Logout"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="14sp"
+                            android:layout_toRightOf="@id/logout"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:textColor="@color/black"
+                            android:id="@+id/tvLogout"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/cdPersonal"
+                android:id="@+id/cdBankDetails"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                   >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bank Details"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:textColor="@color/black"
+                        android:layout_toRightOf="@id/user1" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/baseline_account_balance_24"
+                            android:id="@+id/imgBank"
+                            app:tint="@color/rl_blue"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="sbi bank"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:layout_toRightOf="@id/imgBank"
+                            android:textAllCaps="true"
+                            android:layout_marginLeft="8dp"
+                            android:id="@+id/tvBankName"
+                            android:layout_toLeftOf="@id/imgStatus"
+                            android:layout_marginRight="5dp" />
+
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Testing User"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:layout_below="@id/tvBankName"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_toRightOf="@id/imgBank"
+                            android:id="@+id/tvBankAccount"
+                            android:layout_toLeftOf="@id/imgStatus"
+                            android:layout_marginRight="5dp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/shape_circle"
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/imgStatus"
+                            android:layout_centerVertical="true"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:visibility="visible"
+                        android:layout_marginTop="10dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/shape_dotted"
+                            android:id="@+id/imgAddBank"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Add Bank Account"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:layout_toRightOf="@id/imgAddBank"
+                            android:textAllCaps="true"
+                            android:layout_marginLeft="8dp"
+                            android:id="@+id/tvAddBank"
+                            android:layout_marginRight="5dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_below="@id/cdBankDetails">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                   >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Customer Care"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:textColor="@color/black"
+                        android:layout_toRightOf="@id/user1" />
+
+                    <RelativeLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_phone"
+                            android:id="@+id/customerCare"
+                            app:tint="@color/rl_blue"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Phone Number"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="12sp"
+                            android:layout_toRightOf="@id/customerCare"
+                            android:layout_marginLeft="8dp"
+                            android:id="@+id/t7"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="+91 9867663024"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_below="@id/t7"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_toRightOf="@id/customerCare"
+                            android:id="@+id/tvCustomerPhone"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/whasapp"
+                            android:id="@+id/customerwhatsapp"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Whatsapp Number"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="12sp"
+                            android:layout_toRightOf="@id/customerwhatsapp"
+                            android:layout_marginLeft="8dp"
+                            android:id="@+id/t8"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="+91 9517484939"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_below="@id/t8"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_toRightOf="@id/customerwhatsapp"
+                            android:id="@+id/tvCustomerWhatsapp"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_email"
+                            android:id="@+id/customeremail"
+                            android:layout_centerVertical="true"
+                            app:tint="@color/rl_blue"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Email Id"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="12sp"
+                            android:layout_toRightOf="@id/customeremail"
+                            android:layout_marginLeft="8dp"
+                            android:id="@+id/t9"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="support@rlwork.in"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_below="@id/t9"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_toRightOf="@id/customeremail"
+                            android:id="@+id/tvCustomerEmail"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
 
 
 
