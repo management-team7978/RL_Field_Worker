@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class BankKycFragment extends Fragment {
 
-    EditText edtBankName,edtHolderName,edtAccountNumber,edtIfsc;
+    EditText edtBankName,edtHolderName,edtAccountNumber,edtIfsc,edtpan,edtaadhar;
     Button btSubmit;
     RelativeLayout rlLoader;
     String dialogMsg="";
@@ -50,6 +50,8 @@ public class BankKycFragment extends Fragment {
         edtHolderName=v.findViewById(R.id.edtHolderName);
         edtAccountNumber=v.findViewById(R.id.edtAccountNumber);
         edtIfsc=v.findViewById(R.id.edtIfsc);
+        edtpan=v.findViewById(R.id.edtpan);
+        edtaadhar=v.findViewById(R.id.edtaadhar);
 
         btSubmit=v.findViewById(R.id.btSubmit);
         rlLoader=v.findViewById(R.id.rlLoader);
@@ -63,12 +65,15 @@ public class BankKycFragment extends Fragment {
                 String bHolderName = edtHolderName.getText().toString().trim();
                 String bAccNum = edtAccountNumber.getText().toString().trim();
                 String ifsc = edtIfsc.getText().toString().trim();
+                String pan = edtaadhar.getText().toString().trim();
+                String aadhar = edtpan.getText().toString().trim();
 
 
-                if (bName.isEmpty() || bHolderName.isEmpty() || bAccNum.isEmpty() || ifsc.isEmpty()) {
+                if (bName.isEmpty() || bHolderName.isEmpty() || bAccNum.isEmpty() || ifsc.isEmpty() || pan.isEmpty()
+                        || aadhar.isEmpty()) {
                     Toast.makeText(getActivity(), "All fields must be filled", Toast.LENGTH_SHORT).show();
                 } else {
-                    AddBankDetails(SharedPreference.get("uuid"),bName,bHolderName,bAccNum,ifsc);
+                    AddBankDetails(SharedPreference.get("uuid"),bName,bHolderName,bAccNum,ifsc,pan,aadhar);
                 }
             }
         });
@@ -89,6 +94,8 @@ public class BankKycFragment extends Fragment {
                         edtBankName.setText(jsonObject.getString("bank_name"));
                         edtHolderName.setText(jsonObject.getString("holder_name"));
                         edtIfsc.setText(jsonObject.getString("ifsc_code"));
+                        edtaadhar.setText(jsonObject.getString("adhar_no"));
+                        edtpan.setText(jsonObject.getString("pan_no"));
 
                     }else {
                         rlLoader.setVisibility(View.GONE);
@@ -127,7 +134,7 @@ public class BankKycFragment extends Fragment {
         AppController.getInstance().add(request);
     }
 
-    private void AddBankDetails(String uuid, String bName, String bHolderName, String bAccNum, String ifsc) {
+    private void AddBankDetails(String uuid, String bName, String bHolderName, String bAccNum, String ifsc, String pan, String aadhar) {
         rlLoader.setVisibility(View.VISIBLE);
         StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.add_bank_details, new Response.Listener<String>() {
             @Override
@@ -165,6 +172,8 @@ public class BankKycFragment extends Fragment {
                 params.put("holder_name",bHolderName);
                 params.put("account_number",bAccNum);
                 params.put("ifsc_code",ifsc);
+                params.put("adhar_no",aadhar);
+                params.put("pan_no",pan);
 
                 Log.i("pri","params=>"+params);
 
