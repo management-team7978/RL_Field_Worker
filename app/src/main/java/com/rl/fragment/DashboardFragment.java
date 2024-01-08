@@ -52,142 +52,142 @@ public class DashboardFragment extends Fragment {
         btSubmit=v.findViewById(R.id.btSubmit);
         rlLoader=v.findViewById(R.id.rlLoader);
 
-        btSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = edtFirstName.getText().toString().trim();
-                String email = edtEmail.getText().toString().trim();
-                String phone = edtPhone.getText().toString().trim();
-                String address = edtAddress.getText().toString().trim();
-                String desc = edtWorkDesc.getText().toString().trim();
-                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
-                if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || desc.isEmpty()) {
-                    Toast.makeText(getActivity(), "All fields must be filled", Toast.LENGTH_SHORT).show();
-                }
-                else if (phone.length() != 10) {
-                    Toast.makeText(getActivity(), "Phone number must be 10 digits", Toast.LENGTH_SHORT).show();
-                } else if (!email.matches(emailPattern)) {
-                    Toast.makeText(getActivity(), "Invalid email address", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    AddRequest(SharedPreference.get("uuid"),name,email,phone,address,desc);
-                }
-            }
-        });
+//        btSubmit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String name = edtFirstName.getText().toString().trim();
+//                String email = edtEmail.getText().toString().trim();
+//                String phone = edtPhone.getText().toString().trim();
+//                String address = edtAddress.getText().toString().trim();
+//                String desc = edtWorkDesc.getText().toString().trim();
+//                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+//
+//                if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || desc.isEmpty()) {
+//                    Toast.makeText(getActivity(), "All fields must be filled", Toast.LENGTH_SHORT).show();
+//                }
+//                else if (phone.length() != 10) {
+//                    Toast.makeText(getActivity(), "Phone number must be 10 digits", Toast.LENGTH_SHORT).show();
+//                } else if (!email.matches(emailPattern)) {
+//                    Toast.makeText(getActivity(), "Invalid email address", Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//                    AddRequest(SharedPreference.get("uuid"),name,email,phone,address,desc);
+//                }
+//            }
+//        });
         return v;
     }
 
-    private void AddRequest(String uuid, String name, String email, String phone, String address, String desc) {
-        rlLoader.setVisibility(View.VISIBLE);
-        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.add_request, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.i("register","register =>>"+response);
-                rlLoader.setVisibility(View.GONE);
-                try {
-                    JSONObject jsonObject=new JSONObject(response);
-                    Log.i("register","response=>"+jsonObject);
-                    if (jsonObject.getString("status").equals("true")){
-                        openCustomSuccessDialog(jsonObject.getString("message"));
-                        clear();
-                    }else {
-                        dialogMsg=jsonObject.getString("message");
-                        openCustomFailedDialog(dialogMsg);
-                        if (jsonObject.getString("message").equalsIgnoreCase("uuid missmatch logout")) {
-                            if (SharedPreference.contains("uuid")) {
-                                SharedPreference.removeKey("uuid");
-                                SharedPreference.removeKey("name");
-                                SharedPreference.removeKey("referral_code");
-                            }
-                            Intent i = new Intent(getActivity(), LoginActivity.class);
-                            startActivity(i);
-                            getActivity().finish();
-                        }
-                    }
+//    private void AddRequest(String uuid, String name, String email, String phone, String address, String desc) {
+//        rlLoader.setVisibility(View.VISIBLE);
+//        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.add_request, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                Log.i("register","register =>>"+response);
+//                rlLoader.setVisibility(View.GONE);
+//                try {
+//                    JSONObject jsonObject=new JSONObject(response);
+//                    Log.i("register","response=>"+jsonObject);
+//                    if (jsonObject.getString("status").equals("true")){
+//                        openCustomSuccessDialog(jsonObject.getString("message"));
+//                        clear();
+//                    }else {
+//                        dialogMsg=jsonObject.getString("message");
+//                        openCustomFailedDialog(dialogMsg);
+//                        if (jsonObject.getString("message").equalsIgnoreCase("uuid missmatch logout")) {
+//                            if (SharedPreference.contains("uuid")) {
+//                                SharedPreference.removeKey("uuid");
+//                                SharedPreference.removeKey("name");
+//                                SharedPreference.removeKey("referral_code");
+//                            }
+//                            Intent i = new Intent(getActivity(), LoginActivity.class);
+//                            startActivity(i);
+//                            getActivity().finish();
+//                        }
+//                    }
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                    rlLoader.setVisibility(View.GONE);
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                error.printStackTrace();
+//                rlLoader.setVisibility(View.GONE);
+//            }
+//        }){
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String,String> params=new HashMap<>();
+//                params.put("uuid",uuid);
+//                params.put("name",name);
+//                params.put("email",email);
+//                params.put("phone",phone);
+//                params.put("address",address);
+//                params.put("work_description",desc);
+//
+//                Log.i("pri","params=>"+params);
+//
+//                return  params;
+//            }
+//        };
+//        AppController.getInstance().add(request);
+//    }
+//
+//    private void clear() {
+//        edtFirstName.setText("");
+//        edtEmail.setText("");
+//        edtEmail.setText("");
+//        edtAddress.setText("");
+//        edtWorkDesc.setText("");
+//        edtPhone.setText("");
+//    }
+//
+//    private void openCustomFailedDialog(String dialogMsg) {
+//        final Dialog dialog = new Dialog(getActivity());
+//        dialog.setContentView(R.layout.popup_failed_design);
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+//
+//        TextView textViewYes = (TextView) dialog.findViewById(R.id.textViewYes);
+//        TextView txtMsg = (TextView) dialog.findViewById(R.id.txtMsg);
+//
+//        txtMsg.setText(dialogMsg);
+//        textViewYes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        // show the exit dialog
+//        dialog.show();
+//    }
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    rlLoader.setVisibility(View.GONE);
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                rlLoader.setVisibility(View.GONE);
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params=new HashMap<>();
-                params.put("uuid",uuid);
-                params.put("name",name);
-                params.put("email",email);
-                params.put("phone",phone);
-                params.put("address",address);
-                params.put("work_description",desc);
-
-                Log.i("pri","params=>"+params);
-
-                return  params;
-            }
-        };
-        AppController.getInstance().add(request);
-    }
-
-    private void clear() {
-        edtFirstName.setText("");
-        edtEmail.setText("");
-        edtEmail.setText("");
-        edtAddress.setText("");
-        edtWorkDesc.setText("");
-        edtPhone.setText("");
-    }
-
-    private void openCustomFailedDialog(String dialogMsg) {
-        final Dialog dialog = new Dialog(getActivity());
-        dialog.setContentView(R.layout.popup_failed_design);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
-
-        TextView textViewYes = (TextView) dialog.findViewById(R.id.textViewYes);
-        TextView txtMsg = (TextView) dialog.findViewById(R.id.txtMsg);
-
-        txtMsg.setText(dialogMsg);
-        textViewYes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        // show the exit dialog
-        dialog.show();
-    }
-
-    private void openCustomSuccessDialog(String text) {
-
-        final Dialog dialog = new Dialog(getActivity());
-        dialog.setContentView(R.layout.popup_success_design);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
-
-        TextView textViewYes = (TextView) dialog.findViewById(R.id.textViewYes);
-        TextView txtMsg = (TextView) dialog.findViewById(R.id.txtMsg);
-
-        txtMsg.setText(text);
-
-        textViewYes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        // show the exit dialog
-        dialog.show();
-    }
+//    private void openCustomSuccessDialog(String text) {
+//
+//        final Dialog dialog = new Dialog(getActivity());
+//        dialog.setContentView(R.layout.popup_success_design);
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+//
+//        TextView textViewYes = (TextView) dialog.findViewById(R.id.textViewYes);
+//        TextView txtMsg = (TextView) dialog.findViewById(R.id.txtMsg);
+//
+//        txtMsg.setText(text);
+//
+//        textViewYes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        // show the exit dialog
+//        dialog.show();
+//    }
 }

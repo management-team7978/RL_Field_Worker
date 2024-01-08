@@ -82,7 +82,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Field Worker"
+                        android:text="RL BDM"
                         android:fontFamily="@font/poppins_medium"
                         android:textColor="@color/rl_blue"
                         android:textSize="20sp"
