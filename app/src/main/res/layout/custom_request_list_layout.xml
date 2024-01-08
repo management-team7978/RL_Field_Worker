@@ -140,7 +140,7 @@
                     android:layout_gravity="right"
                     android:drawableTint="#696969"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="View Bill"
+                    android:text="Download Bill"
                     android:visibility="gone"
                     android:layout_alignParentRight="true"
                     android:textColor="@color/rl_orange"

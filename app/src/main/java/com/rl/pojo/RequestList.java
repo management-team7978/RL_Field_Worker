@@ -11,8 +11,9 @@ public class RequestList {
     private String date;
     private String status;
     private String bill;
+    private String billing;
 
-    public RequestList(String id, String user_id, String name, String email, String phone, String address, String work_description, String date, String status, String bill) {
+    public RequestList(String id, String user_id, String name, String email, String phone, String address, String work_description, String date, String status, String bill,String billing) {
         this.id = id;
         this.user_id = user_id;
         this.name = name;
@@ -23,6 +24,7 @@ public class RequestList {
         this.date = date;
         this.status = status;
         this.bill = bill;
+        this.billing = billing;
     }
 
     public String getId() {
@@ -103,6 +105,14 @@ public class RequestList {
 
     public void setBill(String bill) {
         this.bill = bill;
+    }
+
+    public String getBilling() {
+        return billing;
+    }
+
+    public void setBilling(String billing) {
+        this.billing = billing;
     }
 
     @Override

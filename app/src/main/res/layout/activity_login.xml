@@ -28,6 +28,16 @@
         android:id="@+id/rl">
 
         <ImageView
+            android:id="@+id/imgLanguage"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/img_language_icon_black"
+            android:layout_alignParentRight="true"
+            android:layout_above="@id/lnr"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"/>
+
+        <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/app_logo"
@@ -82,7 +92,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Field Worker"
+                        android:text="@string/Consumer"
                         android:fontFamily="@font/poppins_medium"
                         android:textColor="@color/rl_blue"
                         android:textSize="20sp"
@@ -91,7 +101,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Login"
+                        android:text="@string/Login"
                         android:fontFamily="@font/poppins_medium"
                         android:textColor="@color/black"
                         android:textSize="20sp"
@@ -104,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-5dp"
-                    android:text="Sign in to continue"
+                    android:text="@string/Sign_in_to_continue"
                     android:textColor="@color/black"
                     android:fontFamily="@font/poppins_light"/>
 
@@ -123,7 +133,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:hint="User Id"
+                        android:hint="@string/User_Id"
                         android:id="@+id/edtUserId"
                         android:inputType="text"
                         android:textColorHint="@color/text_color_gray"
@@ -165,7 +175,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Forgot Password ?"
+                        android:text="@string/Forgot_Password"
                         android:textColor="@color/rl_blue"
                         android:fontFamily="@font/poppins_medium"
                         android:layout_centerVertical="true"
@@ -177,7 +187,7 @@
                         android:layout_height="45dp"
                         android:background="@drawable/shape_button"
                         android:gravity="center"
-                        android:text="Login"
+                        android:text="@string/Login"
                         android:textAllCaps="true"
                         android:textColor="#fff"
                         android:layout_alignParentRight="true"

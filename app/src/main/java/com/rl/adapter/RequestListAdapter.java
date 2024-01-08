@@ -1,33 +1,31 @@
 package com.rl.adapter;
 
+import android.app.Activity;
 import android.app.DownloadManager;
-import android.content.Context;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rl.fieldworker.R;
 import com.rl.pojo.RequestList;
+import com.rl.util.PdfDownloader;
 
 import java.util.ArrayList;
 
 public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.ViewHolder> {
-    private Context context;
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
+
+    private Activity context;
     private ArrayList<RequestList> requestLists;
     private ArrayList<RequestList> orig;
     private int lastPosition = -1;
     DownloadManager manager;
 
-    public RequestListAdapter(Context context, ArrayList<RequestList> requestLists) {
+    public RequestListAdapter(Activity context, ArrayList<RequestList> requestLists) {
         this.context = context;
         this.requestLists = requestLists;
     }
@@ -58,19 +56,24 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
             holder.tvStatus.setBackgroundResource(R.color.red);
             holder.tvStatus.setText(requestList.getStatus());
         }else if (requestList.getStatus().equalsIgnoreCase("success")){
-            holder.tvStatus.setBackgroundResource(R.color.green);
-            holder.tvStatus.setText(requestList.getStatus());
-            holder.tvBill.setVisibility(View.VISIBLE);
+            if (requestList.getBill().equalsIgnoreCase("null")){
+                holder.tvStatus.setBackgroundResource(R.color.green);
+                holder.tvStatus.setText(requestList.getStatus());
+            }else {
+                holder.tvStatus.setBackgroundResource(R.color.green);
+                holder.tvStatus.setText(requestList.getStatus());
+                holder.tvBill.setVisibility(View.VISIBLE);
+            }
+
         }
 
         holder.tvBill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                Uri uri = Uri.parse(requestList.getBill());
-                DownloadManager.Request request = new DownloadManager.Request(uri);
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
-                long reference = manager.enqueue(request);
+                String pdfUrl = "https:\\/\\/rlwork.in\\/api_gfhjfyRETfkmghTYudgnm\\/field_bill\\/KALASHKUBER NIDHI LIMITED incorporation certificate.pdf";
+                String fileName = "abc.pdf";
+
+                PdfDownloader.downloadPdf(context, pdfUrl, fileName);
             }
         });
     }

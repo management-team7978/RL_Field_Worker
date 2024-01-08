@@ -1,16 +1,22 @@
 package com.rl.fieldworker;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +34,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -36,6 +43,8 @@ public class RegisterActivity extends AppCompatActivity {
     RelativeLayout rlLogin;
     RelativeLayout rlLoader;
     String dialogMsg="";
+    ImageView imgLanguage;
+    int from;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +59,14 @@ public class RegisterActivity extends AppCompatActivity {
         btCostRegister=findViewById(R.id.btCostRegister);
         rlLogin=findViewById(R.id.rlLogin);
         rlLoader=findViewById(R.id.rlLoader);
-
+        imgLanguage = findViewById(R.id.imgLanguage);
+        loadLocale();
+        imgLanguage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showLanguageDialog();
+            }
+        });
         rlLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.i("register","register =>>"+response);
-                // rlLoader.setVisibility(View.GONE);
+                rlLoader.setVisibility(View.GONE);
                 try {
                     JSONObject jsonObject=new JSONObject(response);
                     Log.i("register","response=>"+jsonObject);
@@ -161,4 +177,46 @@ public class RegisterActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    private void showLanguageDialog() {
+        if (!isFinishing()) {
+            final String[] listItems = {"English", "हिंदी"};
+            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+            builder.setTitle("Choose Language");
+            builder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    if (listItems[i].equals("English")) {
+                        from = 1;
+                        setLocale("en");
+                        recreate();
+                    } else if (listItems[i].equals("हिंदी")) {
+                        from = 2;
+                        setLocale("hi");
+                        recreate();
+                    }
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+    }
+
+
+    private void setLocale(String lang) {
+        Locale locale=new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration configuration=new Configuration();
+        configuration.locale=locale;
+        getBaseContext().getResources().updateConfiguration(configuration,getBaseContext().getResources().getDisplayMetrics());
+        SharedPreferences.Editor editor=getSharedPreferences("Settings",MODE_PRIVATE).edit();
+        editor.putString("lang",lang);
+        editor.apply();
+
+    }
+    public void loadLocale(){
+        SharedPreferences preferences=getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language=preferences.getString("lang","");
+        setLocale(language);
+    }
 }

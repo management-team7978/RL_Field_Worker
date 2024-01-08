@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="Consumer">फील्ड वर्कर</string>
+    <string name="Login">लॉगिन</string>
+    <string name="Sign_in_to_continue">जारी रखने के लिए साइन इन करें</string>
+    <string name="User_Id">उपयोगकर्ता पहचान</string>
+    <string name="Enter_Password">पास वर्ड दर्ज करें</string>
+    <string name="Forgot_Password">पासवर्ड भूल गए?</string>
+    <string name="New_User">नए उपयोगकर्ता?</string>
+    <string name="Sign_Up"> साइन अप करें</string>
+    <string name="Customer">ग्राहक</string>
+    <string name="Mobile_Number">Mobile Number</string>
+
+    <string name="Register">रजिस्टर</string>
+    <string name="Referral_Code">रेफरल कोड</string>
+    <string name="Enter_First_Name">पहला नाम दर्ज करें</string>
+    <string name="Enter_Father_Name">पिता का नाम दर्ज करें</string>
+    <string name="Enter_Email">ईमेल दर्ज करें</string>
+    <string name="Enter_Mobile_No">मोबाइल नंबर दर्ज करें</string>
+    <string name="Enter_Address">पता दर्ज करें</string>
+    <string name="Enter_Adhar">आधार दर्ज करें</string>
+    <string name="Select_Occupation">पेशेवर चयन करें</string>
+    <string name="Occupational_Experience">पेशेवर अनुभव</string>
+    <string name="Select_Contract_Type">अनुबंध प्रकार का चयन करें</string>
+    <string name="Adhar_Front_Side">आधार का सामना हिस्सा</string>
+    <string name="Adhar_Back_Side">आधार का पीछा हिस्सा</string>
+    <string name="Enter_Pincode">पिनकोड दर्ज करें</string>
+    <string name="Already_have_Account">क्या आपके पास पहले से ही खाता है?</string>
+
+    <string name="Forgot">भूल गए</string>
+    <string name="password">पासवर्ड</string>
+    <string name="Please_enter_register_email_id">कृपया यहाँ पंजीकृत ईमेल आईडी दर्ज करें।</string>
+    <string name="Submit">प्रस्तुत करें</string>
+
+
+</resources>
