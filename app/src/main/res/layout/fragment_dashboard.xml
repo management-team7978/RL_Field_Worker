@@ -28,61 +28,88 @@
             android:paddingRight="20dp"
             android:visibility="visible">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="0dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Hello, "
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/bg"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="testing User"
-                    android:textColor="@color/rl_blue"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="#80FFFFFF"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Welcome To,"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_semi_bold"
-                android:text="RL Family"
-                android:textColor="@color/rl_orange"
-                android:textSize="16sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="Hello, "
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Your User Id is RL122334"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="testing User"
+                                android:textColor="@color/rl_blue"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Welcome To,"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:text="RL Family"
+                            android:textColor="@color/rl_orange"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Your User Id is RL122334"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
 
 
             <RelativeLayout
@@ -115,21 +142,11 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@id/img"
-                    android:layout_toLeftOf="@id/imgShare"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Share Consumer App"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/imgShare"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentRight="true"
-                    android:adjustViewBounds="true"
-                    android:padding="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/baseline_share_24" />
 
             </RelativeLayout>
 
@@ -166,18 +183,8 @@
                     android:fontFamily="@font/poppins_medium"
                     android:text="Share Customer App"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:layout_toLeftOf="@id/imgShare1"/>
+                    android:textSize="14sp"/>
 
-                <ImageView
-                    android:id="@+id/imgShare1"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentRight="true"
-                    android:adjustViewBounds="true"
-                    android:padding="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/baseline_share_24" />
 
             </RelativeLayout>
 
@@ -369,6 +376,42 @@
         <!--                android:fontFamily="@font/poppins_bold" />-->
         <!--        </LinearLayout>-->
     </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_call"
+            app:fabSize="normal"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            app:backgroundTint="@color/rl_blue"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Need Help?"
+            android:gravity="right"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:layout_below="@id/add_fab"/>
+    </RelativeLayout>
+
+
+
 
     <RelativeLayout
         android:id="@+id/rlLoader"

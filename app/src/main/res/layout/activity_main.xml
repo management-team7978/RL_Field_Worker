@@ -49,7 +49,11 @@
         android:layout_height="match_parent"
         android:id="@+id/frameContainer"
         android:layout_above="@id/bottomNav"
-        android:layout_below="@id/rlHeader"/>
+        android:layout_below="@id/rlHeader">
+
+    </FrameLayout>
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

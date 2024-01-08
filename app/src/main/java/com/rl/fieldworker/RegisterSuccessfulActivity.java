@@ -25,7 +25,7 @@ public class RegisterSuccessfulActivity extends AppCompatActivity {
         Intent i = getIntent();
         if (i.hasExtra("user_id")){
             tvUsername.setText("Hi, "+i.getStringExtra("user_name"));
-            tvUserid.setText("Your User Id : "+i.getStringExtra("user_id"));
+            tvUserid.setText("Your Relational Manager Id : "+i.getStringExtra("user_id"));
             tvPassword.setText("password : "+i.getStringExtra("password"));
             tvReferral.setText("Referral code: "+i.getStringExtra("referral_code"));
         }

@@ -2,39 +2,62 @@ package com.rl.fieldworker;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.rl.fragment.BankKycFragment;
 import com.rl.fragment.DashboardFragment;
 import com.rl.fragment.GetRquestListFragment;
 import com.rl.fragment.ProfileFragment;
 import com.rl.util.AppController;
+import com.rl.util.Keys;
 import com.rl.util.SharedPreference;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNav;
     TextView tvTitle;
     ImageView imgShare;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         tvTitle=findViewById(R.id.tvTitle);
         imgShare=findViewById(R.id.imgShare);
         tvTitle.setText("Dashboard");
+
+        
         replaceFragment(new DashboardFragment());
 
         imgShare.setOnClickListener(new View.OnClickListener() {
@@ -116,4 +141,7 @@ public class MainActivity extends AppCompatActivity {
         intent.setType("image/png");
         startActivity(intent);
     }
+
+
+
 }

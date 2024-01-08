@@ -12,6 +12,7 @@ public class Keys {
         public static String add_bank_details = field_work + "add_bank_details.php";
         public static String kyc_details = field_work + "kyc_details.php";
         public static String get_request = field_work + "get_request.php";
+        public static String customer_call_request = field_work + "call_request.php";
     }
 
 }
