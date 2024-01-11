@@ -43,11 +43,13 @@ import java.util.Map;
 public class DashboardFragment extends Fragment {
     EditText edtFirstName,edtEmail,edtPhone,edtAddress,edtWorkDesc;
     AppCompatButton btSubmit;
-    RelativeLayout rlLoader;
+   // RelativeLayout rlLoader;
     String dialogMsg="";
     FloatingActionButton floatingActionButton;
     String st_language="";
     ArrayList<String> arr_language_type = new ArrayList<String>();
+    TextView tvUserId,tvName;
+    String uuid;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,12 +57,18 @@ public class DashboardFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         floatingActionButton = v.findViewById(R.id.add_fab);
+        tvName=v.findViewById(R.id.tvName);
+        tvUserId=v.findViewById(R.id.tvUserId);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ViewCallDialog();
             }
         });
+
+
+        uuid=SharedPreference.get("uuid");
+        getProfile(uuid);
 
 //        edtEmail=v.findViewById(R.id.edtEmail);
 //        edtPhone=v.findViewById(R.id.edtPhone);
@@ -94,6 +102,57 @@ public class DashboardFragment extends Fragment {
 //            }
 //        });
         return v;
+    }
+
+    private void getProfile(String uuid) {
+       // rlLoader.setVisibility(View.VISIBLE);
+        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.getprofile, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("pri","profile =>>"+response);
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    Log.i("pri","response=>"+jsonObject);
+                    if (jsonObject.getString("status").equals("true")){
+                     //   rlLoader.setVisibility(View.GONE);
+                        tvName.setText(jsonObject.getString("name"));
+                        tvUserId.setText("User id is "+jsonObject.getString("user_id"));
+                    }else {
+                       // rlLoader.setVisibility(View.GONE);
+                        if (jsonObject.getString("message").equalsIgnoreCase("uuid missmatch logout")) {
+                            if (SharedPreference.contains("uuid")) {
+                                SharedPreference.removeKey("uuid");
+                                SharedPreference.removeKey("name");
+                                SharedPreference.removeKey("referral_code");
+                            }
+                            Intent i = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(i);
+                            getActivity().finish();
+                        }
+                        Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    //rlLoader.setVisibility(View.GONE);
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                //rlLoader.setVisibility(View.GONE);
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params=new HashMap<>();
+                params.put("uuid", uuid);
+                return  params;
+            }
+        };
+        AppController.getInstance().add(request);
     }
 
     private void ViewCallDialog() {
