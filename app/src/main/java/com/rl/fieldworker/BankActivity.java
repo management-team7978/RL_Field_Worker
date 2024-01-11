@@ -95,6 +95,7 @@ public class BankActivity extends AppCompatActivity {
                     JSONObject jsonObject=new JSONObject(response);
                     if (jsonObject.getString("status").equals("true")){
                         rlLoader.setVisibility(View.GONE);
+                        btSubmit.setText("Update");
                         edtAccountNumber.setText(jsonObject.getString("account_number"));
                         edtBankName.setText(jsonObject.getString("bank_name"));
                         edtHolderName.setText(jsonObject.getString("holder_name"));

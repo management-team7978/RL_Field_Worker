@@ -228,6 +228,7 @@ public class ProfileFragment extends Fragment {
                         tvAddress.setText(jsonObject.getString("address")+", "+jsonObject.getString("pincode"));
                         tvPassword.setText(jsonObject.getString("password"));
                         tvUserId.setText(jsonObject.getString("user_id"));
+
                     }else {
                         rlLoader.setVisibility(View.GONE);
                         if (jsonObject.getString("message").equalsIgnoreCase("uuid missmatch logout")) {
