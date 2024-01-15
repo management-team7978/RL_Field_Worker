@@ -109,23 +109,44 @@ public class ProfileFragment extends Fragment {
 
 
 // Create an Intent with the action set to ACTION_VIEW
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
+//                    Intent intent = new Intent(Intent.ACTION_VIEW);
+//
+//// Set the data URI to the WhatsApp URI with the phone number
+//// The "text" parameter can be used to pre-fill a message
+//// For example, you can append "&text=Hello" to pre-fill a message with "Hello"
+//                    Uri uri = Uri.parse("https://wa.me/" + phoneNumber);
+//                    intent.setData(uri);
+//
+//// Check if WhatsApp is installed on the device
+//                    if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+//                        // Start the activity
+//                        startActivity(intent);
+//                    } else {
+//                        // WhatsApp is not installed, handle this case
+//                        // You can prompt the user to install WhatsApp from the Play Store
+//                        // or show a custom message
+//                        Toast.makeText(getActivity(), "WhatsApp is not installed", Toast.LENGTH_SHORT).show();
+//                    }
 
-// Set the data URI to the WhatsApp URI with the phone number
-// The "text" parameter can be used to pre-fill a message
-// For example, you can append "&text=Hello" to pre-fill a message with "Hello"
-                    Uri uri = Uri.parse("https://wa.me/" + phoneNumber);
-                    intent.setData(uri);
+                    try {
+                        // Open WhatsApp using the package name
+                        Intent sendIntent = new Intent("android.intent.action.MAIN");
+                        sendIntent.putExtra("jid", phoneNumber + "@s.whatsapp.net");
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, "Hello");
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.setPackage("com.whatsapp");
 
-// Check if WhatsApp is installed on the device
-                    if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-                        // Start the activity
-                        startActivity(intent);
-                    } else {
-                        // WhatsApp is not installed, handle this case
-                        // You can prompt the user to install WhatsApp from the Play Store
-                        // or show a custom message
-                        Toast.makeText(getActivity(), "WhatsApp is not installed", Toast.LENGTH_SHORT).show();
+                        // Check if WhatsApp is installed on the device
+                        if (sendIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                            startActivity(sendIntent);
+                        } else {
+                            // WhatsApp is not installed, handle this case
+                            Toast.makeText(getActivity(), "WhatsApp is not installed", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        // Handle exceptions
+                        e.printStackTrace();
+                        Toast.makeText(getActivity(), "Error opening WhatsApp", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
