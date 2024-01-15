@@ -61,6 +61,9 @@ public class BankActivity extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i=new Intent(BankActivity.this, MainActivity.class);
+                i.putExtra("redirect","1");
+                startActivity(i);
                 finish();
             }
         });

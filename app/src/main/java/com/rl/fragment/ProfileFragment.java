@@ -40,7 +40,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProfileFragment extends Fragment {
-    TextView tvName,tvEmail,tvPhone,tvAddress,tvPassword,tvChangePassword,tvUserId,tvBankName,tvBankAccount;
+    TextView tvName,tvEmail,tvPhone,tvAddress,tvPassword,tvChangePassword,tvUserId,tvBankName,tvBankAccount,tvaddbankacc;
     RelativeLayout rlLogout;
     String uuid;
     RelativeLayout rlLoader;
@@ -66,6 +66,7 @@ public class ProfileFragment extends Fragment {
         rlBankDetails=v.findViewById(R.id.rlBankDetails);
         rlPhone=v.findViewById(R.id.rlPhone);
         rlWhatsapp=v.findViewById(R.id.rlWhatsapp);
+        tvaddbankacc=v.findViewById(R.id.tvAddBank);
 
         cdBankDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,17 +94,40 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 String phoneNumber = "9517484939"; // Default number or provide a way to get it dynamically
                 if (phoneNumber != null && !phoneNumber.isEmpty()) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("https://api.whatsapp.com/send?phone=" + phoneNumber));
-                    intent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
+//                    Intent intent = new Intent(Intent.ACTION_VIEW);
+//                    intent.setData(Uri.parse("https://api.whatsapp.com/send?phone=" + phoneNumber));
+//                    intent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
+//
+//                    if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+//                        startActivity(intent);
+//                        Log.i("pri","install");
+//                    } else {
+//                        Toast.makeText(getActivity(), "WhatsApp is not installed on this device.", Toast.LENGTH_SHORT).show();
+//                        Log.i("pri","not install");
+//                    }
+                    // Replace "1234567890" with the actual phone number or contact ID you want to open in WhatsApp
 
+
+// Create an Intent with the action set to ACTION_VIEW
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+
+// Set the data URI to the WhatsApp URI with the phone number
+// The "text" parameter can be used to pre-fill a message
+// For example, you can append "&text=Hello" to pre-fill a message with "Hello"
+                    Uri uri = Uri.parse("https://wa.me/" + phoneNumber);
+                    intent.setData(uri);
+
+// Check if WhatsApp is installed on the device
                     if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                        // Start the activity
                         startActivity(intent);
-                        Log.i("pri","install");
                     } else {
-                        Toast.makeText(getActivity(), "WhatsApp is not installed on this device.", Toast.LENGTH_SHORT).show();
-                        Log.i("pri","not install");
+                        // WhatsApp is not installed, handle this case
+                        // You can prompt the user to install WhatsApp from the Play Store
+                        // or show a custom message
+                        Toast.makeText(getActivity(), "WhatsApp is not installed", Toast.LENGTH_SHORT).show();
                     }
+
                 } else {
                     Toast.makeText(getActivity(), "Phone number not available.", Toast.LENGTH_SHORT).show();
                 }
@@ -165,7 +189,8 @@ public class ProfileFragment extends Fragment {
                         rlLoader.setVisibility(View.GONE);
 
                         rlBankDetails.setVisibility(View.VISIBLE);
-                        rlNoBankDetail.setVisibility(View.GONE);
+                      //  rlNoBankDetail.setVisibility(View.GONE);
+                        tvaddbankacc.setText("Update Bank Account");
                         tvBankAccount.setText(jsonObject.getString("account_number"));
                         tvBankName.setText(jsonObject.getString("bank_name"));
 
@@ -184,7 +209,8 @@ public class ProfileFragment extends Fragment {
                             getActivity().finish();
                         }else if (jsonObject.getString("status").equals("false")){
                             rlBankDetails.setVisibility(View.GONE);
-                            rlNoBankDetail.setVisibility(View.VISIBLE);
+                            tvaddbankacc.setText("Add Bank Account");
+                           // rlNoBankDetail.setVisibility(View.VISIBLE);
                         }
                     }
 

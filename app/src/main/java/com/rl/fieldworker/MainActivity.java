@@ -72,7 +72,15 @@ public class MainActivity extends AppCompatActivity {
 
         
         replaceFragment(new DashboardFragment());
-
+        Intent i = getIntent();
+        if (i.hasExtra("redirect")){
+            tvTitle.setText("Profile");
+            bottomNav.setSelectedItemId(R.id.menu_request_list);
+            replaceFragment(new ProfileFragment());
+        }else {
+            tvTitle.setText("Dashboard");
+            replaceFragment(new DashboardFragment());
+        }
         imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
