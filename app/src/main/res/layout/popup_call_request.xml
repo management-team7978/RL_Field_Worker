@@ -98,16 +98,24 @@
                     android:background="@drawable/drop_down_shape"/>
 
 
-                <EditText
-                    android:id="@+id/edtHelper"
-                    android:layout_marginTop="10dp"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="wrap_content"
                     android:hint="I Need Help."
-                    android:padding="5dp"
-                    android:gravity="start|top"
-                    android:background="@drawable/edt_desc_box"
-                    android:text="I Need Help." />
+                    style="@style/OutlinedBoxStyle"
+                    app:helperTextEnabled="true"
+                    android:layout_marginTop="5dp"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:id="@+id/edtFirstName"
+                        android:textColor="@color/black"
+                        android:inputType="textMultiLine"
+                        android:fontFamily="@font/poppins_regular"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btSubmit"
