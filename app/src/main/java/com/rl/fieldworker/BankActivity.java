@@ -67,6 +67,19 @@ public class BankActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Intent i = getIntent();
+        if (i.hasExtra("redirect_to")) {
+            String redirectTo = i.getStringExtra("redirect_to");
+
+            // Check the value of "redirect_to" and show/hide the button accordingly
+            if (redirectTo.equals("show_update_bt")) {
+                btSubmit.setVisibility(View.VISIBLE);
+            } else {
+                btSubmit.setVisibility(View.GONE);
+            }
+        }
+
         btSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -68,9 +68,27 @@ public class ProfileFragment extends Fragment {
         rlWhatsapp=v.findViewById(R.id.rlWhatsapp);
         tvaddbankacc=v.findViewById(R.id.tvAddBank);
 
-        cdBankDetails.setOnClickListener(new View.OnClickListener() {
+//        cdBankDetails.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i=new Intent(getActivity(), BankActivity.class);
+//                startActivity(i);
+//            }
+//        });
+
+        rlBankDetails.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                Intent i=new Intent(getActivity(), BankActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+
+        rlNoBankDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent i=new Intent(getActivity(), BankActivity.class);
                 startActivity(i);
             }
@@ -169,7 +187,9 @@ public class ProfileFragment extends Fragment {
 
                 Intent i=new Intent(getActivity(), LoginActivity.class);
                 startActivity(i);
+                Toast.makeText(getActivity(), "Logout", Toast.LENGTH_SHORT).show();
                 getActivity().finish();
+
             }
         });
 
@@ -215,7 +235,19 @@ public class ProfileFragment extends Fragment {
                         tvBankAccount.setText(jsonObject.getString("account_number"));
                         tvBankName.setText(jsonObject.getString("bank_name"));
 
+                        if (!jsonObject.getString("account_number").isEmpty()) {
+                            rlBankDetails.setOnClickListener(v -> {
+                                Intent i = new Intent(getActivity(), BankActivity.class);
+                                i.putExtra("redirect_to", "hide_bt");
+                                startActivity(i);
+                            });
 
+                            rlNoBankDetail.setOnClickListener(v -> {
+                                Intent i = new Intent(getActivity(), BankActivity.class);
+                                i.putExtra("redirect_to", "show_update_bt");
+                                startActivity(i);
+                            });
+                        }
 
                     }else {
                         rlLoader.setVisibility(View.GONE);

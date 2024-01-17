@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.rl.fragment.BankKycFragment">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,7 +40,6 @@
                 android:paddingTop="10dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp">
-
 
                 <ImageView
                     android:layout_width="80dp"

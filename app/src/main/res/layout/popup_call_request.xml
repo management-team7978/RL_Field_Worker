@@ -110,7 +110,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        android:id="@+id/edtFirstName"
+                        android:id="@+id/edtHelper"
                         android:textColor="@color/black"
                         android:inputType="textMultiLine"
                         android:fontFamily="@font/poppins_regular"/>

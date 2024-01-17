@@ -75,7 +75,11 @@ public class BankKycFragment extends Fragment {
                 if (bName.isEmpty() || bHolderName.isEmpty() || bAccNum.isEmpty() || ifsc.isEmpty() || pan.isEmpty()
                         || aadhar.isEmpty()) {
                     Toast.makeText(getActivity(), "All fields must be filled", Toast.LENGTH_SHORT).show();
-                } else {
+                }   else if (pan.length() != 10) {
+                    Toast.makeText(getActivity(), "PAN must be 10 digits", Toast.LENGTH_SHORT).show();
+                } else if (aadhar.length() != 12) {
+                    Toast.makeText(getActivity(), "Aadhar number must be 12 digits", Toast.LENGTH_SHORT).show();
+                }else {
                     AddBankDetails(SharedPreference.get("uuid"),bName,bHolderName,bAccNum,ifsc,pan,aadhar);
                 }
             }

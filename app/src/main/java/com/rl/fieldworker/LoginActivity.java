@@ -15,9 +15,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.rl.util.AppController;
 import com.rl.util.Keys;
 import com.rl.util.SharedPreference;
@@ -33,6 +37,7 @@ import com.rl.util.SharedPreference;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -45,6 +50,9 @@ public class LoginActivity extends AppCompatActivity {
     String dialogMsg="";
     ImageView imgLanguage;
     int from;
+    FloatingActionButton floatingActionButton;
+    String st_language="";
+    ArrayList<String> arr_language_type = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,13 +64,20 @@ public class LoginActivity extends AppCompatActivity {
         tvForgotPass=findViewById(R.id.tvForgotPass);
         rlLoader=findViewById(R.id.rlLoader);
         rlSignUp=findViewById(R.id.rlSignUp);
-
+        floatingActionButton = findViewById(R.id.add_fab);
         imgLanguage = findViewById(R.id.imgLanguage);
         loadLocale();
         imgLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showLanguageDialog();
+            }
+        });
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ViewCallDialog();
             }
         });
 
@@ -166,6 +181,92 @@ public class LoginActivity extends AppCompatActivity {
 
         // show the exit dialog
         dialog.show();
+    }
+
+    private void ViewCallDialog() {
+        final Dialog dialog = new Dialog(LoginActivity.this);
+        dialog.setContentView(R.layout.popup_call_request);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+        Spinner spLanguage = (Spinner) dialog.findViewById(R.id.spLanguage);
+        EditText edtHelper = (EditText) dialog.findViewById(R.id.edtHelper);
+        AppCompatButton btSubmit = (AppCompatButton) dialog.findViewById(R.id.btSubmit);
+
+        arr_language_type.clear();
+        arr_language_type.add("English");
+        arr_language_type.add("Hindi");
+
+        spLanguage.setAdapter(new ArrayAdapter<String>(LoginActivity.this, R.layout.custom_spinner_list, arr_language_type));
+
+        spLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                st_language= (String) parent.getSelectedItem();
+                Log.i("pri","selected=> "+st_language);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        btSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String helper_text = edtHelper.getText().toString().trim();
+                if (helper_text.equals("")){
+                    Toast.makeText(LoginActivity.this, "Please fill all the field", Toast.LENGTH_SHORT).show();
+                }else {
+                    RaiseHelpTicket(SharedPreference.get("consumer_uuid"),dialog,helper_text,st_language);
+                }
+            }
+        });
+
+        // show the exit dialog
+        dialog.show();
+    }
+
+    private void RaiseHelpTicket(String uuid, Dialog dialog, String helper_text, String st_language) {
+        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.customer_call_request, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.i("pri","Login =>>"+response);
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    Log.i("pri","response=>"+jsonObject);
+                    if (jsonObject.getString("status").equals("true")){
+                        Toast.makeText(LoginActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }else {
+                        Toast.makeText(LoginActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params=new HashMap<>();
+                params.put("uuid",uuid);
+                params.put("language",st_language);
+                params.put("message",helper_text);
+                Log.i("prii","u=>"+params.toString());
+                return  params;
+            }
+        };
+        AppController.getInstance().add(request);
     }
 
     private void showLanguageDialog() {

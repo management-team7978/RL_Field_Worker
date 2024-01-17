@@ -143,7 +143,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Intent i=new Intent(RegisterActivity.this, RegisterSuccessfulActivity.class);
                         i.putExtra("user_id",jsonObject.getString("user_id"));
                         i.putExtra("user_name",jsonObject.getString("name"));
-                        i.putExtra("referral_code",jsonObject.getString("referral_code"));
+                        i.putExtra("referral_code",jsonObject.getString("user_id"));
                         i.putExtra("password",jsonObject.getString("password"));
                         startActivity(i);
                         finish();
