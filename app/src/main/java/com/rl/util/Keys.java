@@ -16,6 +16,7 @@ public class Keys {
 
         public static String show_bill = field_work + "show_bills.php";
         public static String change_password = field_work + "change_password.php";
+        public static String get_review = field_work + "get_review.php";
     }
 
 }

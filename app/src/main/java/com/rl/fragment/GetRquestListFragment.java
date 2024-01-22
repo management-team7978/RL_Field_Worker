@@ -97,7 +97,8 @@ public class GetRquestListFragment extends Fragment {
                                     jsonObject1.getString("name"),
                                     jsonObject1.getString("phone"),
                                     jsonObject1.getString("quotation"),
-                                    jsonObject1.getString("quotations")));
+                                    jsonObject1.getString("quotations"),
+                                    jsonObject1.getString("occupation")));
                         }
                         requestListAdapter= new RequestListAdapter(
                                 getActivity(),requestLists);

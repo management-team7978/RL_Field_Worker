@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,16 +38,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ViewConsumerRequestActivity extends AppCompatActivity {
-    String consumer_name="",consumer_phone="",id="",consumer_quotation="",consumer_quotation_path="",consumer_userId="";
-    TextView tvConsumerName,tvConsumerAddress,tvConsumerPhone,tvTextNoData,tvFileName;
+    String consumer_name="",consumer_phone="",id="",consumer_quotation="",consumer_quotation_path="",consumer_userId="",consumer_occupation;
+    TextView tvConsumerName,tvConsumerAddress,tvConsumerPhone,tvTextNoData,tvFileName,tvOccupation,tvDesc;
     ImageView img_download,imgBack,imgSuccess;
     AppCompatButton btAccept,btReject;
     RecyclerView recyclerCustomerBill;
     RelativeLayout rlLoader;
     ArrayList<ConsumerBillList> consumerBillLists;
     ConsumerBillAdapter consumerBillAdapter;
-    RelativeLayout rlNotFound;
+    RelativeLayout rlNotFound,rlReview;
     DownloadManager manager;
+    RatingBar ratingBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +65,10 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
         imgBack=findViewById(R.id.imgBack);
         tvTextNoData=findViewById(R.id.tvTextNoData);
         tvFileName=findViewById(R.id.tvFileName);
+        rlReview=findViewById(R.id.rlReview);
+        tvOccupation=findViewById(R.id.tvOccupation);
+        tvDesc=findViewById(R.id.tvDesc);
+        ratingBar=findViewById(R.id.ratingBar);
 
 
         recyclerCustomerBill.setLayoutManager(new LinearLayoutManager(ViewConsumerRequestActivity.this));
@@ -78,6 +84,7 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
             consumer_quotation= i.getStringExtra("consumer_quotation");
             id = i.getStringExtra("id");
             consumer_userId=i.getStringExtra("consumer_userId");
+            consumer_occupation=i.getStringExtra("consumer_occupation");
 
             tvConsumerName.setText(consumer_name);
             tvConsumerPhone.setText(consumer_phone);
@@ -113,7 +120,65 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
             }
         });
 
+        getReview(SharedPreference.get("uuid"),consumer_userId);
         getCustomerBill(SharedPreference.get("uuid"));
+    }
+
+    private void getReview(String uuid, String consumer_userId) {
+        rlLoader.setVisibility(View.VISIBLE);
+        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.get_review, new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("pri","getReview =>>"+response);
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    if (jsonObject.getString("status").equals("true")){
+
+                        rlLoader.setVisibility(View.GONE);
+
+                        rlReview.setVisibility(View.VISIBLE);
+                        tvOccupation.setText(consumer_occupation);
+                        tvDesc.setText(jsonObject.getString("description_consumer"));
+                        ratingBar.setRating(Float.parseFloat(jsonObject.getString("rating")));
+
+                    }else {
+                        rlLoader.setVisibility(View.GONE);
+                        rlReview.setVisibility(View.GONE);
+                        if (jsonObject.getString("message").equalsIgnoreCase("uuid missmatch logout")) {
+                            if (SharedPreference.contains("uuid")) {
+                                SharedPreference.removeKey("uuid");
+                                SharedPreference.removeKey("name");
+                                SharedPreference.removeKey("referral_code");
+                            }
+                            Intent i = new Intent(ViewConsumerRequestActivity.this, LoginActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    rlLoader.setVisibility(View.GONE);
+                }
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                rlLoader.setVisibility(View.GONE);
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params=new HashMap<>();
+                params.put("uuid",uuid);
+                params.put("consumer_user_id", consumer_userId);
+                Log.i("priyu",""+params);
+                return  params;
+            }
+        };
+        AppController.getInstance().add(request);
+
     }
 
     private void getCustomerBill(String consumerUuid) {

@@ -8,8 +8,9 @@ public class RequestList {
     private String phone;
     private String quotation;
     private String quotations;
+    private String occupation;
 
-    public RequestList(String serial, String service_request_id, String consumer_user_id, String name, String phone, String quotation, String quotations) {
+    public RequestList(String serial, String service_request_id, String consumer_user_id, String name, String phone, String quotation, String quotations, String occupation) {
         this.serial = serial;
         this.service_request_id = service_request_id;
         this.consumer_user_id = consumer_user_id;
@@ -17,6 +18,7 @@ public class RequestList {
         this.phone = phone;
         this.quotation = quotation;
         this.quotations = quotations;
+        this.occupation = occupation;
     }
 
     public String getSerial() {
@@ -73,5 +75,13 @@ public class RequestList {
 
     public void setQuotations(String quotations) {
         this.quotations = quotations;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
     }
 }

@@ -68,7 +68,18 @@
                     android:id="@+id/tvPhone"
                     android:textColor="@color/text_color_gray"/>
 
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Consumer mobile"
+                    android:layout_marginTop="5dp"
+                    android:drawableTint="#696969"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/repair_service_icon"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:id="@+id/tvOccupation"
+                    android:textColor="@color/text_color_gray"/>
 
 
                 <TextView

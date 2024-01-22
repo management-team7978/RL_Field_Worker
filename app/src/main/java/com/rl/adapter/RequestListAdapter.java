@@ -50,7 +50,7 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
         holder.tvName.setText(requestList.getName());
         holder.tvPhone.setText(requestList.getPhone());
         holder.tvUserId.setText(requestList.getConsumer_user_id());
-
+        holder.tvOccupation.setText(requestList.getOccupation());
         holder.tvViewMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +62,7 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
                 i.putExtra("consumer_phone",requestList.getPhone());
                 i.putExtra("consumer_quotation",requestList.getQuotation());
                 i.putExtra("consumer_quotation_path",requestList.getQuotations());
-
+                i.putExtra("consumer_occupation",requestList.getOccupation());
                 context.startActivity(i);
             }
         });
@@ -77,7 +77,7 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView  tvName,tvPhone,tvUserId,tvViewMore;
+        TextView  tvName,tvPhone,tvUserId,tvViewMore,tvOccupation;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,6 +85,7 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
             tvName = itemView.findViewById(R.id.tvName);
             tvPhone = itemView.findViewById(R.id.tvPhone);
             tvViewMore = itemView.findViewById(R.id.tvViewMore);
+            tvOccupation=itemView.findViewById(R.id.tvOccupation);
 
         }
     }
