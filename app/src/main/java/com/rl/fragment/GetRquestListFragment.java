@@ -77,7 +77,7 @@ public class GetRquestListFragment extends Fragment {
 
     private void getRequestList(String uuid) {
         rlLoader.setVisibility(View.VISIBLE);
-        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.get_request, new Response.Listener<String>() {
+        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.show_quotation, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 swipeRefresh.setRefreshing(false);
@@ -91,17 +91,13 @@ public class GetRquestListFragment extends Fragment {
                         for (int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject1=jsonArray.getJSONObject(i);
                             requestLists.add(new RequestList(
-                                    jsonObject1.getString("id"),
-                                    jsonObject1.getString("user_id"),
+                                    jsonObject1.getString("serial"),
+                                    jsonObject1.getString("service_request_id"),
+                                    jsonObject1.getString("consumer_user_id"),
                                     jsonObject1.getString("name"),
-                                    jsonObject1.getString("email"),
                                     jsonObject1.getString("phone"),
-                                    jsonObject1.getString("address"),
-                                    jsonObject1.getString("work_description"),
-                                    jsonObject1.getString("date"),
-                                    jsonObject1.getString("status"),
-                                    jsonObject1.getString("bill"),
-                                    jsonObject1.getString("billing")));
+                                    jsonObject1.getString("quotation"),
+                                    jsonObject1.getString("quotations")));
                         }
                         requestListAdapter= new RequestListAdapter(
                                 getActivity(),requestLists);

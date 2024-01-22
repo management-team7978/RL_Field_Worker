@@ -3,6 +3,7 @@ package com.rl.adapter;
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rl.fieldworker.R;
+import com.rl.fieldworker.ViewConsumerRequestActivity;
 import com.rl.pojo.RequestList;
 import com.rl.util.PdfDownloader;
 
@@ -47,45 +49,26 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
         RequestList requestList = requestLists.get(position);
         holder.tvName.setText(requestList.getName());
         holder.tvPhone.setText(requestList.getPhone());
-        holder.tvEmail.setText(requestList.getEmail());
-        holder.tvAddress.setText(requestList.getAddress());
-        holder.tvDate.setText(requestList.getDate());
-        holder.tvDesc.setText(requestList.getWork_description());
+        holder.tvUserId.setText(requestList.getConsumer_user_id());
 
-        if (requestList.getStatus().equalsIgnoreCase("pending")){
-            holder.tvStatus.setBackgroundResource(R.color.yellow);
-            holder.tvStatus.setText(requestList.getStatus());
-        } else if (requestList.getStatus().equalsIgnoreCase("reject")){
-            holder.tvStatus.setBackgroundResource(R.color.red);
-            holder.tvStatus.setText(requestList.getStatus());
-        }else if (requestList.getStatus().equalsIgnoreCase("success")){
-            if (requestList.getBill().equalsIgnoreCase("null")){
-                holder.tvStatus.setBackgroundResource(R.color.green);
-                holder.tvStatus.setText(requestList.getStatus());
-            }else {
-                holder.tvStatus.setBackgroundResource(R.color.green);
-                holder.tvStatus.setText(requestList.getStatus());
-                holder.tvBill.setVisibility(View.VISIBLE);
-            }
-
-        }
-
-        holder.tvBill.setOnClickListener(new View.OnClickListener() {
+        holder.tvViewMore.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                Uri uri = Uri.parse(requestList.getBilling());
-                DownloadManager.Request request = new DownloadManager.Request(uri);
-                request.setTitle("Bill");
-                request.setDescription("Download in progress");
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                request.setVisibleInDownloadsUi(true);
-                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "Receipt.pdf");
-                request.setMimeType("application/pdf");
-                long reference = manager.enqueue(request);
+            public void onClick(View v) {
+                Intent i = new Intent(context, ViewConsumerRequestActivity.class);
+                i.putExtra("id",requestList.getService_request_id());
+                i.putExtra("consumer_serial",requestList.getSerial());
+                i.putExtra("consumer_name",requestList.getConsumer_user_id());
+                i.putExtra("consumer_phone",requestList.getPhone());
+                i.putExtra("consumer_quotation",requestList.getQuotation());
+                i.putExtra("consumer_quotation_path",requestList.getQuotations());
+
+                context.startActivity(i);
             }
         });
+
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -93,18 +76,15 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvDesc, tvName, tvEmail, tvAddress, tvDate,tvPhone,tvBill,tvStatus;
+        TextView  tvName,tvPhone,tvUserId,tvViewMore;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvDesc = itemView.findViewById(R.id.tvDesc);
+            tvUserId = itemView.findViewById(R.id.tvUserId);
             tvName = itemView.findViewById(R.id.tvName);
-            tvEmail = itemView.findViewById(R.id.tvEmail);
-            tvAddress = itemView.findViewById(R.id.tvAddress);
-            tvDate = itemView.findViewById(R.id.tvDate);
             tvPhone = itemView.findViewById(R.id.tvPhone);
-            tvBill = itemView.findViewById(R.id.tvBill);
-            tvStatus = itemView.findViewById(R.id.tvStatus);
+            tvViewMore = itemView.findViewById(R.id.tvViewMore);
+
         }
     }
 

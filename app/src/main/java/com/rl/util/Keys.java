@@ -11,8 +11,11 @@ public class Keys {
         public static String add_request = field_work + "add_request.php";
         public static String add_bank_details = field_work + "add_bank_details.php";
         public static String kyc_details = field_work + "kyc_details.php";
-        public static String get_request = field_work + "get_request.php";
+        public static String show_quotation = field_work + "show_quotation.php";
         public static String customer_call_request = field_work + "call_request.php";
+
+        public static String show_bill = field_work + "show_bill.php";
+        public static String change_password = field_work + "change_password.php";
     }
 
 }

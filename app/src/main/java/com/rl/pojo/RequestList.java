@@ -1,46 +1,46 @@
 package com.rl.pojo;
 
 public class RequestList {
-    private String id;
-    private String user_id;
+    private String serial;
+    private String service_request_id;
+    private String consumer_user_id;
     private String name;
-    private String email;
     private String phone;
-    private String address;
-    private String work_description;
-    private String date;
-    private String status;
-    private String bill;
-    private String billing;
+    private String quotation;
+    private String quotations;
 
-    public RequestList(String id, String user_id, String name, String email, String phone, String address, String work_description, String date, String status, String bill,String billing) {
-        this.id = id;
-        this.user_id = user_id;
+    public RequestList(String serial, String service_request_id, String consumer_user_id, String name, String phone, String quotation, String quotations) {
+        this.serial = serial;
+        this.service_request_id = service_request_id;
+        this.consumer_user_id = consumer_user_id;
         this.name = name;
-        this.email = email;
         this.phone = phone;
-        this.address = address;
-        this.work_description = work_description;
-        this.date = date;
-        this.status = status;
-        this.bill = bill;
-        this.billing = billing;
+        this.quotation = quotation;
+        this.quotations = quotations;
     }
 
-    public String getId() {
-        return id;
+    public String getSerial() {
+        return serial;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSerial(String serial) {
+        this.serial = serial;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public String getService_request_id() {
+        return service_request_id;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setService_request_id(String service_request_id) {
+        this.service_request_id = service_request_id;
+    }
+
+    public String getConsumer_user_id() {
+        return consumer_user_id;
+    }
+
+    public void setConsumer_user_id(String consumer_user_id) {
+        this.consumer_user_id = consumer_user_id;
     }
 
     public String getName() {
@@ -51,14 +51,6 @@ public class RequestList {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -67,65 +59,19 @@ public class RequestList {
         this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
+    public String getQuotation() {
+        return quotation;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setQuotation(String quotation) {
+        this.quotation = quotation;
     }
 
-    public String getWork_description() {
-        return work_description;
+    public String getQuotations() {
+        return quotations;
     }
 
-    public void setWork_description(String work_description) {
-        this.work_description = work_description;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getBill() {
-        return bill;
-    }
-
-    public void setBill(String bill) {
-        this.bill = bill;
-    }
-
-    public String getBilling() {
-        return billing;
-    }
-
-    public void setBilling(String billing) {
-        this.billing = billing;
-    }
-
-    @Override
-    public String toString() {
-        return "RequestList{" +
-                "id='" + id + '\'' +
-                ", user_id='" + user_id + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                ", work_description='" + work_description + '\'' +
-                ", date='" + date + '\'' +
-                '}';
+    public void setQuotations(String quotations) {
+        this.quotations = quotations;
     }
 }

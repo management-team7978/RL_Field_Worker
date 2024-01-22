@@ -27,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.rl.fieldworker.BankActivity;
+import com.rl.fieldworker.ChangePasswordActivity;
 import com.rl.fieldworker.LoginActivity;
 import com.rl.fieldworker.R;
 import com.rl.util.AppController;
@@ -44,7 +45,7 @@ public class ProfileFragment extends Fragment {
     RelativeLayout rlLogout;
     String uuid;
     RelativeLayout rlLoader;
-    CardView cdBankDetails;
+    CardView cdBankDetails,cdChangePassword;
     RelativeLayout rlNoBankDetail,rlBankDetails,rlPhone,rlWhatsapp;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +68,7 @@ public class ProfileFragment extends Fragment {
         rlPhone=v.findViewById(R.id.rlPhone);
         rlWhatsapp=v.findViewById(R.id.rlWhatsapp);
         tvaddbankacc=v.findViewById(R.id.tvAddBank);
+        cdChangePassword=v.findViewById(R.id.cdChangePassword);
 
 //        cdBankDetails.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -84,6 +86,13 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        cdChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getActivity(), ChangePasswordActivity.class);
+                startActivity(i);
+            }
+        });
 
 
         rlNoBankDetail.setOnClickListener(new View.OnClickListener() {
