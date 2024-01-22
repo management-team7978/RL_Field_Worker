@@ -57,7 +57,8 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
                 Intent i = new Intent(context, ViewConsumerRequestActivity.class);
                 i.putExtra("id",requestList.getService_request_id());
                 i.putExtra("consumer_serial",requestList.getSerial());
-                i.putExtra("consumer_name",requestList.getConsumer_user_id());
+                i.putExtra("consumer_name",requestList.getName());
+                i.putExtra("consumer_userId",requestList.getConsumer_user_id());
                 i.putExtra("consumer_phone",requestList.getPhone());
                 i.putExtra("consumer_quotation",requestList.getQuotation());
                 i.putExtra("consumer_quotation_path",requestList.getQuotations());

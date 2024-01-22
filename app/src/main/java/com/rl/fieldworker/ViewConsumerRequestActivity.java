@@ -37,8 +37,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ViewConsumerRequestActivity extends AppCompatActivity {
-    String consumer_name="",consumer_phone="",consumer_location="",consumer_desc="",consumer_work_progress="",id="";
-    TextView tvConsumerName,tvConsumerAddress,tvConsumerPhone,tvTextStatus,tvTextNoData;
+    String consumer_name="",consumer_phone="",id="",consumer_quotation="",consumer_quotation_path="",consumer_userId="";
+    TextView tvConsumerName,tvConsumerAddress,tvConsumerPhone,tvTextNoData,tvFileName;
     ImageView img_download,imgBack,imgSuccess;
     AppCompatButton btAccept,btReject;
     RecyclerView recyclerCustomerBill;
@@ -47,7 +47,6 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
     ConsumerBillAdapter consumerBillAdapter;
     RelativeLayout rlNotFound;
     DownloadManager manager;
-    String quote_url="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +61,8 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
         rlLoader=findViewById(R.id.rlLoader);
         rlNotFound=findViewById(R.id.rlNotFound);
         imgBack=findViewById(R.id.imgBack);
-        tvTextStatus=findViewById(R.id.tvTextStatus);
         tvTextNoData=findViewById(R.id.tvTextNoData);
+        tvFileName=findViewById(R.id.tvFileName);
 
 
         recyclerCustomerBill.setLayoutManager(new LinearLayoutManager(ViewConsumerRequestActivity.this));
@@ -75,13 +74,15 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
         if (i.hasExtra("consumer_serial")) {
             consumer_name = i.getStringExtra("consumer_name");
             consumer_phone = i.getStringExtra("consumer_phone");
-            consumer_location = i.getStringExtra("consumer_location");
-            consumer_desc = i.getStringExtra("consumer_desc");
-            consumer_work_progress = i.getStringExtra("consumer_work_progress");
+            consumer_quotation_path = i.getStringExtra("consumer_quotation_path");
+            consumer_quotation= i.getStringExtra("consumer_quotation");
             id = i.getStringExtra("id");
+            consumer_userId=i.getStringExtra("consumer_userId");
 
             tvConsumerName.setText(consumer_name);
             tvConsumerPhone.setText(consumer_phone);
+            tvConsumerAddress.setText(consumer_userId);
+            tvFileName.setText(consumer_quotation);
 
         }
 
@@ -95,13 +96,13 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
         img_download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (quote_url.equals("")){
+                if (consumer_quotation_path.equals("")){
                     Toast.makeText(ViewConsumerRequestActivity.this, "Quotation is missing", Toast.LENGTH_SHORT).show();
                 }else {
                     manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-                    Uri uri = Uri.parse(quote_url);
+                    Uri uri = Uri.parse(consumer_quotation_path);
                     DownloadManager.Request request = new DownloadManager.Request(uri);
-                    request.setTitle("Quotation");
+                    request.setTitle(consumer_quotation);
                     request.setDescription("Download in progress");
                     request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
                     request.setVisibleInDownloadsUi(true);
@@ -112,10 +113,10 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
             }
         });
 
-        getCustomerBill(SharedPreference.get("customer_uuid"),id);
+        getCustomerBill(SharedPreference.get("uuid"));
     }
 
-    private void getCustomerBill(String consumerUuid, String service_id) {
+    private void getCustomerBill(String consumerUuid) {
         rlLoader.setVisibility(View.VISIBLE);
         StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.show_bill, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -165,7 +166,7 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 rlLoader.setVisibility(View.GONE);
-                Toast.makeText(ViewConsumerRequestActivity.this, "Technical problem arises", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ViewConsumerRequestActivity.this, "Technical problem arises.", Toast.LENGTH_SHORT).show();
                 //swipeRefresh.setRefreshing(false);
             }
         })
@@ -173,8 +174,7 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<>();
-                params.put("uuid",consumerUuid);
-                params.put("service_request_id",service_id);
+                params.put("uuid", SharedPreference.get("uuid"));
                 Log.i("pri","dashboa: "+params.toString());
                 return  params;
             }

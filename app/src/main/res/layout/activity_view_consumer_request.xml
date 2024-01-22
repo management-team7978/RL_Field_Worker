@@ -5,32 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ViewConsumerRequestActivity">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/img_register_background"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B3FFFFFF"/>
+        android:background="@drawable/img_register_background" />
 
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3FFFFFF" />
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
+        android:background="#28D68220"
         android:elevation="50dp"
-        android:id="@+id/rlHeader"
-        android:background="#28D68220">
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <ImageView
             android:id="@+id/imgBack"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_baseline_arrow_back_24"
-            android:adjustViewBounds="true"/>
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_baseline_arrow_back_24" />
 
         <TextView
             android:id="@+id/tvTitle"
@@ -42,162 +43,165 @@
             android:textColor="@color/rl_orange"
             android:textSize="20sp" />
     </RelativeLayout>
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/cdConsumerInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="0dp"
-        app:cardUseCompatPadding="true"
         android:layout_below="@id/rlHeader"
         android:layout_margin="10dp"
-        android:id="@+id/cdConsumerInfo">
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:textSize="14sp"
-                android:textColor="@color/black"
                 android:layout_centerVertical="true"
-                android:text="Consumer Name" />
+                android:fontFamily="@font/poppins_medium"
+                android:text="Consumer User Id"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/tvConsumerAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:textSize="14sp"
-                android:textColor="@color/text_color_gray"
                 android:text=""
-                android:id="@+id/tvConsumerName"/>
+                android:textColor="@color/text_color_gray"
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:textSize="14sp"
-                android:textColor="@color/black"
                 android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Consumer Name"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvConsumerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text=""
+                android:textColor="@color/text_color_gray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Consumer Phone"
-                android:layout_marginTop="10dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:textSize="14sp"
-                android:textColor="@color/text_color_gray"
-                android:text=""
-                android:id="@+id/tvConsumerPhone"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:textSize="14sp"
                 android:textColor="@color/black"
-                android:layout_centerVertical="true"
-                android:text="Consumer Address"
-                android:layout_marginTop="10dp"/>
+                android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/tvConsumerPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:textSize="14sp"
-                android:textColor="@color/text_color_gray"
                 android:text=""
-                android:id="@+id/tvConsumerAddress"/>
+                android:textColor="@color/text_color_gray"
+                android:textSize="14sp" />
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cdQuotation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="0dp"
-        app:cardUseCompatPadding="true"
         android:layout_below="@id/cdConsumerInfo"
         android:layout_margin="10dp"
-        android:id="@+id/cdQuotation">
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="true">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="vertical">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"
-                    android:layout_centerVertical="true"
-                    android:text="Quotation Bill" />
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/img_download"
-                    android:id="@+id/imgDownload"
-                    android:layout_alignParentRight="true"/>
-            </RelativeLayout>
+            android:padding="10dp">
 
             <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Quotation Bill"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvFileName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:textSize="14sp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/text_color_gray"
-                android:text="do you want to proceed with this quotation?"
-                android:id="@+id/tvTextStatus"/>
+                android:layout_below="@id/tv"
+                android:layout_marginTop="15dp"
+                android:layout_toLeftOf="@id/imgDownload"
+                android:fontFamily="@font/poppins_light"
+                android:text="dfile name"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/imgDownload"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/img_download" />
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/cdQuotation">
+        android:layout_below="@id/cdQuotation"
+        android:padding="10dp">
 
         <TextView
+            android:id="@+id/tv1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_medium"
             android:text="All Payment Receipt"
+            android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:fontFamily="@font/poppins_medium"
-            android:layout_weight="1"
-            android:layout_alignParentLeft="true"
-            android:visibility="visible"
-            android:textAllCaps="true"
-            android:id="@+id/tv1"/>
+            android:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerCustomerBill"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recyclerCustomerBill"
-            android:layout_below="@id/tv1"/>
+            android:layout_below="@id/tv1" />
 
         <RelativeLayout
+            android:id="@+id/rlNotFound"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/rlNotFound"
-            android:visibility="gone"
-            android:background="@color/white"
-            android:layout_marginTop="25dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="25dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/tvTextNoData"
@@ -205,41 +209,41 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="-20dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Data not Found!"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:fontFamily="@font/poppins_medium" />
+                android:textSize="18sp" />
 
         </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rlLoader"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FCFFFFFF"
-        android:visibility="gone"
-        android:id="@+id/rlLoader"
-        android:elevation="50dp">
+        android:elevation="50dp"
+        android:visibility="gone">
 
         <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/rlGif"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/gif_loader"
-            android:adjustViewBounds="true"
-            android:id="@+id/rlGif"
+            android:layout_above="@id/tvText"
             android:layout_centerHorizontal="true"
-            android:layout_above="@id/tvText"/>
+            android:adjustViewBounds="true"
+            android:src="@drawable/gif_loader" />
 
 
         <TextView
+            android:id="@+id/tvText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Loading Please Wait!"
+            android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:layout_marginTop="20dp"
-            android:id="@+id/tvText"
-            android:layout_centerInParent="true"/>
+            android:text="Loading Please Wait!"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 </RelativeLayout>

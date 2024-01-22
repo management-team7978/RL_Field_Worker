@@ -81,9 +81,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         dialogMsg=jsonObject.getString("message");
                         openCustomSucessDialog(dialogMsg);
 
-                        if (SharedPreference.contains("consumer_uuid")) {
-                            SharedPreference.removeKey("consumer_uuid");
-                            SharedPreference.removeKey("userid");
+                        if (SharedPreference.contains("uuid")) {
+                            SharedPreference.removeKey("uuid");
+                            SharedPreference.removeKey("name");
+                            SharedPreference.removeKey("referral_code");
                         }
                         Intent intent=new Intent(ChangePasswordActivity.this, LoginActivity.class);
                         startActivity(intent);
@@ -96,7 +97,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         if (jsonObject.getString("message").equalsIgnoreCase("uuid missmatch logout")) {
                             if (SharedPreference.contains("uuid")) {
                                 SharedPreference.removeKey("uuid");
-                                SharedPreference.removeKey("userid");
+                                SharedPreference.removeKey("name");
+                                SharedPreference.removeKey("referral_code");
                             }
                             Intent i = new Intent(ChangePasswordActivity.this, LoginActivity.class);
                             startActivity(i);
