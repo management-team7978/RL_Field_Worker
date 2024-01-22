@@ -56,7 +56,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        AppController.initialize(getApplicationContext());
+        SharedPreference.initialize(getApplicationContext());
         edtFirstName=findViewById(R.id.edtFirstName);
         edtEmail=findViewById(R.id.edtEmail);
         edtPhone=findViewById(R.id.edtPhone);

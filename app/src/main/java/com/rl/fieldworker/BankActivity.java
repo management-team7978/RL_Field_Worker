@@ -43,7 +43,8 @@ public class BankActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank);
-
+        AppController.initialize(getApplicationContext());
+        SharedPreference.initialize(getApplicationContext());
         edtBankName=findViewById(R.id.edtBankName);
         edtHolderName=findViewById(R.id.edtHolderName);
         edtAccountNumber=findViewById(R.id.edtAccountNumber);
@@ -145,7 +146,7 @@ public class BankActivity extends AppCompatActivity {
                             }
                             Intent i = new Intent(BankActivity.this, LoginActivity.class);
                             startActivity(i);
-                            BankActivity.this.finish();
+                            finish();
                         }else if (jsonObject.getString("status").equals("false")){
                             tvKYCStatus.setVisibility(View.GONE);
                         }

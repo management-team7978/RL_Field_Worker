@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.rl.util.AppController;
+import com.rl.util.SharedPreference;
+
 public class RegisterSuccessfulActivity extends AppCompatActivity {
     TextView tvUsername,tvUserid,tvPassword,tvReferral;
     AppCompatButton btnGotologin;
@@ -15,7 +18,8 @@ public class RegisterSuccessfulActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_successful);
-
+        AppController.initialize(getApplicationContext());
+        SharedPreference.initialize(getApplicationContext());
         tvUserid=findViewById(R.id.tvUserId);
         tvUsername=findViewById(R.id.tvUserName);
         tvPassword=findViewById(R.id.tvPassword);

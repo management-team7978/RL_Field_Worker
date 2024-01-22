@@ -2,6 +2,9 @@ package com.rl.adapter;
 
 import android.app.Activity;
 import android.app.DownloadManager;
+import android.content.Context;
+import android.net.Uri;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,10 +73,16 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
         holder.tvBill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String pdfUrl = "https:\\/\\/rlwork.in\\/api_gfhjfyRETfkmghTYudgnm\\/field_bill\\/KALASHKUBER NIDHI LIMITED incorporation certificate.pdf";
-                String fileName = "abc.pdf";
-
-                PdfDownloader.downloadPdf(context, pdfUrl, fileName);
+                manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+                Uri uri = Uri.parse(requestList.getBilling());
+                DownloadManager.Request request = new DownloadManager.Request(uri);
+                request.setTitle("Bill");
+                request.setDescription("Download in progress");
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                request.setVisibleInDownloadsUi(true);
+                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "Receipt.pdf");
+                request.setMimeType("application/pdf");
+                long reference = manager.enqueue(request);
             }
         });
     }

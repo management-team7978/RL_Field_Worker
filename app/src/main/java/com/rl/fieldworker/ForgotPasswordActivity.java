@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.rl.util.AppController;
 import com.rl.util.Keys;
+import com.rl.util.SharedPreference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +35,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
-
+        AppController.initialize(getApplicationContext());
+        SharedPreference.initialize(getApplicationContext());
         tvSubmit=findViewById(R.id.btSubmit);
         edtUserId=findViewById(R.id.edtUserId);
         rlLoader=findViewById(R.id.rlLoader);

@@ -112,39 +112,6 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 String phoneNumber = "9517484939"; // Default number or provide a way to get it dynamically
                 if (phoneNumber != null && !phoneNumber.isEmpty()) {
-//                    Intent intent = new Intent(Intent.ACTION_VIEW);
-//                    intent.setData(Uri.parse("https://api.whatsapp.com/send?phone=" + phoneNumber));
-//                    intent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
-//
-//                    if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-//                        startActivity(intent);
-//                        Log.i("pri","install");
-//                    } else {
-//                        Toast.makeText(getActivity(), "WhatsApp is not installed on this device.", Toast.LENGTH_SHORT).show();
-//                        Log.i("pri","not install");
-//                    }
-                    // Replace "1234567890" with the actual phone number or contact ID you want to open in WhatsApp
-
-
-// Create an Intent with the action set to ACTION_VIEW
-//                    Intent intent = new Intent(Intent.ACTION_VIEW);
-//
-//// Set the data URI to the WhatsApp URI with the phone number
-//// The "text" parameter can be used to pre-fill a message
-//// For example, you can append "&text=Hello" to pre-fill a message with "Hello"
-//                    Uri uri = Uri.parse("https://wa.me/" + phoneNumber);
-//                    intent.setData(uri);
-//
-//// Check if WhatsApp is installed on the device
-//                    if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-//                        // Start the activity
-//                        startActivity(intent);
-//                    } else {
-//                        // WhatsApp is not installed, handle this case
-//                        // You can prompt the user to install WhatsApp from the Play Store
-//                        // or show a custom message
-//                        Toast.makeText(getActivity(), "WhatsApp is not installed", Toast.LENGTH_SHORT).show();
-//                    }
 
                     try {
                         // Open WhatsApp using the package name
