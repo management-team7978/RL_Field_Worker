@@ -160,15 +160,11 @@ public class ProfileFragment extends Fragment {
                     SharedPreference.removeKey("name");
                     SharedPreference.removeKey("referral_code");
                 }
-
-                Intent i=new Intent(getActivity(), LoginActivity.class);
+                Intent i = new Intent(getActivity(), LoginActivity.class);
                 startActivity(i);
-                Toast.makeText(getActivity(), "Logout", Toast.LENGTH_SHORT).show();
                 getActivity().finish();
-
             }
         });
-
 
         uuid=SharedPreference.get("uuid");
         getProfile(uuid);

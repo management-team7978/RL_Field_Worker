@@ -166,7 +166,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Pancard"
+                        android:hint="Pancard Number"
                         style="@style/OutlinedBoxStyle"
                         app:helperTextEnabled="true"
                         app:startIconDrawable="@drawable/user"

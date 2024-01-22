@@ -95,6 +95,12 @@ public class BankActivity extends AppCompatActivity {
                 if (bName.isEmpty() || bHolderName.isEmpty() || bAccNum.isEmpty() || ifsc.isEmpty() || pan.isEmpty()
                         || aadhar.isEmpty()) {
                     Toast.makeText(BankActivity.this, "All fields must be filled", Toast.LENGTH_SHORT).show();
+                }else if (pan.length() != 10) {
+                    edtpan.setError( "Pan Card must be 10 digits");
+                    Toast.makeText(BankActivity.this, "Pincode must be 6 digits", Toast.LENGTH_SHORT).show();
+                } else if (aadhar.length() != 12) {
+                    edtaadhar.setError( "Aadhar number must be 12 digits");
+                    Toast.makeText(BankActivity.this, "Aadhar number must be 12 digits", Toast.LENGTH_SHORT).show();
                 } else {
                     AddBankDetails(SharedPreference.get("uuid"),bName,bHolderName,bAccNum,ifsc,pan,aadhar);
                 }

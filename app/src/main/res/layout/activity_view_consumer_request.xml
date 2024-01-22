@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/poppins_medium"
-            android:text="View Quotation"
+            android:text="View Details"
             android:textColor="@color/rl_orange"
             android:textSize="20sp" />
     </RelativeLayout>
