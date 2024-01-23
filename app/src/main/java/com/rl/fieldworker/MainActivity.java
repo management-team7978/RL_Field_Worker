@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -42,6 +43,7 @@ import com.rl.fragment.DashboardFragment;
 import com.rl.fragment.GetRquestListFragment;
 import com.rl.fragment.ProfileFragment;
 import com.rl.util.AppController;
+import com.rl.util.AppVersion;
 import com.rl.util.Keys;
 import com.rl.util.SharedPreference;
 
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNav;
     TextView tvTitle;
     ImageView imgShare;
+    AppVersion appVersion = new AppVersion();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,6 +157,89 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void CheckVersionApi() {
+        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.getversion_bdm, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("pri","getversion =>>"+response);
+                String version_code=response;
 
+                if (version_code.equals(appVersion.ver_name) ){
+                }else {
+                    customAppUpdate();
+                    Log.i("pri","app =>>"+appVersion.ver_name);
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        AppController.getInstance().add(request);
+    }
+
+    private void customAppUpdate() {
+
+        new android.app.AlertDialog.Builder(MainActivity.this).setTitle("New Update")
+                .setIcon(R.drawable.app_logo)
+                .setMessage("A new version of this app is available. Please update it").setPositiveButton(
+                        "Update now", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.rl.fieldworker"));
+                                startActivity(intent);
+                            }
+                        }).setCancelable(false)
+                .show();
+    }
+
+    private void checkmaintenance() {
+        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.maintainance_bdm, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("nik",response);
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    if (jsonObject.getBoolean("status")){
+                        String title = jsonObject.getString("title");
+                        String msg = jsonObject.getString("msg");
+                        Intent i = new Intent(MainActivity.this, MaintenanceActivity.class);
+                        i.putExtra("title",title);
+                        i.putExtra("msg",msg);
+                        startActivity(i);
+                        finish();
+                    }else {
+                        //  showDialog(jsonObject.getString("message"));
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //Toast.makeText(LoginActivity.this, "Technical problem arises", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // rlProgress.setVisibility(View.GONE);
+                error.printStackTrace();
+                // showDialog("Please check your Internet connection");
+            }
+        });
+
+        AppController.getInstance().add(request);
+
+        // Log.d("vic", "Default value: " + mFirebaseRemoteConfig1.getString(VERSION_CODE_KEY));
+    }
+
+    protected void onResume() {
+        super.onResume();
+        CheckVersionApi();
+        checkmaintenance();
+    }
 
 }

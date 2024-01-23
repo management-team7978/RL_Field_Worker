@@ -11,12 +11,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -54,6 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
     ArrayList<String> salaryType=new ArrayList<String>();
     String st_salary="0";
     int from;
+    CheckBox CheckTermCondition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
         rlLoader=findViewById(R.id.rlLoader);
         spSalaryType=findViewById(R.id.spSalaryType);
         imgLanguage = findViewById(R.id.imgLanguage);
+        CheckTermCondition=findViewById(R.id.CheckTermCondition);
         loadLocale();
 
 
@@ -106,6 +110,14 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        CheckTermCondition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(RegisterActivity.this, TearmsConditionActivity.class);
+                startActivity(i);
+
+            }
+        });
 
         btCostRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +137,8 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Phone number must be 10 digits", Toast.LENGTH_SHORT).show();
                 } else if (!email.matches(emailPattern)) {
                     Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
+                }else if (!CheckTermCondition.isChecked()) {
+                    Toast.makeText(getApplicationContext(), "Please Check Term and Condition", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     RegisterCustomer(SharedPreference.get("uuid"),name,email,phone,address,pin,password,st_salary);

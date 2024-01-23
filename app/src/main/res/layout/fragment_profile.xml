@@ -461,135 +461,154 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
                 android:layout_below="@id/cdBankDetails">
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="10dp"
-                   >
+                    android:padding="10dp">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Customer Care"
                         android:textSize="16sp"
                         android:fontFamily="@font/poppins_semi_bold"
                         android:textColor="@color/black"
-                        android:layout_toRightOf="@id/user1" />
+                        android:id="@+id/tvText"/>
 
-                    <RelativeLayout
-                        android:layout_marginTop="5dp"
+                    <TextView
+                        android:id="@+id/tvHelp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Help"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:textColor="@color/rl_blue"
+                        android:layout_alignParentRight="true"/>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:id="@+id/rlPhone">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/ic_phone"
-                            android:id="@+id/customerCare"
-                            app:tint="@color/rl_blue"
-                            android:layout_centerVertical="true"/>
-
-                        <TextView
+                        android:orientation="vertical"
+                        android:layout_below="@id/tvText"
+                        android:visibility="gone"
+                        android:id="@+id/lnrViewCustomerCare">
+                        <RelativeLayout
+                            android:layout_marginTop="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Phone Number"
-                            android:fontFamily="@font/poppins_regular"
-                            android:textSize="12sp"
-                            android:layout_toRightOf="@id/customerCare"
-                            android:layout_marginLeft="8dp"
-                            android:id="@+id/t7"/>
+                            android:padding="5dp"
+                            android:id="@+id/rlPhone">
 
-                        <TextView
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/ic_phone"
+                                android:id="@+id/customerCare"
+                                app:tint="@color/rl_blue"
+                                android:layout_centerVertical="true"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Phone Number"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="12sp"
+                                android:layout_toRightOf="@id/customerCare"
+                                android:layout_marginLeft="8dp"
+                                android:id="@+id/t7"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="+91 9867663024"
+                                android:textSize="14sp"
+                                android:textColor="@color/black"
+                                android:layout_below="@id/t7"
+                                android:layout_marginLeft="8dp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:layout_toRightOf="@id/customerCare"
+                                android:id="@+id/tvCustomerPhone"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_marginTop="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="+91 9867663024"
-                            android:textSize="14sp"
-                            android:textColor="@color/black"
-                            android:layout_below="@id/t7"
-                            android:layout_marginLeft="8dp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:layout_toRightOf="@id/customerCare"
-                            android:id="@+id/tvCustomerPhone"/>
-                    </RelativeLayout>
+                            android:padding="5dp"
+                            android:id="@+id/rlWhatsapp">
 
-                    <RelativeLayout
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:id="@+id/rlWhatsapp">
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/whasapp"
+                                android:id="@+id/customerwhatsapp"
+                                android:layout_centerVertical="true"/>
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/whasapp"
-                            android:id="@+id/customerwhatsapp"
-                            android:layout_centerVertical="true"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Whatsapp Number"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="12sp"
+                                android:layout_toRightOf="@id/customerwhatsapp"
+                                android:layout_marginLeft="8dp"
+                                android:id="@+id/t8"/>
 
-                        <TextView
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="+91 9517484939"
+                                android:textSize="14sp"
+                                android:textColor="@color/black"
+                                android:layout_below="@id/t8"
+                                android:layout_marginLeft="8dp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:layout_toRightOf="@id/customerwhatsapp"
+                                android:id="@+id/tvCustomerWhatsapp"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_marginTop="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Whatsapp Number"
-                            android:fontFamily="@font/poppins_regular"
-                            android:textSize="12sp"
-                            android:layout_toRightOf="@id/customerwhatsapp"
-                            android:layout_marginLeft="8dp"
-                            android:id="@+id/t8"/>
+                            android:padding="5dp">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="+91 9517484939"
-                            android:textSize="14sp"
-                            android:textColor="@color/black"
-                            android:layout_below="@id/t8"
-                            android:layout_marginLeft="8dp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:layout_toRightOf="@id/customerwhatsapp"
-                            android:id="@+id/tvCustomerWhatsapp"/>
-                    </RelativeLayout>
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/ic_email"
+                                android:id="@+id/customeremail"
+                                android:layout_centerVertical="true"
+                                app:tint="@color/rl_blue"/>
 
-                    <RelativeLayout
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Email Id"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="12sp"
+                                android:layout_toRightOf="@id/customeremail"
+                                android:layout_marginLeft="8dp"
+                                android:id="@+id/t9"/>
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/ic_email"
-                            android:id="@+id/customeremail"
-                            android:layout_centerVertical="true"
-                            app:tint="@color/rl_blue"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="support@rlwork.in"
+                                android:textSize="14sp"
+                                android:textColor="@color/black"
+                                android:layout_below="@id/t9"
+                                android:layout_marginLeft="8dp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:layout_toRightOf="@id/customeremail"
+                                android:id="@+id/tvCustomerEmail"/>
+                        </RelativeLayout>
+                    </LinearLayout>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Email Id"
-                            android:fontFamily="@font/poppins_regular"
-                            android:textSize="12sp"
-                            android:layout_toRightOf="@id/customeremail"
-                            android:layout_marginLeft="8dp"
-                            android:id="@+id/t9"/>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="support@rlwork.in"
-                            android:textSize="14sp"
-                            android:textColor="@color/black"
-                            android:layout_below="@id/t9"
-                            android:layout_marginLeft="8dp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:layout_toRightOf="@id/customeremail"
-                            android:id="@+id/tvCustomerEmail"/>
-                    </RelativeLayout>
 
-                </LinearLayout>
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
@@ -616,7 +635,7 @@
             android:adjustViewBounds="true"
             android:id="@+id/rlGif"
             android:layout_centerHorizontal="true"
-            android:layout_above="@id/tvText"/>
+            android:layout_above="@id/tvText1"/>
 
 
         <TextView
@@ -627,7 +646,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="20dp"
-            android:id="@+id/tvText"
+            android:id="@+id/tvText1"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
 

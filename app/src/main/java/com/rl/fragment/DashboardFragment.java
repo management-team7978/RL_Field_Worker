@@ -196,7 +196,7 @@ public class DashboardFragment extends Fragment {
                 if (helper_text.equals("")){
                     Toast.makeText(getActivity(), "Please fill all the field", Toast.LENGTH_SHORT).show();
                 }else {
-                    RaiseHelpTicket(SharedPreference.get("consumer_uuid"),dialog,helper_text,st_language);
+                    RaiseHelpTicket(SharedPreference.get("uuid"),dialog,helper_text,st_language);
                 }
             }
         });

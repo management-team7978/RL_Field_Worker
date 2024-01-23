@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,12 +44,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProfileFragment extends Fragment {
-    TextView tvName,tvEmail,tvPhone,tvAddress,tvPassword,tvChangePassword,tvUserId,tvBankName,tvBankAccount,tvaddbankacc;
+    TextView tvName,tvEmail,tvPhone,tvAddress,tvPassword,tvChangePassword,tvUserId,tvBankName,tvBankAccount,tvaddbankacc,tvHelp;
     RelativeLayout rlLogout;
     String uuid;
     RelativeLayout rlLoader;
     CardView cdBankDetails,cdChangePassword;
     RelativeLayout rlNoBankDetail,rlBankDetails,rlPhone,rlWhatsapp;
+    LinearLayout lnrViewCustomerCare;
+    private  boolean button1IsVisible = true;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,6 +79,9 @@ public class ProfileFragment extends Fragment {
         rlWhatsapp=v.findViewById(R.id.rlWhatsapp);
         tvaddbankacc=v.findViewById(R.id.tvAddBank);
         cdChangePassword=v.findViewById(R.id.cdChangePassword);
+        tvHelp=v.findViewById(R.id.tvHelp);
+        lnrViewCustomerCare=v.findViewById(R.id.lnrViewCustomerCare);
+        int isHelpClick = 1;
 
 //        cdBankDetails.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -83,6 +90,8 @@ public class ProfileFragment extends Fragment {
 //                startActivity(i);
 //            }
 //        });
+
+
 
         rlBankDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +115,22 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 Intent i=new Intent(getActivity(), BankActivity.class);
                 startActivity(i);
+            }
+        });
+
+        tvHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(button1IsVisible==false)
+                {
+                    lnrViewCustomerCare.setVisibility(View.VISIBLE);
+                    button1IsVisible = true;
+                }
+                else if(button1IsVisible==true)
+                {
+                    lnrViewCustomerCare.setVisibility(View.GONE);
+                    button1IsVisible = false;
+                }
             }
         });
 

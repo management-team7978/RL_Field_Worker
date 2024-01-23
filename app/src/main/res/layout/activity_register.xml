@@ -195,6 +195,16 @@
                     android:id="@+id/spSalaryType"
                     android:background="@drawable/drop_down_shape"/>
 
+                <CheckBox
+                    android:id="@+id/CheckTermCondition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Term and Condition"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_light"
+                    android:checked="false"/>
+
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btCostRegister"
                     android:layout_marginTop="25dp"

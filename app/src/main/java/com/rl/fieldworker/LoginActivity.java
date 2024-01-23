@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +34,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.rl.util.AppController;
+import com.rl.util.AppVersion;
 import com.rl.util.Keys;
 import com.rl.util.SharedPreference;
 
@@ -55,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     String st_language="";
     ArrayList<String> arr_language_type = new ArrayList<String>();
+    AppVersion appVersion = new AppVersion();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -315,5 +318,90 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences preferences=getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         String language=preferences.getString("lang","");
         setLocale(language);
+    }
+
+    private void CheckVersionApi() {
+        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.getversion_bdm, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("pri","getversion =>>"+response);
+                String version_code=response;
+
+                if (version_code.equals(appVersion.ver_name) ){
+                }else {
+                    customAppUpdate();
+                    Log.i("pri","app =>>"+appVersion.ver_name);
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        AppController.getInstance().add(request);
+    }
+
+    private void customAppUpdate() {
+
+        new android.app.AlertDialog.Builder(LoginActivity.this).setTitle("New Update")
+                .setIcon(R.drawable.app_logo)
+                .setMessage("A new version of this app is available. Please update it").setPositiveButton(
+                        "Update now", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.rl.fieldworker"));
+                                startActivity(intent);
+                            }
+                        }).setCancelable(false)
+                .show();
+    }
+
+    private void checkmaintenance() {
+        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.maintainance_bdm, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("nik",response);
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    if (jsonObject.getBoolean("status")){
+                        String title = jsonObject.getString("title");
+                        String msg = jsonObject.getString("msg");
+                        Intent i = new Intent(LoginActivity.this, MaintenanceActivity.class);
+                        i.putExtra("title",title);
+                        i.putExtra("msg",msg);
+                        startActivity(i);
+                        finish();
+                    }else {
+                        //  showDialog(jsonObject.getString("message"));
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //Toast.makeText(LoginActivity.this, "Technical problem arises", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // rlProgress.setVisibility(View.GONE);
+                error.printStackTrace();
+                // showDialog("Please check your Internet connection");
+            }
+        });
+
+        AppController.getInstance().add(request);
+
+        // Log.d("vic", "Default value: " + mFirebaseRemoteConfig1.getString(VERSION_CODE_KEY));
+    }
+
+    protected void onResume() {
+        super.onResume();
+        CheckVersionApi();
+        checkmaintenance();
     }
 }

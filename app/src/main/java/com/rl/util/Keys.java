@@ -13,10 +13,12 @@ public class Keys {
         public static String kyc_details = field_work + "kyc_details.php";
         public static String show_quotation = field_work + "show_quotation.php";
         public static String customer_call_request = field_work + "call_request.php";
-
         public static String show_bill = field_work + "show_bills.php";
         public static String change_password = field_work + "change_password.php";
         public static String get_review = field_work + "get_review.php";
+        public static String getversion_bdm = field_work + "getversion_bdm.php";
+        public static String maintainance_bdm = field_work + "maintainance_bdm.php";
+
     }
 
 }
