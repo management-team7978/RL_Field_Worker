@@ -22,6 +22,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.rl.fieldworker.LoginActivity;
 import com.rl.fieldworker.R;
 import com.rl.util.AppController;
@@ -48,6 +50,8 @@ public class BankKycFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_bank_kyc, container, false);
+        FirebaseAnalytics.getInstance(getActivity());
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
         edtBankName=v.findViewById(R.id.edtBankName);
         edtHolderName=v.findViewById(R.id.edtHolderName);
         edtAccountNumber=v.findViewById(R.id.edtAccountNumber);
