@@ -26,6 +26,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.rl.fieldworker.LoginActivity;
 import com.rl.fieldworker.MainActivity;
 import com.rl.fieldworker.R;
@@ -55,7 +57,10 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
-
+        AppController.initialize(getActivity());
+        SharedPreference.initialize(getActivity());
+        FirebaseAnalytics.getInstance(getActivity());
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
         floatingActionButton = v.findViewById(R.id.add_fab);
         tvName=v.findViewById(R.id.tvName);
         tvUserId=v.findViewById(R.id.tvUserId);

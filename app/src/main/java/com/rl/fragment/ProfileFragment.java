@@ -26,6 +26,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.rl.fieldworker.BankActivity;
 import com.rl.fieldworker.ChangePasswordActivity;
 import com.rl.fieldworker.LoginActivity;
@@ -51,6 +53,10 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
+        AppController.initialize(getActivity());
+        SharedPreference.initialize(getActivity());
+        FirebaseAnalytics.getInstance(getActivity());
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
         tvName=v.findViewById(R.id.tvName);
         tvEmail=v.findViewById(R.id.tvEmail);
         tvPhone=v.findViewById(R.id.tvPhone);

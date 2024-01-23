@@ -23,6 +23,8 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.rl.adapter.ConsumerBillAdapter;
 import com.rl.pojo.ConsumerBillList;
 import com.rl.util.AppController;
@@ -55,6 +57,8 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_consumer_request);
         AppController.initialize(getApplicationContext());
         SharedPreference.initialize(getApplicationContext());
+        FirebaseAnalytics.getInstance(getApplicationContext());
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
         tvConsumerName=findViewById(R.id.tvConsumerName);
         tvConsumerAddress=findViewById(R.id.tvConsumerAddress);
         tvConsumerPhone=findViewById(R.id.tvConsumerPhone);

@@ -21,6 +21,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.rl.adapter.RequestListAdapter;
 import com.rl.fieldworker.LoginActivity;
 import com.rl.fieldworker.R;
@@ -51,6 +53,10 @@ public class GetRquestListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
        View v = inflater.inflate(R.layout.fragment_get_rquest_list, container, false);
+        AppController.initialize(getActivity());
+        SharedPreference.initialize(getActivity());
+        FirebaseAnalytics.getInstance(getActivity());
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
         recyclerRequestList=v.findViewById(R.id.recyclerRequestList);
         swipeRefresh=v.findViewById(R.id.swipeRefresh);
         rlLoader=v.findViewById(R.id.rlLoader);

@@ -15,6 +15,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.rl.util.AppController;
 import com.rl.util.Keys;
 import com.rl.util.SharedPreference;
@@ -37,6 +39,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forgot_password);
         AppController.initialize(getApplicationContext());
         SharedPreference.initialize(getApplicationContext());
+        FirebaseAnalytics.getInstance(getApplicationContext());
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
         tvSubmit=findViewById(R.id.btSubmit);
         edtUserId=findViewById(R.id.edtUserId);
         rlLoader=findViewById(R.id.rlLoader);

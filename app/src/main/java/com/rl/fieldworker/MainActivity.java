@@ -35,6 +35,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.rl.fragment.BankKycFragment;
 import com.rl.fragment.DashboardFragment;
 import com.rl.fragment.GetRquestListFragment;
@@ -64,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SharedPreference.initialize(getApplicationContext());
+        FirebaseAnalytics.getInstance(getApplicationContext());
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
         AppController.initialize(getApplicationContext());
         bottomNav=findViewById(R.id.bottomNav);
         tvTitle=findViewById(R.id.tvTitle);

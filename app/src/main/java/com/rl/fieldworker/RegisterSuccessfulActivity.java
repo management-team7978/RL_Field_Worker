@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.rl.util.AppController;
 import com.rl.util.SharedPreference;
 
@@ -20,6 +22,8 @@ public class RegisterSuccessfulActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_successful);
         AppController.initialize(getApplicationContext());
         SharedPreference.initialize(getApplicationContext());
+        FirebaseAnalytics.getInstance(getApplicationContext());
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
         tvUserid=findViewById(R.id.tvUserId);
         tvUsername=findViewById(R.id.tvUserName);
         tvPassword=findViewById(R.id.tvPassword);

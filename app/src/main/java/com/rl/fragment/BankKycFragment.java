@@ -50,6 +50,8 @@ public class BankKycFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_bank_kyc, container, false);
+        AppController.initialize(getActivity());
+        SharedPreference.initialize(getActivity());
         FirebaseAnalytics.getInstance(getActivity());
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
         edtBankName=v.findViewById(R.id.edtBankName);
