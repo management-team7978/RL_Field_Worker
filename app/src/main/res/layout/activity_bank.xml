@@ -197,6 +197,9 @@
                             android:id="@+id/edtaadhar"
                             android:textColor="@color/black"
                             android:inputType="number"
+                            android:clickable="false"
+                            android:longClickable="false"
+                            android:focusable="false"
                             android:fontFamily="@font/poppins_regular"/>
                     </com.google.android.material.textfield.TextInputLayout>
 

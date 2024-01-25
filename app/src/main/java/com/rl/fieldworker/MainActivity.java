@@ -225,15 +225,13 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // rlProgress.setVisibility(View.GONE);
+
                 error.printStackTrace();
-                // showDialog("Please check your Internet connection");
             }
         });
 
         AppController.getInstance().add(request);
 
-        // Log.d("vic", "Default value: " + mFirebaseRemoteConfig1.getString(VERSION_CODE_KEY));
     }
 
     protected void onResume() {

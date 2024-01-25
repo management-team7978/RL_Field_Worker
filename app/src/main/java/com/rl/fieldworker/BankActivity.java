@@ -61,6 +61,7 @@ public class BankActivity extends AppCompatActivity {
         rlLoader=findViewById(R.id.rlLoader);
         imgBack=findViewById(R.id.imgBack);
 
+        edtaadhar.setText(SharedPreference.get("adhar_card"));
         getBankKyc(SharedPreference.get("uuid"));
 
         imgBack.setOnClickListener(new View.OnClickListener() {
@@ -92,9 +93,8 @@ public class BankActivity extends AppCompatActivity {
                 String bHolderName = edtHolderName.getText().toString().trim();
                 String bAccNum = edtAccountNumber.getText().toString().trim();
                 String ifsc = edtIfsc.getText().toString().trim();
-                String pan = edtaadhar.getText().toString().trim();
-                String aadhar = edtpan.getText().toString().trim();
-
+                String pan = edtpan.getText().toString().trim();
+                String aadhar = edtaadhar.getText().toString().trim();
 
                 if (bName.isEmpty() || bHolderName.isEmpty() || bAccNum.isEmpty() || ifsc.isEmpty() || pan.isEmpty()
                         || aadhar.isEmpty()) {
@@ -102,11 +102,8 @@ public class BankActivity extends AppCompatActivity {
                 }else if (pan.length() != 10) {
                     edtpan.setError( "Pan Card must be 10 digits");
                     Toast.makeText(BankActivity.this, "Pincode must be 6 digits", Toast.LENGTH_SHORT).show();
-                } else if (aadhar.length() != 12) {
-                    edtaadhar.setError( "Aadhar number must be 12 digits");
-                    Toast.makeText(BankActivity.this, "Aadhar number must be 12 digits", Toast.LENGTH_SHORT).show();
                 } else {
-                    AddBankDetails(SharedPreference.get("uuid"),bName,bHolderName,bAccNum,ifsc,pan,aadhar);
+                    AddBankDetails(SharedPreference.get("uuid"),bName,bHolderName,bAccNum,ifsc,pan);
                 }
             }
         });
@@ -153,6 +150,7 @@ public class BankActivity extends AppCompatActivity {
                                 SharedPreference.removeKey("uuid");
                                 SharedPreference.removeKey("name");
                                 SharedPreference.removeKey("referral_code");
+                                SharedPreference.removeKey("adhar_card");
                             }
                             Intent i = new Intent(BankActivity.this, LoginActivity.class);
                             startActivity(i);
@@ -185,7 +183,7 @@ public class BankActivity extends AppCompatActivity {
         AppController.getInstance().add(request);
     }
 
-    private void AddBankDetails(String uuid, String bName, String bHolderName, String bAccNum, String ifsc, String pan, String aadhar) {
+    private void AddBankDetails(String uuid, String bName, String bHolderName, String bAccNum, String ifsc, String pan) {
         rlLoader.setVisibility(View.VISIBLE);
         StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.add_bank_details, new Response.Listener<String>() {
             @Override
@@ -223,7 +221,6 @@ public class BankActivity extends AppCompatActivity {
                 params.put("holder_name",bHolderName);
                 params.put("account_number",bAccNum);
                 params.put("ifsc_code",ifsc);
-                params.put("adhar_no",aadhar);
                 params.put("pan_no",pan);
 
                 Log.i("pri","params=>"+params);
@@ -248,7 +245,11 @@ public class BankActivity extends AppCompatActivity {
         textViewYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                Intent i=new Intent(BankActivity.this, MainActivity.class);
+                i.putExtra("redirect","1");
+                startActivity(i);
+                finish();
+                //dialog.dismiss();
             }
         });
 

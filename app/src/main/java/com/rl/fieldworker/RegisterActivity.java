@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -46,7 +45,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText edtFirstName,edtEmail,edtPhone,edtAddress,edtPin,edtPassword;
+    EditText edtFirstName,edtEmail,edtPhone,edtAddress,edtPin,edtPassword,edtAdhar;
     AppCompatButton btCostRegister;
     RelativeLayout rlLogin;
     RelativeLayout rlLoader;
@@ -77,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
         spSalaryType=findViewById(R.id.spSalaryType);
         imgLanguage = findViewById(R.id.imgLanguage);
         CheckTermCondition=findViewById(R.id.CheckTermCondition);
+        edtAdhar=findViewById(R.id.edtAdhar);
         loadLocale();
 
 
@@ -128,6 +128,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String address = edtAddress.getText().toString().trim();
                 String pin = edtPin.getText().toString().trim();
                 String password = edtPassword.getText().toString().trim();
+                String adhar = edtAdhar.getText().toString().trim();
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
                 if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || pin.isEmpty() || password.isEmpty()) {
@@ -137,18 +138,19 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Phone number must be 10 digits", Toast.LENGTH_SHORT).show();
                 } else if (!email.matches(emailPattern)) {
                     Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
+                }else if (adhar.length() != 12) {
+                    edtAdhar.setError("Aadhar number must be 12 digits");
+                    Toast.makeText(RegisterActivity.this, "Aadhar number must be 12 digits", Toast.LENGTH_SHORT).show();
                 }else if (!CheckTermCondition.isChecked()) {
                     Toast.makeText(getApplicationContext(), "Please Check Term and Condition", Toast.LENGTH_SHORT).show();
+                }else {
+                    RegisterCustomer(SharedPreference.get("uuid"),name,email,phone,address,pin,password,st_salary,adhar);
                 }
-                else {
-                    RegisterCustomer(SharedPreference.get("uuid"),name,email,phone,address,pin,password,st_salary);
-                }
-
             }
         });
     }
 
-    private void RegisterCustomer(String uuid, String name, String email, String phone, String address, String pin, String password, String st_salary) {
+    private void RegisterCustomer(String uuid, String name, String email, String phone, String address, String pin, String password, String st_salary, String adhar) {
         rlLoader.setVisibility(View.VISIBLE);
         StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.register, new Response.Listener<String>() {
             @Override
@@ -193,7 +195,7 @@ public class RegisterActivity extends AppCompatActivity {
                 params.put("pincode",pin);
                 params.put("password",password);
                 params.put("salary_type",st_salary);
-
+                params.put("adhar_card",adhar);
                 Log.i("pri","params=>"+params);
 
                 return  params;

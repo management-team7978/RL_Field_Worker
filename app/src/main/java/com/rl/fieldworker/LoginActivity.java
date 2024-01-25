@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreference.save("uuid",jsonObject.getString("uuid"));
                         SharedPreference.save("name",jsonObject.getString("name"));
                         SharedPreference.save("referral_code",jsonObject.getString("referral_code"));
-
+                        SharedPreference.save("adhar_card",jsonObject.getString("adhar_card"));
                         Intent intent=new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -301,7 +301,6 @@ public class LoginActivity extends AppCompatActivity {
             dialog.show();
         }
     }
-
 
     private void setLocale(String lang) {
         Locale locale=new Locale(lang);

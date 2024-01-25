@@ -146,6 +146,26 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/Enter_Adhar"
+                    style="@style/OutlinedBoxStyle"
+                    app:helperTextEnabled="true"
+                    app:startIconDrawable="@drawable/user"
+                    app:startIconTint="@color/rl_blue"
+                    android:layout_marginTop="5dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/edtAdhar"
+                        android:textColor="@color/black"
+                        android:inputType="phone"
+                        android:fontFamily="@font/poppins_regular"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="@string/Enter_Pincode"
                     style="@style/OutlinedBoxStyle"
                     app:helperTextEnabled="true"
