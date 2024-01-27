@@ -126,6 +126,17 @@ public class BankActivity extends AppCompatActivity {
                         edtIfsc.setText(jsonObject.getString("ifsc_code"));
                         edtaadhar.setText(jsonObject.getString("adhar_no"));
                         edtpan.setText(jsonObject.getString("pan_no"));
+
+                        if (jsonObject.has("pan_no") && !jsonObject.getString("pan_no").isEmpty()) {
+                            edtpan.setFocusable(false);
+                            edtpan.setClickable(false);
+                            edtpan.setLongClickable(false);
+                        } else {
+                            edtpan.setFocusableInTouchMode(true);
+                            edtpan.setClickable(true);
+                            edtpan.setLongClickable(true);
+                        }
+
                         if (jsonObject.getString("kyc_status").equalsIgnoreCase("verification")){
                             tvKYCStatus.setBackgroundResource(R.color.yellow);
                             tvKYCStatus.setText(jsonObject.getString("kyc_status"));

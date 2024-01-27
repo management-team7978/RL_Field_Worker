@@ -22,7 +22,7 @@
     <string name="Enter_Email">Enter Email</string>
     <string name="Enter_Mobile_No">Enter Mobile Number</string>
     <string name="Enter_Address">Enter Address</string>
-    <string name="Enter_Adhar">Enter Adhar</string>
+    <string name="Enter_Adhar">Enter Adhar number</string>
     <string name="Select_Occupation">Select Salary Type</string>
     <string name="Occupational_Experience">Occupational Experience</string>
     <string name="Select_Contract_Type">Select Contract Type</string>

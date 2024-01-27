@@ -2,12 +2,14 @@ package com.rl.fragment;
 
 import android.Manifest;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -142,7 +144,8 @@ public class ProfileFragment extends Fragment {
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, 100);
                 } else {
                     // Permission is already granted, initiate the call
-                    makePhoneCall();
+                    //makePhoneCall();
+                    showCallConfirmationDialog();
                 }
             }
         });
@@ -208,12 +211,37 @@ public class ProfileFragment extends Fragment {
         if (requestCode == 100) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, initiate the call
-                makePhoneCall();
+                //makePhoneCall();
+                showCallConfirmationDialog();
             } else {
                 // Permission denied, show a message or handle accordingly
                 Toast.makeText(getActivity(), "Permission denied. Unable to make a call.", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void showCallConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Confirmation");
+        builder.setMessage("Do you want to make a phone call?");
+
+        builder.setPositiveButton("Call", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // User clicked on "Call", initiate the call
+                makePhoneCall();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // User clicked on "Cancel", do nothing
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void makePhoneCall() {
