@@ -84,6 +84,26 @@
                         android:fontFamily="@font/poppins_regular"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/Enter_Father_Name"
+                    style="@style/OutlinedBoxStyle"
+                    app:helperTextEnabled="true"
+                    app:startIconDrawable="@drawable/user"
+                    app:startIconTint="@color/rl_blue"
+                    android:layout_marginTop="5dp"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/edtFatherName"
+                        android:textColor="@color/black"
+                        android:inputType="text"
+                        android:fontFamily="@font/poppins_regular"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -215,14 +235,28 @@
                     android:id="@+id/spSalaryType"
                     android:background="@drawable/drop_down_shape"/>
 
-                <CheckBox
-                    android:id="@+id/CheckTermCondition"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Term and Condition"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_light"
-                    android:checked="false"/>
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/CheckTermCondition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Term and Condition"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_light"
+                        android:checked="false"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" (View)"
+                        android:textColor="@color/rl_blue"
+                        android:id="@+id/tvView"
+                        android:fontFamily="@font/poppins_medium"/>
+                </LinearLayout>
 
 
                 <androidx.appcompat.widget.AppCompatButton

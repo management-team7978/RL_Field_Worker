@@ -45,7 +45,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText edtFirstName,edtEmail,edtPhone,edtAddress,edtPin,edtPassword,edtAdhar;
+    EditText edtFirstName,edtEmail,edtPhone,edtAddress,edtPin,edtPassword,edtAdhar,edtFatherName;
     AppCompatButton btCostRegister;
     RelativeLayout rlLogin;
     RelativeLayout rlLoader;
@@ -56,6 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
     String st_salary="0";
     int from;
     CheckBox CheckTermCondition;
+    TextView tvView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +78,8 @@ public class RegisterActivity extends AppCompatActivity {
         imgLanguage = findViewById(R.id.imgLanguage);
         CheckTermCondition=findViewById(R.id.CheckTermCondition);
         edtAdhar=findViewById(R.id.edtAdhar);
+        tvView=findViewById(R.id.tvView);
+        edtFatherName=findViewById(R.id.edtFatherName);
         loadLocale();
 
 
@@ -110,12 +113,20 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        CheckTermCondition.setOnClickListener(new View.OnClickListener() {
+//        CheckTermCondition.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i= new Intent(RegisterActivity.this, TearmsConditionActivity.class);
+//                startActivity(i);
+//
+//            }
+//        });
+
+        tvView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i= new Intent(RegisterActivity.this, TearmsConditionActivity.class);
                 startActivity(i);
-
             }
         });
 
@@ -129,9 +140,10 @@ public class RegisterActivity extends AppCompatActivity {
                 String pin = edtPin.getText().toString().trim();
                 String password = edtPassword.getText().toString().trim();
                 String adhar = edtAdhar.getText().toString().trim();
+                String f_name = edtFatherName.getText().toString().trim();
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-                if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || pin.isEmpty() || password.isEmpty()) {
+                if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || pin.isEmpty() || password.isEmpty()||f_name.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "All fields must be filled", Toast.LENGTH_SHORT).show();
                 }
                 else if (phone.length() != 10) {
@@ -144,13 +156,13 @@ public class RegisterActivity extends AppCompatActivity {
                 }else if (!CheckTermCondition.isChecked()) {
                     Toast.makeText(getApplicationContext(), "Please Check Term and Condition", Toast.LENGTH_SHORT).show();
                 }else {
-                    RegisterCustomer(SharedPreference.get("uuid"),name,email,phone,address,pin,password,st_salary,adhar);
+                    RegisterCustomer(SharedPreference.get("uuid"),name,email,phone,address,pin,password,st_salary,adhar,f_name);
                 }
             }
         });
     }
 
-    private void RegisterCustomer(String uuid, String name, String email, String phone, String address, String pin, String password, String st_salary, String adhar) {
+    private void RegisterCustomer(String uuid, String name, String email, String phone, String address, String pin, String password, String st_salary, String adhar, String f_name) {
         rlLoader.setVisibility(View.VISIBLE);
         StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.register, new Response.Listener<String>() {
             @Override
@@ -196,6 +208,7 @@ public class RegisterActivity extends AppCompatActivity {
                 params.put("password",password);
                 params.put("salary_type",st_salary);
                 params.put("adhar_card",adhar);
+                params.put("father_name",f_name);
                 Log.i("pri","params=>"+params);
 
                 return  params;

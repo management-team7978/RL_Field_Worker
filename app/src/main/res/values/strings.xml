@@ -17,7 +17,7 @@
     <!--    Register-->
     <string name="Register">Register</string>
     <string name="Referral_Code">Referral Code</string>
-    <string name="Enter_First_Name">Enter First Name</string>
+    <string name="Enter_First_Name">Enter Full Name</string>
     <string name="Enter_Father_Name">Enter Father Name</string>
     <string name="Enter_Email">Enter Email</string>
     <string name="Enter_Mobile_No">Enter Mobile Number</string>
