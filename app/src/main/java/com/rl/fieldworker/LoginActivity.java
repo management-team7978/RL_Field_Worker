@@ -134,8 +134,8 @@ public class LoginActivity extends AppCompatActivity {
                     if (jsonObject.getString("status").equals("true")){
                         Toast.makeText(LoginActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                         SharedPreference.save("uuid",jsonObject.getString("uuid"));
-                        SharedPreference.save("name",jsonObject.getString("name"));
-                        SharedPreference.save("referral_code",jsonObject.getString("referral_code"));
+                       // SharedPreference.save("name",jsonObject.getString("name"));
+                       // SharedPreference.save("referral_code",jsonObject.getString("referral_code"));
                         SharedPreference.save("adhar_card",jsonObject.getString("adhar_card"));
                         Intent intent=new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.StartApp" parent="Theme.SplashScreen">
+        <item name="postSplashScreenTheme">@style/Theme.RLFieldWorker</item>
+    </style>
+
+    <style name="Theme.StartApp.Legacy" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize as needed for lower versions -->
+        <item name="android:windowBackground">@drawable/gif_rl_work</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>

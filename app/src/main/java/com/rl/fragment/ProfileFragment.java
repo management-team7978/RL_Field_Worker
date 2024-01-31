@@ -33,17 +33,21 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.rl.fieldworker.BankActivity;
 import com.rl.fieldworker.ChangePasswordActivity;
+import com.rl.fieldworker.EditProfileActivity;
 import com.rl.fieldworker.LoginActivity;
 import com.rl.fieldworker.R;
 import com.rl.util.AppController;
 import com.rl.util.Keys;
 import com.rl.util.SharedPreference;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
     TextView tvName,tvEmail,tvPhone,tvAddress,tvPassword,tvChangePassword,tvUserId,tvBankName,tvBankAccount,tvaddbankacc,tvHelp;
@@ -54,7 +58,8 @@ public class ProfileFragment extends Fragment {
     RelativeLayout rlNoBankDetail,rlBankDetails,rlPhone,rlWhatsapp;
     LinearLayout lnrViewCustomerCare;
     private  boolean button1IsVisible = true;
-
+    CircleImageView imgProfile;
+    String name="",userId="",address="",pincode="",profile_path="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,15 +88,21 @@ public class ProfileFragment extends Fragment {
         cdChangePassword=v.findViewById(R.id.cdChangePassword);
         tvHelp=v.findViewById(R.id.tvHelp);
         lnrViewCustomerCare=v.findViewById(R.id.lnrViewCustomerCare);
-        int isHelpClick = 1;
+        imgProfile=v.findViewById(R.id.imgProfile);
 
-//        cdBankDetails.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i=new Intent(getActivity(), BankActivity.class);
-//                startActivity(i);
-//            }
-//        });
+
+        imgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), EditProfileActivity.class);
+                i.putExtra("name",name);
+                i.putExtra("userId",userId);
+                i.putExtra("address",address);
+                i.putExtra("pincode",pincode);
+                i.putExtra("profile_path",profile_path);
+                startActivity(i);
+            }
+        });
 
 
 
@@ -323,23 +334,36 @@ public class ProfileFragment extends Fragment {
 
     private void getProfile(String uuid) {
         rlLoader.setVisibility(View.VISIBLE);
-        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.getprofile, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, Keys.URL.getprofile, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("pri","profile =>>"+response);
+                Log.i("pri", "profile =>>" + response);
                 try {
-                    JSONObject jsonObject=new JSONObject(response);
-                    Log.i("pri","response=>"+jsonObject);
-                    if (jsonObject.getString("status").equals("true")){
+                    JSONObject jsonObject = new JSONObject(response);
+                    Log.i("pri", "response=>" + jsonObject);
+                    if (jsonObject.getString("status").equals("true")) {
                         rlLoader.setVisibility(View.GONE);
                         tvName.setText(jsonObject.getString("name"));
                         tvEmail.setText(jsonObject.getString("email"));
                         tvPhone.setText(jsonObject.getString("phone"));
-                        tvAddress.setText(jsonObject.getString("address")+", "+jsonObject.getString("pincode"));
                         tvPassword.setText(jsonObject.getString("password"));
                         tvUserId.setText(jsonObject.getString("user_id"));
 
-                    }else {
+                        if (jsonObject.has("profile_img")) {
+                            String profileImageUrl = jsonObject.getString("profile_img");
+                            Picasso.get().load(profileImageUrl).into(imgProfile);
+                            profile_path=jsonObject.getString("profile_img");
+                        }else {
+                            imgProfile.setImageResource(R.drawable.img_profile_user);
+                        }
+
+                        tvAddress.setText(jsonObject.getString("address") + ", " + jsonObject.getString("pincode"));
+
+                        name = jsonObject.getString("name");
+                        userId = jsonObject.getString("user_id");
+                        address = jsonObject.getString("address");
+                        pincode = jsonObject.getString("pincode");
+                    } else {
                         rlLoader.setVisibility(View.GONE);
                         if (jsonObject.getString("message").equalsIgnoreCase("uuid missmatch logout")) {
                             if (SharedPreference.contains("uuid")) {
@@ -353,12 +377,10 @@ public class ProfileFragment extends Fragment {
                         }
                         Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                     }
-
                 } catch (JSONException e) {
                     rlLoader.setVisibility(View.GONE);
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -366,15 +388,16 @@ public class ProfileFragment extends Fragment {
                 error.printStackTrace();
                 rlLoader.setVisibility(View.GONE);
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params=new HashMap<>();
+                Map<String, String> params = new HashMap<>();
                 params.put("uuid", uuid);
-                return  params;
+                return params;
             }
         };
         AppController.getInstance().add(request);
     }
+
 
 }

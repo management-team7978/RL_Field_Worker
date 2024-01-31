@@ -11,15 +11,19 @@ android {
         applicationId "com.rl.fieldworker"
         minSdk 24
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
+        ndk {
+            debugSymbolLevel 'FULL'
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -45,5 +49,15 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation platform('com.google.firebase:firebase-bom:31.2.0')
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
+    implementation 'com.github.Dhaval2404:ImagePicker:v2.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation 'androidx.core:core-splashscreen:1.1.0-alpha02'
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+
 }
 apply plugin: 'com.google.firebase.crashlytics'

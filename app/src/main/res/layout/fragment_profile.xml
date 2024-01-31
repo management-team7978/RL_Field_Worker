@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#CEFFFFFF"/>
+        android:background="#DDF2F9FC"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -45,11 +45,49 @@
                         android:textSize="16sp"
                         android:fontFamily="@font/poppins_semi_bold"
                         android:textColor="@color/black"
-                        android:layout_toRightOf="@id/user1" />
+                        android:layout_toRightOf="@id/user1"
+                        android:visibility="gone"
+                        android:layout_marginTop="10dp"/>
+
+
+
+                    <RelativeLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imgProfile"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/img_profile_user"
+                            app:civ_border_color="@color/rl_orange"
+                            app:civ_border_width="2dp" />
+
+                        <RelativeLayout
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@drawable/shape_circle"
+                            android:id="@+id/imgUpload">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/baseline_add_24"
+                                />
+                        </RelativeLayout>
+
+
+
+                    </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
 
                         <ImageView
                             android:layout_width="25dp"
