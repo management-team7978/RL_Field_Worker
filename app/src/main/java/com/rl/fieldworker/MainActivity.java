@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent =new Intent();
         intent.setAction(Intent.ACTION_SEND);
         intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "RL Work");
-        intent.putExtra(Intent.EXTRA_TEXT," Welcome to RL Work... \n\nClick on below link to Download our application: \n\nhttps://play.google.com/store/apps/details?id=com.rl.work"+"\n\n\nUse my Referral Code : "+SharedPreference.get("referral_code"));
+        intent.putExtra(Intent.EXTRA_TEXT," Welcome to RL BDM... \n\nClick on below link to Download our application: \n\nhttps://play.google.com/store/apps/details?id=com.rl.fieldworker"+"\n\n\nUse my Referral Code : "+SharedPreference.get("referral_code"));
         intent.setType("text/plain");
         Uri uri = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID, imageFile);
         intent.putExtra(Intent.EXTRA_STREAM, uri);
