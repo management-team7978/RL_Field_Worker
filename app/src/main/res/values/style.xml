@@ -9,8 +9,8 @@
 
     <!-- Add a separate theme for lower Android versions -->
     <style name="Theme.StartApp.Legacy" parent="Theme.AppCompat.NoActionBar">
-        <!-- Customize as needed for lower versions -->
-        <item name="android:windowBackground">@drawable/gif_rl_work</item>
+        <item name="android:backdropColor">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/app_logo_black</item>
         <item name="android:windowNoTitle">true</item>
     </style>
 </resources>
