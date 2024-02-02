@@ -24,8 +24,8 @@
             android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/imgLanguage"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:src="@drawable/img_language_icon"
                 android:scaleType="fitXY"
                 android:layout_marginTop="10dp"
@@ -230,7 +230,7 @@
 
                 <Spinner
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_marginTop="10dp"
                     android:id="@+id/spSalaryType"
                     android:background="@drawable/drop_down_shape"/>
@@ -251,7 +251,7 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="48dp"
                         android:text=" (View)"
                         android:textColor="@color/rl_blue"
                         android:id="@+id/tvView"
@@ -272,7 +272,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_alignParentBottom="true"
                     android:gravity="center_horizontal"
                     android:layout_marginTop="15dp"
@@ -294,6 +294,7 @@
                         android:layout_toRightOf="@id/txt"
                         android:textColor="@color/black"
                         android:textSize="18sp"
+                        android:layout_centerVertical="true"
                         android:fontFamily="@font/poppins_medium"/>
                 </RelativeLayout>
             </LinearLayout>
@@ -309,7 +310,7 @@
         android:background="#FCFFFFFF"
         android:visibility="gone"
         android:id="@+id/rlLoader"
-        android:elevation="50dp">
+        android:elevation="100dp">
 
         <pl.droidsonroids.gif.GifImageView
             android:layout_width="80dp"

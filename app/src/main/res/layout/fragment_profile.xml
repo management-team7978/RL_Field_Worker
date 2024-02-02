@@ -71,7 +71,8 @@
                             android:layout_alignParentRight="true"
                             android:layout_alignParentBottom="true"
                             android:background="@drawable/shape_circle"
-                            android:id="@+id/imgUpload">
+                            android:id="@+id/imgUpload"
+                            android:clickable="true">
 
                             <ImageView
                                 android:layout_width="50dp"
@@ -317,7 +318,7 @@
                         android:id="@+id/rlLogout"
                         android:padding="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="48dp"
                         android:layout_alignParentBottom="true"
                         android:layout_marginTop="5dp"
                         android:layout_centerHorizontal="true">
@@ -339,6 +340,7 @@
                             android:layout_toRightOf="@id/logout"
                             android:fontFamily="@font/poppins_semi_bold"
                             android:textColor="@color/black"
+                            android:layout_centerVertical="true"
                             android:id="@+id/tvLogout"/>
                     </RelativeLayout>
                 </LinearLayout>
@@ -517,7 +519,7 @@
                     <TextView
                         android:id="@+id/tvHelp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="48dp"
                         android:text="Help"
                         android:textSize="16sp"
                         android:fontFamily="@font/poppins_semi_bold"

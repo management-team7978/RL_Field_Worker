@@ -9,29 +9,32 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/img_register_background"/>
+        android:background="@drawable/img_register_background" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B3FFFFFF"/>
+        android:background="#B3FFFFFF" />
 
     <RelativeLayout
+        android:id="@+id/rlHeader"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
+        android:background="#2900BCD4"
         android:elevation="50dp"
-        android:id="@+id/rlHeader"
-        android:background="#2900BCD4">
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <ImageView
             android:id="@+id/imgBack"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_baseline_arrow_back_24"
-            android:adjustViewBounds="true"/>
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:onClick="onBackButtonClick"
+            android:padding="8dp"
+            android:src="@drawable/ic_baseline_arrow_back_24" />
 
         <TextView
             android:id="@+id/tvTitle"
@@ -42,15 +45,15 @@
             android:text="Edit Profile"
             android:textColor="@color/rl_orange"
             android:textSize="20sp" />
-
     </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_below="@id/rlHeader"
-        android:layout_margin="15dp">
+        android:layout_margin="15dp"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="80dp"
@@ -67,77 +70,75 @@
                 app:civ_border_width="2dp" />
 
             <RelativeLayout
+                android:id="@+id/imgUpload"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:background="@drawable/shape_circle"
-                android:id="@+id/imgUpload">
+                android:clickable="true"
+                android:background="@drawable/shape_circle">
 
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/baseline_add_24"
-                    />
+                    android:src="@drawable/baseline_add_24" />
             </RelativeLayout>
-
 
 
         </RelativeLayout>
 
 
         <TextView
+            android:id="@+id/TvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
-            android:id="@+id/TvName"
-            android:textSize="18sp"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_toRightOf="@id/user"
             android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/user"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Name"
             android:textColor="@color/black"
-            android:layout_marginTop="5dp" />
-
+            android:textSize="18sp" />
 
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/OutlinedBoxStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:hint="@string/Enter_Address"
-            style="@style/OutlinedBoxStyle"
-            app:helperTextEnabled="true"
-            android:layout_marginTop="5dp">
+            app:helperTextEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/edtAddress"
-                android:textColor="@color/black"
                 android:fontFamily="@font/poppins_regular"
-                android:lines="3"
                 android:gravity="left|top"
                 android:inputType="textMultiLine"
+                android:lines="3"
                 android:overScrollMode="always"
                 android:scrollbarStyle="insideInset"
-                android:scrollbars="vertical"/>
+                android:scrollbars="vertical"
+                android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/OutlinedBoxStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:hint="@string/Enter_Pincode"
-            style="@style/OutlinedBoxStyle"
-            app:helperTextEnabled="true"
-            android:layout_marginTop="15dp">
+            app:helperTextEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPincode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/edtPincode"
-                android:textColor="@color/black"
                 android:fontFamily="@font/poppins_regular"
+                android:inputType="number"
                 android:scrollbars="vertical"
-                android:inputType="number"/>
+                android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
@@ -146,43 +147,43 @@
         android:id="@+id/btSubmit"
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
         android:background="@drawable/button_shape"
         android:text="Submit"
         android:textColor="#fff"
         android:textSize="18sp"
-        android:visibility="visible"
-        android:layout_margin="20dp"
-        android:layout_alignParentBottom="true"/>
+        android:visibility="visible" />
 
     <RelativeLayout
+        android:id="@+id/rlLoader"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="55dp"
         android:background="#FCFFFFFF"
-        android:visibility="gone"
-        android:id="@+id/rlLoader"
         android:elevation="50dp"
-        android:layout_marginTop="55dp">
+        android:visibility="gone">
 
         <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/rlGif"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/gif_loader"
-            android:adjustViewBounds="true"
-            android:id="@+id/rlGif"
+            android:layout_above="@id/tvText1"
             android:layout_centerHorizontal="true"
-            android:layout_above="@id/tvText1"/>
+            android:adjustViewBounds="true"
+            android:src="@drawable/gif_loader" />
 
 
         <TextView
+            android:id="@+id/tvText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Loading Please Wait!"
+            android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:layout_marginTop="20dp"
-            android:id="@+id/tvText1"
-            android:layout_centerInParent="true"/>
+            android:text="Loading Please Wait!"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -29,8 +29,8 @@
 
         <ImageView
             android:id="@+id/imgLanguage"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/img_language_icon_black"
             android:layout_alignParentRight="true"
             android:layout_above="@id/lnr"
@@ -166,36 +166,57 @@
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp">
-                    <TextView
-                        android:id="@+id/tvForgotPass"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/Forgot_Password"
-                        android:textColor="@color/rl_blue"
-                        android:fontFamily="@font/poppins_medium"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentLeft="true"/>
+        <TextView
+            android:id="@+id/tvForgotPass"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/Forgot_Password"
+            android:textColor="@color/rl_blue"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_gravity="right"/>
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btLogin"
-                        android:layout_width="200dp"
-                        android:layout_height="45dp"
-                        android:background="@drawable/shape_button"
-                        android:gravity="center"
-                        android:text="@string/Login"
-                        android:textAllCaps="true"
-                        android:textColor="#fff"
-                        android:layout_alignParentRight="true"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/poppins_bold" />
-                </RelativeLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btLogin"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:maxHeight="50dp"
+            android:background="@drawable/shape_button"
+            android:gravity="center"
+            android:text="@string/Login"
+            android:textAllCaps="true"
+            android:textColor="#fff"
+            android:layout_alignParentRight="true"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_bold" />
 
-            </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
+            android:id="@+id/rlSignUp"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New User?"
+                android:fontFamily="@font/poppins_regular"
+                android:id="@+id/txt"
+                android:textSize="16sp"
+                android:textColor="@color/text_color_gray"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Sign Up"
+                android:layout_toRightOf="@id/txt"
+                android:textColor="@color/rl_blue"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_bold"/>
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -203,7 +224,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="15dp"
+        >
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_fab"
@@ -230,31 +252,6 @@
             android:layout_below="@id/add_fab"/>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal"
-        android:layout_marginBottom="25dp"
-        android:id="@+id/rlSignUp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New User?"
-            android:fontFamily="@font/poppins_regular"
-            android:id="@+id/txt"
-            android:textSize="16sp"
-            android:textColor="@color/text_color_gray"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" Sign Up"
-            android:layout_toRightOf="@id/txt"
-            android:textColor="@color/rl_blue"
-            android:textSize="16sp"
-            android:fontFamily="@font/poppins_bold"/>
-    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -262,7 +259,7 @@
         android:background="#FCFFFFFF"
         android:visibility="gone"
         android:id="@+id/rlLoader"
-        android:elevation="50dp">
+        android:elevation="100dp">
 
         <pl.droidsonroids.gif.GifImageView
             android:layout_width="100dp"

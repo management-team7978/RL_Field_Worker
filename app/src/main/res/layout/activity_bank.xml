@@ -10,25 +10,26 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/img_register_background"/>
+        android:background="@drawable/img_register_background" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E6FFFFFF"/>
+        android:background="#E6FFFFFF" />
 
     <RelativeLayout
+        android:id="@+id/rlHeader"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:id="@+id/rlHeader"
         android:background="#2900BCD4">
+
         <ImageView
+            android:id="@+id/imgBack"
             android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/baseline_arrow_back_24"
             android:adjustViewBounds="true"
-            android:id="@+id/imgBack"/>
+            android:src="@drawable/baseline_arrow_back_24" />
 
         <TextView
             android:id="@+id/tvTitle"
@@ -41,219 +42,221 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
-        <androidx.core.widget.NestedScrollView
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlHeader">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rlHeader">
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvKYCStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/yellow"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp">
+
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/img_bank" />
+
                 <TextView
-                    android:id="@+id/tvKYCStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="Bank details"
+                    android:textColor="@color/rl_blue"
+                    android:textSize="20sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/OutlinedBoxStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/yellow"
-                    android:textSize="16sp"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/poppins_medium"
+                    android:layout_marginTop="15dp"
+                    android:hint="Bank Name"
+                    app:helperTextEnabled="true"
+                    app:startIconDrawable="@drawable/user"
+                    app:startIconTint="@color/rl_blue">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtBankName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:inputType="text"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/OutlinedBoxStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="Account holder Name"
+                    app:helperTextEnabled="true"
+                    app:startIconDrawable="@drawable/user"
+                    app:startIconTint="@color/rl_blue">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtHolderName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:inputType="text"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/OutlinedBoxStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="Account Number"
+                    app:helperTextEnabled="true"
+                    app:startIconDrawable="@drawable/user"
+                    app:startIconTint="@color/rl_blue">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtAccountNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:inputType="number"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/OutlinedBoxStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="IFSC Code"
+                    app:helperTextEnabled="true"
+                    app:startIconDrawable="@drawable/user"
+                    app:startIconTint="@color/rl_blue">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtIfsc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:inputType="text"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/OutlinedBoxStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="Pancard Number"
+                    app:helperTextEnabled="true"
+                    app:startIconDrawable="@drawable/user"
+                    app:startIconTint="@color/rl_blue">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtpan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:inputType="text"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/OutlinedBoxStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="Aadhar Card Number"
+                    app:helperTextEnabled="true"
+                    app:startIconDrawable="@drawable/user"
+                    app:startIconTint="@color/rl_blue">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtaadhar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/poppins_regular"
+                        android:inputType="number"
+                        android:longClickable="false"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/shape_button"
+                    android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
-                    android:paddingBottom="3dp"
-                    android:paddingTop="3dp"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp">
+                    android:text="Submit"
+                    android:textAllCaps="true"
 
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/img_bank"
-                        android:adjustViewBounds="true"
-                        android:layout_gravity="center"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Bank details"
-                        android:layout_gravity="center"
-                        android:textColor="@color/rl_blue"
-                        android:textSize="20sp"
-                        android:layout_marginTop="5dp"/>
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Bank Name"
-                        style="@style/OutlinedBoxStyle"
-                        app:helperTextEnabled="true"
-                        app:startIconDrawable="@drawable/user"
-                        app:startIconTint="@color/rl_blue"
-                        android:layout_marginTop="15dp"
-                        >
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/edtBankName"
-                            android:textColor="@color/black"
-                            android:inputType="text"
-                            android:fontFamily="@font/poppins_regular"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Account holder Name"
-                        style="@style/OutlinedBoxStyle"
-                        app:helperTextEnabled="true"
-                        app:startIconDrawable="@drawable/user"
-                        app:startIconTint="@color/rl_blue"
-                        android:layout_marginTop="5dp"
-                        >
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/edtHolderName"
-                            android:textColor="@color/black"
-                            android:inputType="text"
-                            android:fontFamily="@font/poppins_regular"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Account Number"
-                        style="@style/OutlinedBoxStyle"
-                        app:helperTextEnabled="true"
-                        app:startIconDrawable="@drawable/user"
-                        app:startIconTint="@color/rl_blue"
-                        android:layout_marginTop="5dp"
-                        >
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/edtAccountNumber"
-                            android:textColor="@color/black"
-                            android:inputType="number"
-                            android:fontFamily="@font/poppins_regular"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="IFSC Code"
-                        style="@style/OutlinedBoxStyle"
-                        app:helperTextEnabled="true"
-                        app:startIconDrawable="@drawable/user"
-                        app:startIconTint="@color/rl_blue"
-                        android:layout_marginTop="5dp">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/edtIfsc"
-                            android:textColor="@color/black"
-                            android:inputType="text"
-                            android:fontFamily="@font/poppins_regular"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Pancard Number"
-                        style="@style/OutlinedBoxStyle"
-                        app:helperTextEnabled="true"
-                        app:startIconDrawable="@drawable/user"
-                        app:startIconTint="@color/rl_blue"
-                        android:layout_marginTop="5dp">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/edtpan"
-                            android:textColor="@color/black"
-                            android:inputType="text"
-                            android:fontFamily="@font/poppins_regular"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Aadhar Card Number"
-                        style="@style/OutlinedBoxStyle"
-                        app:helperTextEnabled="true"
-                        app:startIconDrawable="@drawable/user"
-                        app:startIconTint="@color/rl_blue"
-                        android:layout_marginTop="5dp">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/edtaadhar"
-                            android:textColor="@color/black"
-                            android:inputType="number"
-                            android:clickable="false"
-                            android:longClickable="false"
-                            android:focusable="false"
-                            android:fontFamily="@font/poppins_regular"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:id="@+id/btSubmit"
-                        android:layout_width="230dp"
-                        android:layout_height="45dp"
-                        android:background="@drawable/shape_button"
-                        android:gravity="center"
-                        android:text="Submit"
-                        android:textAllCaps="true"
-                        android:textColor="#fff"
-                        android:textSize="18sp"
-
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/poppins_bold" />
-                </LinearLayout>
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
             </LinearLayout>
+        </LinearLayout>
 
-        </androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
     <RelativeLayout
+        android:id="@+id/rlLoader"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FCFFFFFF"
-        android:visibility="gone"
-        android:id="@+id/rlLoader"
-        android:elevation="50dp">
+        android:elevation="50dp"
+        android:visibility="gone">
 
         <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/rlGif"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/gif_loader"
-            android:adjustViewBounds="true"
-            android:id="@+id/rlGif"
+            android:layout_above="@id/tvText"
             android:layout_centerHorizontal="true"
-            android:layout_above="@id/tvText"/>
+            android:adjustViewBounds="true"
+            android:src="@drawable/gif_loader" />
 
 
         <TextView
+            android:id="@+id/tvText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Loading Please Wait!"
+            android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:layout_marginTop="20dp"
-            android:id="@+id/tvText"
-            android:layout_centerInParent="true"/>
+            android:text="Loading Please Wait!"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </RelativeLayout>
-
 
 
 </RelativeLayout>
