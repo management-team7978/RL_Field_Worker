@@ -52,7 +52,7 @@ public class GetRquestListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       View v = inflater.inflate(R.layout.fragment_get_rquest_list, container, false);
+        View v = inflater.inflate(R.layout.fragment_get_rquest_list, container, false);
         AppController.initialize(getActivity());
         SharedPreference.initialize(getActivity());
         FirebaseAnalytics.getInstance(getActivity());
@@ -135,8 +135,12 @@ public class GetRquestListFragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 rlLoader.setVisibility(View.GONE);
-                Toast.makeText(getActivity(), "Technical problem arises", Toast.LENGTH_SHORT).show();
                 swipeRefresh.setRefreshing(false);
+                if (getActivity() != null) {
+                    Toast.makeText(getActivity(), "Technical problem arises", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "Error occurred!", Toast.LENGTH_SHORT).show();
+                }
             }
         })
         {
