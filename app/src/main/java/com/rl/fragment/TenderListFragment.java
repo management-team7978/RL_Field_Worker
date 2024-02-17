@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +25,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import com.rl.adapter.RequestListAdapter;
+import com.rl.adapter.ConsumerTenderListAdapter;
 import com.rl.fieldworker.LoginActivity;
 import com.rl.fieldworker.R;
-import com.rl.pojo.RequestList;
+import com.rl.pojo.TenderList;
 import com.rl.util.AppController;
 import com.rl.util.Keys;
 import com.rl.util.SharedPreference;
@@ -40,86 +42,121 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class GetRquestListFragment extends Fragment {
-    RecyclerView recyclerRequestList;
+public class TenderListFragment extends Fragment {
+
+    RecyclerView recyclerCustomerTenderList;
     RelativeLayout rlNotFound,rlLoader;
     SwipeRefreshLayout swipeRefresh;
     String uuid="";
-    ArrayList<RequestList> requestLists;
-    RequestListAdapter requestListAdapter;
-
-
+    ArrayList<TenderList> tenderLists;
+    ConsumerTenderListAdapter customerTenderListAdapter;
+    EditText editText_search;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_get_rquest_list, container, false);
+        View v = inflater.inflate(R.layout.fragment_tender_list, container, false);
         AppController.initialize(getActivity());
         SharedPreference.initialize(getActivity());
         FirebaseAnalytics.getInstance(getActivity());
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
-        recyclerRequestList=v.findViewById(R.id.recyclerRequestList);
+
+        recyclerCustomerTenderList=v.findViewById(R.id.recyclerCustomerTenderList);
         swipeRefresh=v.findViewById(R.id.swipeRefresh);
         rlLoader=v.findViewById(R.id.rlLoader);
+        editText_search=v.findViewById(R.id.edittextAPsearch);
         rlNotFound=v.findViewById(R.id.rlNotFound);
 //        FirebaseAnalytics.getInstance(getActivity());
 //        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
-        recyclerRequestList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        requestLists=new ArrayList<RequestList>();
-        recyclerRequestList.setHasFixedSize(true);
+        recyclerCustomerTenderList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        tenderLists=new ArrayList<TenderList>();
+        recyclerCustomerTenderList.setHasFixedSize(true);
 
+        customerTenderListAdapter= new ConsumerTenderListAdapter(
+                getActivity(),tenderLists);
+        recyclerCustomerTenderList.setAdapter(customerTenderListAdapter);
         uuid= SharedPreference.get("uuid");
 
-        getRequestList(uuid);
+        getConsumerTender(uuid);
         swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.black));
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                requestLists.clear();
-                getRequestList(uuid);
+                tenderLists.clear();
+                getConsumerTender(uuid);
             }
         });
+
+        editText_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                customerTenderListAdapter.getFilter().filter(editText_search.getText().toString());
+            }
+        });
+
         return v;
     }
 
-    private void getRequestList(String uuid) {
+    private void getConsumerTender(String uuid) {
         rlLoader.setVisibility(View.VISIBLE);
-        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.show_quotation, new Response.Listener<String>() {
+        StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.get_tender, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 swipeRefresh.setRefreshing(false);
                 rlLoader.setVisibility(View.GONE);
-                Log.i("pri","consumer dashboard"+response);
+                Log.i("pri","customer request list"+response);
                 try{
                     JSONObject jsonObject=new JSONObject(response);
                     if (jsonObject.getString("status").equals("true")){
                         rlLoader.setVisibility(View.GONE);
                         JSONArray jsonArray=jsonObject.getJSONArray("data");
-                        for (int i=0;i<jsonArray.length();i++){
-                            JSONObject jsonObject1=jsonArray.getJSONObject(i);
-                            requestLists.add(new RequestList(
+                        // Inside the loop where you populate tenderLists
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                            JSONArray tenderPdfArray = jsonObject1.getJSONArray("tender_pdf");
+                            ArrayList<String> tenderPdfList = new ArrayList<>();
+                            for (int j = 0; j < tenderPdfArray.length(); j++) {
+                                tenderPdfList.add(tenderPdfArray.getString(j));
+                            }
+                            tenderLists.add(new TenderList(
                                     jsonObject1.getString("serial"),
-                                    jsonObject1.getString("service_request_id"),
-                                    jsonObject1.getString("consumer_user_id"),
+                                    jsonObject1.getString("bdm_manager_id"),
                                     jsonObject1.getString("name"),
-                                    jsonObject1.getString("phone"),
-                                    jsonObject1.getString("quotation"),
-                                    jsonObject1.getString("quotations"),
+                                    jsonObject1.getString("mobile"),
+                                    jsonObject1.getString("email_id"),
+                                    jsonObject1.getString("tender_no"),
                                     jsonObject1.getString("occupation"),
+                                    jsonObject1.getString("workplace_address"),
+                                    jsonObject1.getString("pincode"),
+                                    jsonObject1.getString("date"),
                                     jsonObject1.getString("id"),
-                                    jsonObject1.getString("work"),
-                                    jsonObject1.getString("address")));
+                                    tenderPdfList
+                            ));
                         }
-                        requestListAdapter= new RequestListAdapter(
-                                getActivity(),requestLists);
-                        recyclerRequestList.setAdapter(requestListAdapter);
+
+
+                        customerTenderListAdapter= new ConsumerTenderListAdapter(
+                                getActivity(),tenderLists);
+                        recyclerCustomerTenderList.setAdapter(customerTenderListAdapter);
+                        customerTenderListAdapter.notifyDataSetChanged();
                     }else {
                         rlLoader.setVisibility(View.GONE);
                         rlNotFound.setVisibility(View.VISIBLE);
-                        if (jsonObject.getString("message").equalsIgnoreCase("uuid missmatch logout")) {
-                            if (SharedPreference.contains("uuid")) {
-                                SharedPreference.removeKey("uuid");
-                                SharedPreference.removeKey("name");
-                                SharedPreference.removeKey("referral_code");
+                        if (jsonObject.getString("message").equalsIgnoreCase("uuid mismatch logout")) {
+                            if (SharedPreference.contains("consumer_uuid")) {
+                                SharedPreference.removeKey("consumer_uuid");
+                                SharedPreference.removeKey("userid");
+                                SharedPreference.removeKey("adhar_no");
+                                SharedPreference.removeKey("pan");
                             }
                             Intent i = new Intent(getActivity(), LoginActivity.class);
                             startActivity(i);
@@ -138,12 +175,8 @@ public class GetRquestListFragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 rlLoader.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), "Technical problem arises", Toast.LENGTH_SHORT).show();
                 swipeRefresh.setRefreshing(false);
-                if (getActivity() != null) {
-                    Toast.makeText(getActivity(), "Technical problem arises", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getActivity(), "Error occurred!", Toast.LENGTH_SHORT).show();
-                }
             }
         })
         {

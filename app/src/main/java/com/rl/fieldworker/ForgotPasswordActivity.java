@@ -2,6 +2,8 @@ package com.rl.fieldworker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
+import com.rl.network.NetworkChangeListener;
 import com.rl.util.AppController;
 import com.rl.util.Keys;
 import com.rl.util.SharedPreference;
@@ -32,7 +35,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     TextView tvSubmit;
     EditText edtUserId;
     RelativeLayout rlLoader;
-    ///NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,5 +99,18 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             }
         };
         AppController.getInstance().add(request);
+    }
+
+    @Override
+    protected void onStart() {
+        IntentFilter filter= new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener,filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
     }
 }

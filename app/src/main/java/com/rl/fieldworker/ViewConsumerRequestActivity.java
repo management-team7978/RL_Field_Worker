@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -26,6 +28,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.rl.adapter.ConsumerBillAdapter;
+import com.rl.network.NetworkChangeListener;
 import com.rl.pojo.ConsumerBillList;
 import com.rl.util.AppController;
 import com.rl.util.Keys;
@@ -51,6 +54,7 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
     RelativeLayout rlNotFound,rlReview;
     DownloadManager manager;
     RatingBar ratingBar;
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,11 +128,11 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
             }
         });
 
-        getReview(SharedPreference.get("uuid"),consumer_userId);
-        getCustomerBill(SharedPreference.get("uuid"));
+        getReview(SharedPreference.get("uuid"),consumer_userId,id);
+        getCustomerBill(SharedPreference.get("uuid"),id);
     }
 
-    private void getReview(String uuid, String consumer_userId) {
+    private void getReview(String uuid, String consumer_userId, String id) {
         rlLoader.setVisibility(View.VISIBLE);
         StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.get_review, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -177,6 +181,7 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
                 Map<String,String> params=new HashMap<>();
                 params.put("uuid",uuid);
                 params.put("consumer_user_id", consumer_userId);
+                params.put("service_id", id);
                 Log.i("priyu",""+params);
                 return  params;
             }
@@ -185,7 +190,7 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
 
     }
 
-    private void getCustomerBill(String consumerUuid) {
+    private void getCustomerBill(String consumerUuid, String id) {
         rlLoader.setVisibility(View.VISIBLE);
         StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.show_bill, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -244,6 +249,7 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<>();
                 params.put("uuid", SharedPreference.get("uuid"));
+                params.put("service_id", id);
                 Log.i("pri","dashboa: "+params.toString());
                 return  params;
             }
@@ -251,4 +257,18 @@ public class ViewConsumerRequestActivity extends AppCompatActivity {
         AppController.getInstance().add(request);
 
     }
+
+    @Override
+    protected void onStart() {
+        IntentFilter filter= new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener,filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
+    }
+
 }

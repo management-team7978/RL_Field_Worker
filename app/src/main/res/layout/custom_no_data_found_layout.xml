@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/no_internet_screen_back">
+
+    <ImageView
+        android:id="@+id/lottie_main"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/img_no_internet"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Whoops!"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Slow or no internet connection.\n Please check your internet settings."
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/btRetry"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:background="@color/red"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        android:text="Retry"
+        android:layout_gravity="center"
+        android:textAllCaps="true"/>
+    <!--    </LinearLayout>-->
+
+
+
+</LinearLayout>

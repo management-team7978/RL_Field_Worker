@@ -18,6 +18,8 @@ public class Keys {
         public static String get_review = field_work + "get_review.php";
         public static String getversion_bdm = field_work + "getversion_bdm.php";
         public static String maintainance_bdm = field_work + "maintainance_bdm.php";
+        public static String get_tender = field_work + "get_tender.php";
+
 
     }
 

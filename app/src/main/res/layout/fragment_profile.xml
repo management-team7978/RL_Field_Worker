@@ -30,7 +30,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
-                android:id="@+id/cdPersonal">
+                android:id="@+id/cdPersonal"
+                android:visibility="visible">
                 <LinearLayout
                     android:padding="10dp"
                     android:layout_width="match_parent"
@@ -403,7 +404,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:padding="5dp"
                         android:layout_marginTop="10dp"
                         android:visibility="visible"
@@ -458,7 +459,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:padding="5dp"
                         android:visibility="visible"
                         android:layout_marginTop="10dp"
@@ -514,16 +515,18 @@
                         android:textSize="16sp"
                         android:fontFamily="@font/poppins_semi_bold"
                         android:textColor="@color/black"
-                        android:id="@+id/tvText"/>
+                        android:id="@+id/tvText"
+                        android:gravity="center"/>
 
                     <TextView
                         android:id="@+id/tvHelp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:text="Help"
                         android:textSize="16sp"
                         android:fontFamily="@font/poppins_semi_bold"
                         android:textColor="@color/rl_blue"
+                        android:gravity="center"
                         android:layout_alignParentRight="true"/>
 
                     <LinearLayout
@@ -531,7 +534,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_below="@id/tvText"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:id="@+id/lnrViewCustomerCare">
                         <RelativeLayout
                             android:layout_marginTop="5dp"
@@ -612,7 +615,8 @@
                             android:layout_marginTop="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="5dp">
+                            android:padding="5dp"
+                            android:id="@+id/rlEmail">
 
                             <ImageView
                                 android:layout_width="25dp"

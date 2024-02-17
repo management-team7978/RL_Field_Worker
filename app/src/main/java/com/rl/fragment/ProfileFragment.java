@@ -55,7 +55,7 @@ public class ProfileFragment extends Fragment {
     String uuid;
     RelativeLayout rlLoader;
     CardView cdBankDetails,cdChangePassword;
-    RelativeLayout rlNoBankDetail,rlBankDetails,rlPhone,rlWhatsapp;
+    RelativeLayout rlNoBankDetail,rlBankDetails,rlPhone,rlWhatsapp,rlEmail;
     LinearLayout lnrViewCustomerCare;
     private  boolean button1IsVisible = true;
     CircleImageView imgProfile;
@@ -89,7 +89,7 @@ public class ProfileFragment extends Fragment {
         tvHelp=v.findViewById(R.id.tvHelp);
         lnrViewCustomerCare=v.findViewById(R.id.lnrViewCustomerCare);
         imgProfile=v.findViewById(R.id.imgProfile);
-
+        rlEmail=v.findViewById(R.id.rlEmail);
 
         imgProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +104,27 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        rlEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String emailsend ="support@rlwork.in";
 
+                // define Intent object with action attribute as ACTION_SEND
+                Intent intent = new Intent(Intent.ACTION_SEND);
+
+                // add three fields to intent using putExtra function
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailsend});
+//                intent.putExtra(Intent.EXTRA_SUBJECT, emailsubject);
+//                intent.putExtra(Intent.EXTRA_TEXT, emailbody);
+
+                // set type of intent
+                intent.setType("message/rfc822");
+
+                // startActivity with intent with chooser as Email client using createChooser function
+                startActivity(Intent.createChooser(intent, "Choose an Email client :"));
+
+            }
+        });
 
         rlBankDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -349,13 +369,23 @@ public class ProfileFragment extends Fragment {
                         tvPassword.setText(jsonObject.getString("password"));
                         tvUserId.setText(jsonObject.getString("user_id"));
 
+//                        if (jsonObject.has("profile_img")) {
+//                            String profileImageUrl = jsonObject.getString("profile_img");
+//                            Picasso.get().load(profileImageUrl).into(imgProfile);
+//                            profile_path=jsonObject.getString("profile_img");
+//                        }else {
+//                            imgProfile.setImageResource(R.drawable.img_profile_user);
+//                        }
+
                         if (jsonObject.has("profile_img")) {
                             String profileImageUrl = jsonObject.getString("profile_img");
-                            Picasso.get().load(profileImageUrl).into(imgProfile);
+                            Picasso.get().load(profileImageUrl).noFade()
+                                    .placeholder(R.drawable.progress_animation).into(imgProfile);
                             profile_path=jsonObject.getString("profile_img");
                         }else {
                             imgProfile.setImageResource(R.drawable.img_profile_user);
                         }
+
 
                         tvAddress.setText(jsonObject.getString("address") + ", " + jsonObject.getString("pincode"));
 

@@ -7,11 +7,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardUseCompatPadding="true"
         app:cardCornerRadius="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:elevation="5dp">
+        app:cardUseCompatPadding="true">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -23,89 +21,103 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date"
+                    android:text="RLWTN0014"
                     android:textColor="@color/white"
-                    android:fontFamily="@font/poppins_regular"
+                    android:textStyle="bold"
                     android:textSize="12sp"
-                    android:layout_centerVertical="true"
                     android:paddingLeft="10dp"
-                    android:id="@+id/tvUserId"/>
-
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tvTenderNumber"/>
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:id="@+id/lnr"
                 android:padding="8dp"
                 android:layout_below="@id/rl">
 
-
                 <TextView
+                    android:id="@+id/tvName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Consumer name"
-                    android:drawableTint="#696969"
-                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Name"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
                     android:drawableLeft="@drawable/user"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="12sp"
-                    android:layout_marginTop="5dp"
-                    android:textColor="@color/text_color_gray"
-                    android:id="@+id/tvName"/>
+                    android:drawablePadding="10dp"
+                    android:drawableTint="@color/rl_orange"/>
 
                 <TextView
+                    android:id="@+id/tvEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Consumer mobile"
-                    android:layout_marginTop="5dp"
-                    android:drawableTint="#696969"
-                    android:drawablePadding="10dp"
-                    android:drawableLeft="@drawable/ic_phone"
-                    android:fontFamily="@font/poppins_regular"
+                   android:fontFamily="@font/poppins_regular"
+                    android:text="Name"
                     android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="5dp"
+                    android:visibility="gone"
+                    android:drawableLeft="@drawable/ic_email"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="@color/rl_orange"/>
+
+                <TextView
                     android:id="@+id/tvPhone"
-                    android:textColor="@color/text_color_gray"/>
-
-                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Consumer mobile"
-                    android:layout_marginTop="5dp"
-                    android:drawableTint="#696969"
-                    android:drawablePadding="10dp"
-                    android:drawableLeft="@drawable/repair_service_icon"
-                    android:fontFamily="@font/poppins_regular"
+                   android:fontFamily="@font/poppins_regular"
+                    android:text="Name"
                     android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawablePadding="10dp"
+                    android:layout_marginTop="5dp"
+                    android:drawableTint="@color/rl_orange"/>
+
+                <TextView
                     android:id="@+id/tvOccupation"
-                    android:textColor="@color/text_color_gray"/>
-
-                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Consumer mobile"
-                    android:layout_marginTop="5dp"
-                    android:drawableTint="#696969"
-                    android:drawablePadding="10dp"
-                    android:drawableLeft="@drawable/baseline_apartment_24"
-                    android:fontFamily="@font/poppins_regular"
+                   android:fontFamily="@font/poppins_regular"
+                    android:text="Name"
                     android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:drawableLeft="@drawable/repair_service_icon"
+                    android:drawablePadding="10dp"
+                    android:layout_marginTop="5dp"
+                    android:visibility="visible"
+                    android:drawableTint="@color/rl_orange"/>
+
+                <TextView
                     android:id="@+id/tvAddress"
-                    android:textColor="@color/text_color_gray"/>
-
-                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Consumer mobile"
-                    android:layout_marginTop="5dp"
-                    android:drawableTint="@color/green"
-                    android:drawablePadding="10dp"
-                    android:drawableLeft="@drawable/remark"
-                    android:fontFamily="@font/poppins_regular"
+                   android:fontFamily="@font/poppins_regular"
+                    android:text="Name"
                     android:textSize="12sp"
-                    android:id="@+id/tvWorkStatus"
-                    android:textColor="@color/green"/>
+                    android:textColor="@color/black"
+                    android:drawableLeft="@drawable/baseline_apartment_24"
+                    android:drawablePadding="10dp"
+                    android:layout_marginTop="5dp"
+                    android:drawableTint="@color/rl_orange"
+
+                    android:visibility="visible"/>
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   android:fontFamily="@font/poppins_regular"
+                    android:text="Name"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:drawableLeft="@drawable/ic_baseline_calendar_month_24"
+                    android:drawablePadding="10dp"
+                    android:layout_marginTop="5dp"
+                    android:visibility="visible"
+                    android:drawableTint="@color/rl_orange"/>
 
                 <TextView
                     android:id="@+id/tvViewMore"
@@ -120,12 +132,12 @@
                     android:gravity="right"
                     android:textColor="@color/rl_blue"
                     android:textSize="12sp"
-                    android:visibility="visible"/>
-
+                    />
 
             </LinearLayout>
 
         </RelativeLayout>
+
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

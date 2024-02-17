@@ -13,8 +13,10 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,6 +37,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
+import com.rl.network.NetworkChangeListener;
 import com.rl.pojo.EditProfile;
 import com.rl.pojo.ProfileService;
 import com.rl.util.SharedPreference;
@@ -65,6 +68,7 @@ public class EditProfileActivity extends AppCompatActivity {
     String path1="",val="";
     RelativeLayout imgUpload,rlLoader;
     TextView TvName;
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,13 +90,13 @@ public class EditProfileActivity extends AppCompatActivity {
             edtAddress.setText(address);
             edtPincode.setText(pincode);
             TvName.setText(name);
-
-        }
-        if (i.hasExtra("profile_path")){
             profile_path=i.getStringExtra("profile_path");
-            Picasso.get().load(profile_path).into(imgProfile);
-        }else {
+        }
+        if (profile_path == null || profile_path.isEmpty()) {
             imgProfile.setImageResource(R.drawable.img_profile_user);
+        } else {
+            Picasso.get().load(profile_path).noFade()
+                    .placeholder(R.drawable.progress_animation).into(imgProfile);
         }
 
         imgBack.setOnClickListener(new View.OnClickListener() {
@@ -351,5 +355,17 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        IntentFilter filter= new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener,filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.rl.fieldworker;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -11,9 +12,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,6 +45,8 @@ import com.rl.fragment.BankKycFragment;
 import com.rl.fragment.DashboardFragment;
 import com.rl.fragment.GetRquestListFragment;
 import com.rl.fragment.ProfileFragment;
+import com.rl.fragment.TenderListFragment;
+import com.rl.network.NetworkChangeListener;
 import com.rl.util.AppController;
 import com.rl.util.AppVersion;
 import com.rl.util.Keys;
@@ -62,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvTitle;
     ImageView imgShare;
     AppVersion appVersion = new AppVersion();
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +118,12 @@ public class MainActivity extends AppCompatActivity {
                         tvTitle.setText("Add Bank Details");
                         replaceFragment(new BankKycFragment());
                         break;
+
+                    case R.id.menu_tender_list:
+                        tvTitle.setText("Tender List");
+                        replaceFragment(new TenderListFragment());
+                        break;
+
                     case R.id.menu_request_list:
                         tvTitle.setText("Request List");
                         replaceFragment(new GetRquestListFragment());
@@ -120,6 +132,15 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                customExitDialog();
+                //finish(); // Finish the activity, for example
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -234,10 +255,61 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public  void customExitDialog() {
+        // creating custom dialog
+        final Dialog dialog = new Dialog(MainActivity.this);
+
+        // setting content view to dialog
+        dialog.setContentView(R.layout.custom_layout_exit_app);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+
+        // getting reference of TextView
+        TextView dialogButtonYes = (TextView) dialog.findViewById(R.id.textViewYes);
+        TextView dialogButtonNo = (TextView) dialog.findViewById(R.id.textViewNo);
+
+        // click listener for No
+        dialogButtonNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // dismiss the dialog
+                dialog.dismiss();
+
+            }
+        });
+        // click listener for Yes
+        dialogButtonYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // dismiss the dialog and exit the exit
+                dialog.dismiss();
+                finish();
+
+            }
+        });
+
+        // show the exit dialog
+        dialog.show();
+    }
+
     protected void onResume() {
         super.onResume();
         CheckVersionApi();
         checkmaintenance();
     }
 
+    @Override
+    protected void onStart() {
+        IntentFilter filter= new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener,filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
+    }
 }

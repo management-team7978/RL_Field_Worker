@@ -8,9 +8,11 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +35,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
+import com.rl.network.NetworkChangeListener;
 import com.rl.util.AppController;
 import com.rl.util.AppVersion;
 import com.rl.util.Keys;
@@ -58,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
     String st_language="";
     ArrayList<String> arr_language_type = new ArrayList<String>();
     AppVersion appVersion = new AppVersion();
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -343,20 +347,24 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void customAppUpdate() {
-
-        new android.app.AlertDialog.Builder(LoginActivity.this).setTitle("New Update")
-                .setIcon(R.drawable.app_logo)
-                .setMessage("A new version of this app is available. Please update it").setPositiveButton(
-                        "Update now", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.rl.fieldworker"));
-                                startActivity(intent);
-                            }
-                        }).setCancelable(false)
-                .show();
+        new android.app.AlertDialog.Builder(LoginActivity.this)
+                .setTitle("New Update")
+                .setIcon(R.drawable.app_logo_black)
+                .setMessage("A new version of this app is available. Please update it")
+                .setPositiveButton("Update now", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.rl.fieldworker"));
+                        startActivity(intent);
+                    }
+                })
+                .setCancelable(false)
+                .show()
+                .getButton(AlertDialog.BUTTON_POSITIVE)
+                .setTextColor(getResources().getColor(android.R.color.black)); // Change text color
     }
+
 
     private void checkmaintenance() {
         StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.maintainance_bdm, new Response.Listener<String>() {
@@ -402,5 +410,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onResume();
         CheckVersionApi();
         checkmaintenance();
+    }
+
+    @Override
+    protected void onStart() {
+        IntentFilter filter= new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener,filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
     }
 }

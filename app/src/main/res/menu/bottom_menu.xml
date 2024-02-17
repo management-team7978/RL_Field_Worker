@@ -17,6 +17,12 @@
         android:visible="false"/>
 
     <item
+        android:id="@+id/menu_tender_list"
+        android:icon="@drawable/ttenderr"
+        android:title="Tender List"/>
+
+
+    <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/ic_user"
         android:title="Profile"/>

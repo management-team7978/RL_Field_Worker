@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginLeft="30dp"
     android:layout_marginRight="30dp">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/congratulation_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="16dp"
         android:layout_marginTop="30dp"
-        android:id="@+id/congratulation_card"
+        app:cardCornerRadius="16dp"
         app:cardElevation="0dp">
 
         <RelativeLayout
+            android:id="@+id/bottom_sheet_exit_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/bottom_sheet_exit_linear"
-            android:layout_below="@id/img">
+            android:layout_below="@id/img"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/rlHeader"
@@ -28,106 +28,105 @@
                 android:background="@drawable/img_call_popup">
 
                 <TextView
+                    android:id="@+id/t1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Get Call to"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:layout_toLeftOf="@id/icon"
                     android:fontFamily="@font/poppins_regular"
-                    android:layout_toLeftOf="@id/icon"
-                    android:id="@+id/t1"/>
+                    android:text="Get Call to"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/t2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Helper"
-                    android:layout_marginTop="-5dp"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/white"
-                    android:textSize="25sp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:layout_toLeftOf="@id/icon"
                     android:layout_below="@id/t1"
-                    android:id="@+id/t2"/>
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_toLeftOf="@id/icon"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Helper"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
 
                 <TextView
+                    android:id="@+id/t3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/helper_text"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:layout_toLeftOf="@id/icon"
                     android:layout_below="@id/t2"
-                    android:id="@+id/t3"/>
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@id/icon"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/helper_text"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
 
                 <ImageView
+                    android:id="@+id/icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/img_call"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="15dp"
-                    android:id="@+id/icon"/>
+                    android:src="@drawable/img_call" />
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_below="@id/rlHeader"
+                android:orientation="vertical"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Select Language"
+                    android:layout_marginTop="20dp"
                     android:fontFamily="@font/poppins_light"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="20dp"/>
+                    android:text="Select Language"
+                    android:textColor="@color/black" />
 
                 <Spinner
+                    android:id="@+id/spLanguage"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/spLanguage"
-                    android:background="@drawable/drop_down_shape"/>
+                    android:background="@drawable/drop_down_shape" />
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/OutlinedBoxStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="I Need Help."
-                    style="@style/OutlinedBoxStyle"
-                    app:helperTextEnabled="true"
                     android:layout_marginTop="5dp"
-                    >
+                    android:hint="I Need Help."
+                    app:helperTextEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtHelper"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        android:id="@+id/edtHelper"
-                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
                         android:inputType="textMultiLine"
-                        android:fontFamily="@font/poppins_regular"/>
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btSubmit"
-                    android:layout_marginTop="25dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Submit"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/poppins_medium"
+                    android:layout_marginTop="25dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@color/rl_blue"/>
+                    android:background="#2E9AC8"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Submit"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
             </LinearLayout>
 
         </RelativeLayout>

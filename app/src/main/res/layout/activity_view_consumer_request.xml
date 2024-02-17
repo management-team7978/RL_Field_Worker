@@ -204,7 +204,7 @@
                 <RelativeLayout
                     android:id="@+id/rlNotFound"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="200dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginRight="10dp"
@@ -219,7 +219,7 @@
                         android:layout_centerInParent="true"
                         android:layout_marginTop="-20dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Data not Found!"
+                        android:text="No Payment Receipt Found!"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 

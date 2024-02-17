@@ -9,8 +9,11 @@ public class RequestList {
     private String quotation;
     private String quotations;
     private String occupation;
+    private String id;
+    private String work_status;
+    private String address;
 
-    public RequestList(String serial, String service_request_id, String consumer_user_id, String name, String phone, String quotation, String quotations, String occupation) {
+    public RequestList(String serial, String service_request_id, String consumer_user_id, String name, String phone, String quotation, String quotations, String occupation, String id, String work_status, String address) {
         this.serial = serial;
         this.service_request_id = service_request_id;
         this.consumer_user_id = consumer_user_id;
@@ -19,6 +22,9 @@ public class RequestList {
         this.quotation = quotation;
         this.quotations = quotations;
         this.occupation = occupation;
+        this.id = id;
+        this.work_status = work_status;
+        this.address = address;
     }
 
     public String getSerial() {
@@ -83,5 +89,29 @@ public class RequestList {
 
     public void setOccupation(String occupation) {
         this.occupation = occupation;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getWork_status() {
+        return work_status;
+    }
+
+    public void setWork_status(String work_status) {
+        this.work_status = work_status;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

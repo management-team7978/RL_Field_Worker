@@ -1,6 +1,8 @@
 package com.rl.fieldworker;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,11 +17,13 @@ import androidx.core.view.WindowCompat;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
+import com.rl.network.NetworkChangeListener;
 import com.rl.util.AppController;
 import com.rl.util.SharedPreference;
 
 public class SplashScreenActivity extends AppCompatActivity {
     boolean isReady = false;
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,5 +79,18 @@ public class SplashScreenActivity extends AppCompatActivity {
                 finish();
             }
         },1000);
+    }
+
+    @Override
+    protected void onStart() {
+        IntentFilter filter= new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener,filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
     }
 }
