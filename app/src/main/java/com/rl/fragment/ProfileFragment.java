@@ -187,26 +187,34 @@ public class ProfileFragment extends Fragment {
                 String phoneNumber = "9517484939"; // Default number or provide a way to get it dynamically
                 if (phoneNumber != null && !phoneNumber.isEmpty()) {
 
-                    try {
-                        // Open WhatsApp using the package name
-                        Intent sendIntent = new Intent("android.intent.action.MAIN");
-                        sendIntent.putExtra("jid", phoneNumber + "@s.whatsapp.net");
-                        sendIntent.putExtra(Intent.EXTRA_TEXT, "Hello");
-                        sendIntent.setAction(Intent.ACTION_SEND);
-                        sendIntent.setPackage("com.whatsapp");
+                    // Form the URI with the phone number in international format
+                    Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + phoneNumber);
 
-                        // Check if WhatsApp is installed on the device
-                        if (sendIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                            startActivity(sendIntent);
-                        } else {
-                            // WhatsApp is not installed, handle this case
-                            Toast.makeText(getActivity(), "WhatsApp is not installed", Toast.LENGTH_SHORT).show();
-                        }
-                    } catch (Exception e) {
-                        // Handle exceptions
-                        e.printStackTrace();
-                        Toast.makeText(getActivity(), "Error opening WhatsApp", Toast.LENGTH_SHORT).show();
-                    }
+                    // Create and start the Intent
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+
+
+//                    try {
+//                        // Open WhatsApp using the package name
+//                        Intent sendIntent = new Intent("android.intent.action.MAIN");
+//                        sendIntent.putExtra("jid", phoneNumber + "@s.whatsapp.net");
+//                        sendIntent.putExtra(Intent.EXTRA_TEXT, "Hello");
+//                        sendIntent.setAction(Intent.ACTION_SEND);
+//                        sendIntent.setPackage("com.whatsapp");
+//
+//                        // Check if WhatsApp is installed on the device
+//                        if (sendIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+//                            startActivity(sendIntent);
+//                        } else {
+//                            // WhatsApp is not installed, handle this case
+//                            Toast.makeText(getActivity(), "WhatsApp is not installed", Toast.LENGTH_SHORT).show();
+//                        }
+//                    } catch (Exception e) {
+//                        // Handle exceptions
+//                        e.printStackTrace();
+//                        Toast.makeText(getActivity(), "Error opening WhatsApp", Toast.LENGTH_SHORT).show();
+//                    }
 
                 } else {
                     Toast.makeText(getActivity(), "Phone number not available.", Toast.LENGTH_SHORT).show();

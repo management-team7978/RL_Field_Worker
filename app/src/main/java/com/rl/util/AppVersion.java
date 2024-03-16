@@ -1,5 +1,5 @@
 package com.rl.util;
 
 public class AppVersion {
-     public String ver_name= "1.8";
+     public String ver_name= "1.9";
 }

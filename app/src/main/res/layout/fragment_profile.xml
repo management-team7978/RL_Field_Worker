@@ -534,7 +534,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_below="@id/tvText"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:id="@+id/lnrViewCustomerCare">
                         <RelativeLayout
                             android:layout_marginTop="5dp"

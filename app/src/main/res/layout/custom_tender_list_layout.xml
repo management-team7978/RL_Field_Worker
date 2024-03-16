@@ -120,6 +120,20 @@
                     android:drawableTint="@color/rl_orange"/>
 
                 <TextView
+                    android:id="@+id/tvExpiredDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Name"
+                    android:textSize="12sp"
+                    android:textColor="@color/red"
+                    android:drawableLeft="@drawable/ic_baseline_calendar_month_24"
+                    android:drawablePadding="10dp"
+                    android:layout_marginTop="5dp"
+                    android:visibility="visible"
+                    android:drawableTint="@color/red"/>
+
+                <TextView
                     android:id="@+id/tvViewMore"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

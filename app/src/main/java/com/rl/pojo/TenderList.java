@@ -15,8 +15,12 @@ public class TenderList {
     private String date;
     private String id;
     private ArrayList<String> tender_pdf;
+    private String expiry_date;
+    private String tender_accepted_consumer_id;
+    private String consumer_mob_no;
+    private String consumer_name;
 
-    public TenderList(String serial, String bdm_manager_id, String name, String mobile, String email_id, String tender_no, String occupation, String workplace_address, String pincode, String date, String id, ArrayList<String> tender_pdf) {
+    public TenderList(String serial, String bdm_manager_id, String name, String mobile, String email_id, String tender_no, String occupation, String workplace_address, String pincode, String date, String id, ArrayList<String> tender_pdf, String expiry_date, String tender_accepted_consumer_id, String consumer_mob_no, String consumer_name) {
         this.serial = serial;
         this.bdm_manager_id = bdm_manager_id;
         this.name = name;
@@ -29,6 +33,10 @@ public class TenderList {
         this.date = date;
         this.id = id;
         this.tender_pdf = tender_pdf;
+        this.expiry_date = expiry_date;
+        this.tender_accepted_consumer_id = tender_accepted_consumer_id;
+        this.consumer_mob_no = consumer_mob_no;
+        this.consumer_name = consumer_name;
     }
 
     public String getSerial() {
@@ -125,5 +133,37 @@ public class TenderList {
 
     public void setTender_pdf(ArrayList<String> tender_pdf) {
         this.tender_pdf = tender_pdf;
+    }
+
+    public String getExpiry_date() {
+        return expiry_date;
+    }
+
+    public void setExpiry_date(String expiry_date) {
+        this.expiry_date = expiry_date;
+    }
+
+    public String getTender_accepted_consumer_id() {
+        return tender_accepted_consumer_id;
+    }
+
+    public void setTender_accepted_consumer_id(String tender_accepted_consumer_id) {
+        this.tender_accepted_consumer_id = tender_accepted_consumer_id;
+    }
+
+    public String getConsumer_mob_no() {
+        return consumer_mob_no;
+    }
+
+    public void setConsumer_mob_no(String consumer_mob_no) {
+        this.consumer_mob_no = consumer_mob_no;
+    }
+
+    public String getConsumer_name() {
+        return consumer_name;
+    }
+
+    public void setConsumer_name(String consumer_name) {
+        this.consumer_name = consumer_name;
     }
 }

@@ -24,14 +24,16 @@ import com.rl.util.SharedPreference;
 import java.util.ArrayList;
 
 public class ViewTenderListActivity extends AppCompatActivity {
-    String tender_no,name,mobile,occupation,date,address,tender_id;
+    String tender_no,name,mobile,occupation,date,address,tender_id,getConsumer_mob_no,Tender_accepted_consumer_id,consumer_Name;
     ArrayList<String> tenderPdfList = new ArrayList<>();
-    TextView tvConsumerName,tvConsumerPhone,tvConsumerAddress,tvConsumerOccupation,tvTenderNumber;
+    TextView tvConsumerName,tvConsumerPhone,tvConsumerAddress,tvConsumerOccupation,tvTenderNumber,tvConName,tvConPhone,tvConId;
     RecyclerView recyclerTenderPdf;
     TenderPdfAdapter tenderPdfAdapter;
     ImageView imgBack;
     RelativeLayout rlLoader,rlNotFound;
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+    CardView cdConsumerDetails;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +46,15 @@ public class ViewTenderListActivity extends AppCompatActivity {
         tvTenderNumber=findViewById(R.id.tvTenderNumber);
         recyclerTenderPdf=findViewById(R.id.recyclerTenderPdf);
         imgBack=findViewById(R.id.imgBack);
+        tvConName=findViewById(R.id.tvConName);
+        tvConPhone=findViewById(R.id.tvConPhone);
+        cdConsumerDetails=findViewById(R.id.cdConsumerDetails);
+        tvConId=findViewById(R.id.tvConId);
 
         rlLoader=findViewById(R.id.rlLoader);
         rlNotFound=findViewById(R.id.rlNotFound);
+        //tvKYCStatus=findViewById(R.id.tvKYCStatus);
+
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,8 +62,6 @@ public class ViewTenderListActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
 
         Intent i =getIntent();
         if (i.hasExtra("serial")){
@@ -74,6 +80,17 @@ public class ViewTenderListActivity extends AppCompatActivity {
             tvConsumerPhone.setText(mobile);
             tvTenderNumber.setText(tender_no);
 
+            getConsumer_mob_no=i.getStringExtra("getConsumer_mob_no");
+            Tender_accepted_consumer_id=i.getStringExtra("Tender_accepted_consumer_id");
+            consumer_Name=i.getStringExtra("consumer_Name");
+
+            if (Tender_accepted_consumer_id.equals("0")){
+                cdConsumerDetails.setVisibility(View.GONE);
+            }else {
+                tvConName.setText(consumer_Name);
+                tvConPhone.setText(getConsumer_mob_no);
+                tvConId.setText(Tender_accepted_consumer_id);
+            }
             Log.i("pri","tt=>"+tender_no);
         }
 
@@ -91,7 +108,7 @@ public class ViewTenderListActivity extends AppCompatActivity {
             rlNotFound.setVisibility(View.GONE);
         }
 
-
+       // getTenderDetails();
     }
 
     @Override

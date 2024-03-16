@@ -57,6 +57,7 @@ public class ConsumerTenderListAdapter extends RecyclerView.Adapter<ConsumerTend
         holder.tvAddress.setText(tenderList.getWorkplace_address()+", "+tenderList.getPincode());
         holder.tvDate.setText(tenderList.getDate());
         holder.tvEmail.setText(tenderList.getEmail_id());
+        holder.tvExpiredDate.setText(tenderList.getExpiry_date());
 
 //        if (holder.getAdapterPosition() > lastposition) {
 //            Animation animation = AnimationUtils.loadAnimation(context, R.anim.slide_in_row);
@@ -77,6 +78,11 @@ public class ConsumerTenderListAdapter extends RecyclerView.Adapter<ConsumerTend
                 i.putExtra("id", tenderList.getId());
                 i.putExtra("address", tenderList.getWorkplace_address() + " " + tenderList.getPincode());
                 i.putStringArrayListExtra("tender_pdf", tenderList.getTender_pdf());
+
+                i.putExtra("getConsumer_mob_no", tenderList.getConsumer_mob_no());
+                i.putExtra("Tender_accepted_consumer_id", tenderList.getTender_accepted_consumer_id());
+                i.putExtra("consumer_Name", tenderList.getConsumer_name());
+
                 Log.i("pri","tt=>"+tenderList.getId());
                 context.startActivity(i);
             }
@@ -89,7 +95,7 @@ public class ConsumerTenderListAdapter extends RecyclerView.Adapter<ConsumerTend
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName, tvEmail, tvPhone, tvOccupation, tvAddress, tvDate,tvViewMore;
+        TextView tvName, tvEmail, tvPhone, tvOccupation, tvAddress, tvDate,tvViewMore,tvExpiredDate;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
@@ -99,7 +105,7 @@ public class ConsumerTenderListAdapter extends RecyclerView.Adapter<ConsumerTend
             tvAddress = itemView.findViewById(R.id.tvAddress);
             tvDate = itemView.findViewById(R.id.tvDate);
             tvViewMore = itemView.findViewById(R.id.tvViewMore);
-
+            tvExpiredDate = itemView.findViewById(R.id.tvExpiredDate);
         }
     }
 

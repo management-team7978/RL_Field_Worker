@@ -130,57 +130,52 @@ public class DashboardFragment extends Fragment {
     }
 
     private void ViewCallDialog() {
-        if (getActivity() != null) {
-            final Dialog dialog = new Dialog(getActivity());
-            dialog.setContentView(R.layout.popup_call_request);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.popup_call_request);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
 
-            Spinner spLanguage = (Spinner) dialog.findViewById(R.id.spLanguage);
-            EditText edtHelper = (EditText) dialog.findViewById(R.id.edtHelper);
-            AppCompatButton btSubmit = (AppCompatButton) dialog.findViewById(R.id.btSubmit);
+        Spinner spLanguage = (Spinner) dialog.findViewById(R.id.spLanguage);
+        EditText edtHelper = (EditText) dialog.findViewById(R.id.edtHelper);
+        AppCompatButton btSubmit = (AppCompatButton) dialog.findViewById(R.id.btSubmit);
 
-            arr_language_type.clear();
-            arr_language_type.add("English");
-            arr_language_type.add("Hindi");
+        arr_language_type.clear();
+        arr_language_type.add("English");
+        arr_language_type.add("Hindi");
 
-            spLanguage.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner_list, arr_language_type));
+        spLanguage.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner_list, arr_language_type));
 
-            spLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    st_language = (String) parent.getSelectedItem();
-                    Log.i("pri", "selected=> " + st_language);
+        spLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                st_language= (String) parent.getSelectedItem();
+                Log.i("pri","selected=> "+st_language);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        btSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String helper_text = edtHelper.getText().toString().trim();
+                if (helper_text.equals("")){
+                    Toast.makeText(getActivity(), "Please fill all the field", Toast.LENGTH_SHORT).show();
+                }else {
+                    RaiseHelpTicket(SharedPreference.get("uuid"),dialog,helper_text,st_language,"BDM");
                 }
+            }
+        });
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-
-            btSubmit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String helper_text = edtHelper.getText().toString().trim();
-                    if (helper_text.equals("")) {
-                        Toast.makeText(getActivity(), "Please fill all the field", Toast.LENGTH_SHORT).show();
-                    } else {
-                        RaiseHelpTicket(SharedPreference.get("uuid"), dialog, helper_text, st_language);
-                    }
-                }
-            });
-
-            // show the exit dialog
-            dialog.show();
-        }else {
-            Toast.makeText(getActivity(), "Crashed", Toast.LENGTH_SHORT).show();
-
-        }
+        // show the exit dialog
+        dialog.show();
     }
 
-    private void RaiseHelpTicket(String uuid, Dialog dialog, String helper_text, String st_language) {
+
+    private void RaiseHelpTicket(String uuid, Dialog dialog, String helper_text, String st_language,String type) {
         StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.customer_call_request, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -214,6 +209,7 @@ public class DashboardFragment extends Fragment {
                 params.put("uuid",uuid);
                 params.put("language",st_language);
                 params.put("message",helper_text);
+                params.put("type",type);
                 Log.i("prii","u=>"+params.toString());
                 return  params;
             }

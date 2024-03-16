@@ -139,7 +139,11 @@ public class TenderListFragment extends Fragment {
                                     jsonObject1.getString("pincode"),
                                     jsonObject1.getString("date"),
                                     jsonObject1.getString("id"),
-                                    tenderPdfList
+                                    tenderPdfList,
+                                    jsonObject1.getString("expiry_date"),
+                                    jsonObject1.getString("tender_accepted_consumer_id"),
+                                    jsonObject1.getString("consumer_mob_no"),
+                                    jsonObject1.getString("consumer_name")
                             ));
                         }
 

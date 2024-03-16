@@ -197,13 +197,15 @@ public class LoginActivity extends AppCompatActivity {
 
     private void ViewCallDialog() {
         final Dialog dialog = new Dialog(LoginActivity.this);
-        dialog.setContentView(R.layout.popup_call_request);
+        dialog.setContentView(R.layout.popup_call_request_login);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
 
         Spinner spLanguage = (Spinner) dialog.findViewById(R.id.spLanguage);
         EditText edtHelper = (EditText) dialog.findViewById(R.id.edtHelper);
+        EditText edtFirstName = dialog.findViewById(R.id.edtFirstName);
+        EditText edtPhone = dialog.findViewById(R.id.edtPhone);
         AppCompatButton btSubmit = (AppCompatButton) dialog.findViewById(R.id.btSubmit);
 
         arr_language_type.clear();
@@ -228,10 +230,19 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String helper_text = edtHelper.getText().toString().trim();
-                if (helper_text.equals("")){
-                    Toast.makeText(LoginActivity.this, "Please fill all the field", Toast.LENGTH_SHORT).show();
-                }else {
-                    RaiseHelpTicket(SharedPreference.get("consumer_uuid"),dialog,helper_text,st_language);
+                String name= edtFirstName.getText().toString().trim();
+                String phone = edtPhone.getText().toString().trim();
+
+                if (name.equals("")){
+                    Toast.makeText(LoginActivity.this, "Please Enter Name", Toast.LENGTH_SHORT).show();
+                }else if (phone.equals("")){
+                    Toast.makeText(LoginActivity.this, "Please Enter Phone Number", Toast.LENGTH_SHORT).show();
+                }else if (helper_text.equals("")){
+                    Toast.makeText(LoginActivity.this, "Please Enter Issue", Toast.LENGTH_SHORT).show();
+                } else if (phone.length() != 10) {
+                    Toast.makeText(LoginActivity.this, "Phone number Should be 10 digit", Toast.LENGTH_SHORT).show();
+                } else {
+                    RaiseHelpTicket(dialog,helper_text,st_language,"BDM",name,phone);
                 }
             }
         });
@@ -240,7 +251,7 @@ public class LoginActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void RaiseHelpTicket(String uuid, Dialog dialog, String helper_text, String st_language) {
+    private void RaiseHelpTicket(Dialog dialog, String helper_text, String st_language, String type, String name, String phone) {
         StringRequest request=new StringRequest(Request.Method.POST, Keys.URL.customer_call_request, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -271,9 +282,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<>();
-                params.put("uuid",uuid);
                 params.put("language",st_language);
                 params.put("message",helper_text);
+                params.put("type",type);
+                params.put("name",name);
+                params.put("phone",phone);
                 Log.i("prii","u=>"+params.toString());
                 return  params;
             }
@@ -286,7 +299,19 @@ public class LoginActivity extends AppCompatActivity {
             final String[] listItems = {"English", "हिंदी"};
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
             builder.setTitle("Choose Language");
-            builder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+
+            // Determine which language is currently selected in the system
+            String systemLanguage = Locale.getDefault().getLanguage();
+            int selectedLanguageIndex = -1;
+
+            if (systemLanguage.equals("en")) {
+                selectedLanguageIndex = 0; // English is selected
+            } else if (systemLanguage.equals("hi")) {
+                selectedLanguageIndex = 1; // Hindi is selected
+            }
+
+            // Set the selected language as checked in the dialog
+            builder.setSingleChoiceItems(listItems, selectedLanguageIndex, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     if (listItems[i].equals("English")) {
@@ -298,6 +323,7 @@ public class LoginActivity extends AppCompatActivity {
                         setLocale("hi");
                         recreate();
                     }
+                    dialogInterface.dismiss(); // Dismiss dialog after selection
                 }
             });
 

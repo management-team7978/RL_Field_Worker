@@ -18,6 +18,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -283,10 +284,15 @@ public class MainActivity extends AppCompatActivity {
         dialogButtonYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // dismiss the dialog and exit the exit
+                // dismiss the dialog and exit the app
                 dialog.dismiss();
-                finish();
-
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    dialog.dismiss();
+                    finishAffinity();
+                } else {
+                    dialog.dismiss();
+                    finish();
+                }
             }
         });
 

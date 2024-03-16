@@ -248,7 +248,19 @@ public class RegisterActivity extends AppCompatActivity {
             final String[] listItems = {"English", "हिंदी"};
             AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
             builder.setTitle("Choose Language");
-            builder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+
+            // Determine which language is currently selected in the system
+            String systemLanguage = Locale.getDefault().getLanguage();
+            int selectedLanguageIndex = -1;
+
+            if (systemLanguage.equals("en")) {
+                selectedLanguageIndex = 0; // English is selected
+            } else if (systemLanguage.equals("hi")) {
+                selectedLanguageIndex = 1; // Hindi is selected
+            }
+
+            // Set the selected language as checked in the dialog
+            builder.setSingleChoiceItems(listItems, selectedLanguageIndex, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     if (listItems[i].equals("English")) {
@@ -260,6 +272,7 @@ public class RegisterActivity extends AppCompatActivity {
                         setLocale("hi");
                         recreate();
                     }
+                    dialogInterface.dismiss(); // Dismiss dialog after selection
                 }
             });
 
@@ -267,7 +280,6 @@ public class RegisterActivity extends AppCompatActivity {
             dialog.show();
         }
     }
-
 
     private void setLocale(String lang) {
         Locale locale=new Locale(lang);
