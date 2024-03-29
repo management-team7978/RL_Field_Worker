@@ -30,14 +30,19 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="180dp"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="0dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#86DDDDDD">
+                    android:background="#20DDDDDD">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -418,7 +423,6 @@
             android:layout_centerHorizontal="true"
             android:adjustViewBounds="true"
             android:src="@drawable/gif_loader" />
-
 
         <TextView
             android:id="@+id/tvText"

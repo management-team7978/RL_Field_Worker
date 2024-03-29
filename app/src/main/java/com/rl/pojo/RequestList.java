@@ -12,8 +12,10 @@ public class RequestList {
     private String id;
     private String work_status;
     private String address;
+    private String status_code;
+    private String status_message;
 
-    public RequestList(String serial, String service_request_id, String consumer_user_id, String name, String phone, String quotation, String quotations, String occupation, String id, String work_status, String address) {
+    public RequestList(String serial, String service_request_id, String consumer_user_id, String name, String phone, String quotation, String quotations, String occupation, String id, String work_status, String address, String status_code, String status_message) {
         this.serial = serial;
         this.service_request_id = service_request_id;
         this.consumer_user_id = consumer_user_id;
@@ -25,6 +27,8 @@ public class RequestList {
         this.id = id;
         this.work_status = work_status;
         this.address = address;
+        this.status_code = status_code;
+        this.status_message = status_message;
     }
 
     public String getSerial() {
@@ -113,5 +117,21 @@ public class RequestList {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getStatus_code() {
+        return status_code;
+    }
+
+    public void setStatus_code(String status_code) {
+        this.status_code = status_code;
+    }
+
+    public String getStatus_message() {
+        return status_message;
+    }
+
+    public void setStatus_message(String status_message) {
+        this.status_message = status_message;
     }
 }

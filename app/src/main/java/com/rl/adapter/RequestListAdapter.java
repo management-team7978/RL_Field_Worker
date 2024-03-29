@@ -59,6 +59,36 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
         holder.tvOccupation.setText(requestList.getOccupation());
         holder.tvWorkStatus.setText(requestList.getWork_status());
         holder.tvAddress.setText(requestList.getAddress());
+
+        if (requestList.getStatus_code().equals("1")){
+            holder.tvWorkStatus.setText(requestList.getStatus_message());
+            holder.tvWorkStatus.setTextColor(ContextCompat.getColor(context, R.color.rl_orange));
+        }else if (requestList.getStatus_code().equals("2")){
+            holder.tvWorkStatus.setText(requestList.getStatus_message());
+            holder.tvWorkStatus.setTextColor(ContextCompat.getColor(context, R.color.yellow));
+        }else if (requestList.getStatus_code().equals("3")){
+            holder.tvWorkStatus.setText(requestList.getStatus_message());
+            holder.tvWorkStatus.setTextColor(ContextCompat.getColor(context, R.color.yellow));
+        }else if (requestList.getStatus_code().equals("4")){
+            holder.tvWorkStatus.setText(requestList.getStatus_message());
+            holder.tvWorkStatus.setTextColor(ContextCompat.getColor(context, R.color.lightgreen));
+        }
+        else if (requestList.getStatus_code().equals("5")){
+            holder.tvWorkStatus.setText(requestList.getStatus_message());
+            holder.tvWorkStatus.setTextColor(ContextCompat.getColor(context, R.color.lightgreen));
+        }else if (requestList.getStatus_code().equals("6")){
+            holder.tvWorkStatus.setText(requestList.getStatus_message());
+            holder.tvWorkStatus.setTextColor(ContextCompat.getColor(context, R.color.lightgreen));
+        }
+        else if (requestList.getStatus_code().equals("7")){
+            holder.tvWorkStatus.setText(requestList.getStatus_message());
+            holder.tvWorkStatus.setTextColor(ContextCompat.getColor(context, R.color.red));
+        }
+        else if (requestList.getStatus_code().equals("8")){
+            holder.tvWorkStatus.setText(requestList.getStatus_message());
+            holder.tvWorkStatus.setTextColor(ContextCompat.getColor(context, R.color.green));
+        }
+        
         holder.tvViewMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -198,7 +198,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="Consumer Id"
+                            android:text="Contractor Id"
                             android:textColor="@color/black"
                             android:textSize="14sp"
                             android:layout_marginTop="5dp"/>
@@ -217,7 +217,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="Consumer Name"
+                            android:text="Contractor Name"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
@@ -235,7 +235,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="Consumer Phone Number"
+                            android:text="Contractor Phone Number"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
