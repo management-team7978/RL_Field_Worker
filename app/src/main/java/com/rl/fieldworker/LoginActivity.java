@@ -1,5 +1,6 @@
 package com.rl.fieldworker;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -110,7 +111,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,6 +121,14 @@ public class LoginActivity extends AppCompatActivity {
                }else {
                     UserLogin(email,pass);
                 }
+            }
+        });
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+               // Toast.makeText(LoginActivity.this, "exit", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
@@ -449,5 +457,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStop() {
         unregisterReceiver(networkChangeListener);
         super.onStop();
+    }
+
+
+
+    @Override
+    public void finish() {
+        super.finish();
     }
 }

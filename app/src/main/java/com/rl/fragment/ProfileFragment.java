@@ -232,8 +232,11 @@ public class ProfileFragment extends Fragment {
                     SharedPreference.removeKey("uuid");
                     SharedPreference.removeKey("name");
                     SharedPreference.removeKey("referral_code");
+                    SharedPreference.removeKey("adhar_card");
                 }
                 Intent i = new Intent(getActivity(), LoginActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                Toast.makeText(getActivity(), "Logout", Toast.LENGTH_SHORT).show();
                 startActivity(i);
                 getActivity().finish();
             }
